@@ -4,7 +4,7 @@ title: First Team Project (Pet Talk-1)
 date: 2023-03-15
 excerpt: "첫 번째  프로젝트."
 tags: [project, java, MySQL]
-feature: /img/PetTalk/logo.png
+feature: /img/PetTalk/main.png
 project: true
 comments: true
 
