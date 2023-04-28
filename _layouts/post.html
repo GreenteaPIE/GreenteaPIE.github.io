@@ -9,15 +9,27 @@ layout: compress
 <head>
    
     {% include head.html %}
-    <style>
-    .post-title.feature {
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  height: 380px; /* 크기 조절 */
-}
-    </style>
-
+ <style>
+     .post-title.feature {
+       background-repeat: no-repeat;
+       background-size: contain;
+       background-position: center;
+       height: 380px;
+       /* 이미지 색 추출 후 변수로 지정 */
+       --bg-color: #F5F5F5;
+       /* 배경 색상과 불투명도 설정 */
+       background-color: var(--bg-color);
+       opacity: 0.8;
+     }
+   </style>
+   <script>
+     // 이미지의 대표 색상 추출하는 라이브러리 예시
+     const img = document.querySelector('.post-title.feature');
+     const colorThief = new ColorThief();
+     const color = colorThief.getColor(img);
+     // 추출한 색상을 변수로 지정
+     document.documentElement.style.setProperty('--bg-color', `rgb(${color.join(',')})`);
+   </script>
 </head>
 <body>
     {% include nav.html %}
