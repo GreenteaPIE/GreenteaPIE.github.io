@@ -9,14 +9,18 @@ layout: compress
 <head>
    
     {% include head.html %}
-     <style>
-    .post-title.feature {
+     .post-title.feature {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  height: 380px; /* 크기 조절 */
+  height: 380px;
+  background-color: #fff;
 }
-    </style>
+
+.post-title.feature img {
+  display: none;
+}
+
 </head>
 <body>
     {% include nav.html %}
