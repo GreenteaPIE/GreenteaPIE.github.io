@@ -3,7 +3,7 @@ layout: post
 title: First Team Project (Pet Talk-1)
 date: 2023-03-15
 excerpt: "첫 번째  프로젝트."
-tags: [project, java, sql]
+tags: [project, java, Mysql]
 feature: /assets/img/rucy.jpg
 project: true
 comments: true
@@ -41,3 +41,8 @@ comments: true
 - 기간 : 2023.03.15 ~ 2023.03.21
 - 기능 :
   - 게시
+
+
+
+
+
