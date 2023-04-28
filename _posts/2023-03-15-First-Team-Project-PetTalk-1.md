@@ -61,7 +61,6 @@ comments: true
     - 아이디와 비밀번호가 일치할 시 프로그램 실행
 - 정보 수정
 
-![black](https://github.com/GreenteaPIE/GreenteaPIE.github.io/blob/master/assets/img/black.jpg)
 
-
+![_config.yml]({{ site.baseurl }}/assets/img/black.jpg)
 
