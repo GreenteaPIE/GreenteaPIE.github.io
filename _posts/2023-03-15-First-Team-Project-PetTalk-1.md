@@ -12,7 +12,7 @@ comments: true
 
 
 
-> **사용한 플랫폼 : Eclipse,MySQL**
+> **사용한 플랫폼 : Eclipse, MySQL**
 
 # **시작하며**
 
