@@ -4,7 +4,7 @@ title: First Team Project (Pet Talk)
 date: 2023-03-15
 excerpt: "첫 번째 팀 프로젝트"
 tags: [project, java, MySQL]
-feature: /assets/img/rucy.jpg
+feature: /assets/img/main.jpg
 project: true
 comments: true
 
@@ -98,12 +98,9 @@ comments: true
 
 ### 6.  화면 설계서
 
-<details>
-<summary>더보기</summary>
-<div markdown="1">
-    회원가입
-![_config.yml]({{ site.baseurl }}/img/PetTalk/join.png)
+회원가입<br>
+![_config.yml]({{ site.baseurl }}/img/PetTalk/join.png)<br>
 ![_config.yml]({{ site.baseurl }}/img/PetTalk/joinsucs.png)
-</div>
-</details>
+
+로그인<br>![_config.yml]({{ site.baseurl }}/img/PetTalk/mainlogin.png)<br>![_config.yml]({{ site.baseurl }}/img/PetTalk/login.png)
 
