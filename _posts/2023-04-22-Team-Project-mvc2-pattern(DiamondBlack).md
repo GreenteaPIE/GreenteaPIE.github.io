@@ -4,7 +4,7 @@ title: Team Project MVC2 pattern(DiamondBlack)
 date: 2023-04-22
 excerpt: "두 번째 팀 프로젝트"
 tags: [project, java, jsp, Oracle]
-feature: /img/PetTalk/main.png
+feature: /img/DiamondBlack/logo.png
 project: true
 comments: true
 
