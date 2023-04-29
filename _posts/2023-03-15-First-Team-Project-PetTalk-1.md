@@ -7,13 +7,35 @@ tags: [project, java, MySQL]
 feature: /img/PetTalk/main.png
 project: true
 comments: true
-toc: true 
-toc_sticky: true
+
 ---
 
 
 
 > **사용한 플랫폼 : Eclipse, MySQL**
+
+
+
+# 목차
+
+- [**시작하며**](#--------)
+  * [프로젝트 명세서](#--------)
+    + [1. 프로젝트 진행 순서](#1-----------)
+    + [2. 개요](#2---)
+    + [3. 기능 별 요구 사항](#3-----------)
+    + [4. DB 설계](#4-db---)
+    + [5. 역할 분담](#5------)
+    + [6.  화면 설계서](#6--------)
+      - [회원 가입<br>](#------br-)
+      - [로그인<br>![_config.yml]({{ site.baseurl }}/img/PetTalk/mainlogin.png)](#----br----configyml-----sitebaseurl----img-pettalk-mainloginpng-)
+        * [친구 추가<br>](#------br-)
+      - [나의 정보(반려 동물 정보 입력)<br>](#-------------------br-)
+      - [채팅<br>](#---br-)
+      - [동물 병원 정보<br>](#---------br-)
+      - [그림 판<br>](#-----br-)
+      - [관리자<br>](#----br-)
+    + [7. 개선 사항과 느낀 점](#7------------)
+  * [[프로젝트 주소](https://github.com/GreenteaPIE/FirtTeamProjectPetTalk)](#----------https---githubcom-greenteapie-firtteamprojectpettalk-)
 
 # **시작하며**
 
@@ -195,4 +217,4 @@ ID 와 PASSWORD 가 일치해야 로그인이 가능 하다.
 
     여기서 더 나아가 이번 프로젝트 경험을 토대로 다음 프로젝트 때의 더 견고한 역할 분담과 진행 과정을 어떻게 해야 할 지 효율적인 방법을 계획을 구상했고, 개인 프로젝트 또한 어떻게 진행 할 지 구상하게 되었다.
 
-[프로젝트 주소](https://github.com/GreenteaPIE/FirtTeamProjectPetTalk)
+## [프로젝트 주소](https://github.com/GreenteaPIE/FirtTeamProjectPetTalk)
