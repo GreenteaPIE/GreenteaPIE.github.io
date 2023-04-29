@@ -7,7 +7,8 @@ tags: [project, java, MySQL]
 feature: /img/PetTalk/main.png
 project: true
 comments: true
-
+toc: true 
+toc_sticky: true
 ---
 
 
