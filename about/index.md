@@ -7,6 +7,6 @@ comments: false
 ---
     
 
-## Nube developer
-email: greenteapie2023@gmail.com
+## Nube developer<br>
+email: greenteapie2023@gmail.com<br>
 youtube: www.youtube.com/@user-yu5fi2uk6w/featured
