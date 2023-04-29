@@ -7,6 +7,7 @@ tags: [project, java, MySQL]
 feature: /img/PetTalk/main.png
 project: true
 comments: true
+
 ---
 
 
@@ -116,16 +117,16 @@ DB 설계와 메인 틀을 먼저 잡은 후<br>회원 가입과 로그인 기�
 
 친구 추가<br>
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/shorts/4ugEFmOfpNQ?feature=share" frameborder="0"> </iframe>
+<iframe width="560" height="315" src="//www.youtube.com/embed/4ugEFmOfpNQ" frameborder="0"> </iframe>
 
 
 
 나의 정보(반려동물 정보 입력)<br>
 
-![_config.yml]({{ site.baseurl }}/img/PetTalk/petup.png)
+![_config.yml]({{ site.baseurl }}/img/PetTalk/petup.jpg)
 
-![_config.yml]({{ site.baseurl }}/img/PetTalk/myinfo.png)
+![_config.yml]({{ site.baseurl }}/img/PetTalk/myinfo.jpg)
 
 채팅<br>
 
-![_config.yml]({{ site.baseurl }}/img/PetTalk/chat.png)
+![_config.yml]({{ site.baseurl }}/img/PetTalk/chat.jpg)
