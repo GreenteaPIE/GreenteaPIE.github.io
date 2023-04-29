@@ -26,11 +26,11 @@ comments: true
 4. DB 설계
 5. 역할 분담
 6. 화면 설계서
-7. 개선사항 과 느낀
+7. 개선 사항 과 느낀 점
 
 ### 1. 프로젝트 진행 순서
 
-회원 가입과 로그인 기능을 먼저 구현 후 부가적인 기능을 추가한다.
+DB 설계와 메인 틀을 먼저 잡은 후<br>회원 가입과 로그인 기능을 구현 후 부가적인 기능을 추가한다.
 
 ### 2. 개요
 
@@ -38,7 +38,7 @@ comments: true
 - 인원 : 5명
 - 기간 : 2023.03.15 ~ 2023.03.21
 - 기능 :
-  - 유저 - 회원 가입, 로그인, 나의 정보, 반려동물 정보 입력, 친구추가 기능
+  - 유저 - 회원 가입, 로그인, 나의 정보, 반려 동물 정보 입력, 친구 추가 기능
   - 어드민 - 회원 관리 기능
   - 채팅 - 다중 접속 채팅, 귓속말 기능
   - 그림판 - 그림 그리기 기능
@@ -65,12 +65,19 @@ comments: true
 - 채팅
   - 닉네임을 입력하여 입장
   - 귓속말을 하는 명령어를 사용하면 귓속말을 할 유저에게만 채팅 가능 
+
 - 병원정보
   - 하이퍼링크로 병원정보를 모아볼 수 있는 사이트를 연결
+
 - 그림판
   - 여러가지 팬 색과 지우개, 크기 조절 
+
 - 친구추가
-  - 아이디를 검색 해 아이디가 존재하면 친구목록에 추가
+  - ID를 검색 해 아이디가 존재하면 친구목록에 추가
+  - ID가 존재 하지 않을 경우 "친구를 찾을 수 없습니다." 메시지 출력
+  - 자신의 아이디를 검색 할 경우 "자신의 ID는 추가할 수 없습니다." 메시지 출력
+  - 이미 추가 된 ID일 경우 "이미 추가된 ID 입니다." 메시지 출력
+
 
 
 
@@ -90,6 +97,7 @@ comments: true
   - 반려동물 정보 입력
   - 마이페이지 정보 불러오기
   - 동물병원 정보 링크 연결
+  - 친구검색 추가
 - 정주호
   - 관리자 기능 구현
 - 이연화
@@ -99,8 +107,9 @@ comments: true
 ### 6.  화면 설계서
 
 회원가입<br>
-![_config.yml]({{ site.baseurl }}/img/PetTalk/join.png)<br>
-![_config.yml]({{ site.baseurl }}/img/PetTalk/joinsucs.png)
+![_config.yml]({{ site.baseurl }}/img/PetTalk/join.png)![_config.yml]({{ site.baseurl }}/img/PetTalk/joinsucs.png)
 
-로그인<br>![_config.yml]({{ site.baseurl }}/img/PetTalk/mainlogin.png)<br>![_config.yml]({{ site.baseurl }}/img/PetTalk/login.png)
+로그인<br>![_config.yml]({{ site.baseurl }}/img/PetTalk/mainlogin.png)![_config.yml]({{ site.baseurl }}/img/PetTalk/login.png)
+
+친구 추가<br><iframe width="560" height="315" src="//www.youtube.com/shorts/4ugEFmOfpNQ" frameborder="0"> </iframe>
 
