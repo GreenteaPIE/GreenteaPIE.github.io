@@ -107,9 +107,16 @@ DB 설계와 메인 틀을 먼저 잡은 후<br>회원 가입과 로그인 기�
 ### 6.  화면 설계서
 
 회원가입<br>
-![_config.yml]({{ site.baseurl }}/img/PetTalk/join.png)![_config.yml]({{ site.baseurl }}/img/PetTalk/joinsucs.png)
+![_config.yml]({{ site.baseurl }}/img/PetTalk/join.png)
 
-로그인<br>![_config.yml]({{ site.baseurl }}/img/PetTalk/mainlogin.png)![_config.yml]({{ site.baseurl }}/img/PetTalk/login.png)
+![_config.yml]({{ site.baseurl }}/img/PetTalk/joinsucs.png)
 
-친구 추가<br><iframe width="560" height="315" src="//www.youtube.com/shorts/4ugEFmOfpNQ" frameborder="0"> </iframe>
+로그인<br>![_config.yml]({{ site.baseurl }}/img/PetTalk/mainlogin.png)
+
+![_config.yml]({{ site.baseurl }}/img/PetTalk/login.png)
+
+친구 추가<br>
+
+
+<iframe width="560" height="315" src="///www.youtube.com/shorts/4ugEFmOfpNQ" frameborder="0"> </iframe>
 
