@@ -117,6 +117,5 @@ DB 설계와 메인 틀을 먼저 잡은 후<br>회원 가입과 로그인 기�
 
 친구 추가<br>
 
-
-<iframe width="560" height="315" src="///www.youtube.com/shorts/4ugEFmOfpNQ" frameborder="0"> </iframe>
+<iframe width="560" height="315" src="//www.youtube.com/shorts/4ugEFmOfpNQ?feature=share" frameborder="0"> </iframe>
 
