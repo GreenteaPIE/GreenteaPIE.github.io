@@ -18,7 +18,7 @@ comments: true
 
 
 <details>
-<summary>목차</summary>
+<summary><span style="font-size:50pt; font-weight:bold; color:gray;">목차</span></summary>
 <div markdown="1">
 마크다운 내용  
 </div>
