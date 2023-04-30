@@ -1,3 +1,4 @@
+---
 layout: post
 title: Team Project MVC2 Pattern(DiamondBlack)
 date: 2023-04-22
@@ -40,7 +41,6 @@ comments: true
   * [프로젝트 주소](#프로젝트-주소)
 </div>
 </details>
-
 
 
 
@@ -303,9 +303,9 @@ DB 설계와 DTO를 먼저 구성하고 팀원들에게 배포 후, 각자 회�
 
 회원 가입과 로그인은 유효성 검사를 거쳐 진행된다.
 
-![_config.yml]({{ site.baseurl }}/img/DiamondBlack/sha256.png)
+회원 가입시 입력한 패스워드는 아래처럼 암호화 되어 저장된다.
 
-회원 가입 시 입력한 패스워드는 위 사진처럼 암호화 되어 저장된다.
+![_config.yml]({{ site.baseurl }}/img/DiamondBlack/sha256.png)
 
 #### 어드민<br>
 
