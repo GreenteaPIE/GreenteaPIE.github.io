@@ -1,12 +1,13 @@
 ---
 layout: post
-title: First Project (Pet Talk-1)
+title: First Project (FindMyDog)
 date: 2023-03-24
 excerpt: "첫 번째 개인 프로젝트."
 tags: [project, java, jsp, oracle]
 feature: /assets/img/rucy.jpg
 project: true
 comments: true
+
 ---
 
 
@@ -49,9 +50,4 @@ comments: true
 - 인원 : 1명
 - 기간 : 2023.03.24 ~ ing
 - 기능 :
-  - 게시
-
-
-
-
-
+  - 게시판
