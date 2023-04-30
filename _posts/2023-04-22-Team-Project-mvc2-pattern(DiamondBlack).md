@@ -8,13 +8,10 @@ feature: /img/DiamondBlack/logo.png
 project: true
 comments: true
 
-
 ---
 
 
-
 > **사용한 플랫폼 : Eclipse, Oracle**
-
 
 
 <details>
@@ -41,6 +38,7 @@ comments: true
   * [프로젝트 주소](#프로젝트-주소)
 </div>
 </details>
+
 
 
 
@@ -289,7 +287,7 @@ DB 설계와 DTO를 먼저 구성하고 팀원들에게 배포 후, 각자 회�
     - 옥션 관리
   - 옥션(경매) 구현
 
-### 7.  화면 설계서
+### 7. 화면 설계서
 
 #### 로그인을 하지 않았을 경우<br>
 
