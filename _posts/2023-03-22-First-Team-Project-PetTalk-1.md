@@ -8,7 +8,6 @@ feature: /img/PetTalk/main.png
 project: true
 comments: true
 
-
 ---
 
 
@@ -121,7 +120,7 @@ DB 설계와 메인 틀을 먼저 잡은 후<br>회원 가입과 로그인 기�
 
 ID 와 PASSWORD 가 일치해야 로그인이 가능 하다.
 
-##### 친구 추가<br>
+#### 친구 추가<br>
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/4ugEFmOfpNQ" frameborder="0"> </iframe>
 
