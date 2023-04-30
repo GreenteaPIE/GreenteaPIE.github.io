@@ -203,6 +203,18 @@ DB 설계와 DTO를 먼저 구성하고 팀원들에게 배포 후, 각자 회�
 
 ![_config.yml]({{ site.baseurl }}/img/DiamondBlack/DB.jpg)
 
+![_config.yml]({{ site.baseurl }}/img/DiamondBlack/user.png)
+
+![_config.yml]({{ site.baseurl }}/img/DiamondBlack/free.png)
+
+![_config.yml]({{ site.baseurl }}/img/DiamondBlack/qna.png)
+
+![_config.yml]({{ site.baseurl }}/img/DiamondBlack/product.png)
+
+![_config.yml]({{ site.baseurl }}/img/DiamondBlack/cart.png)
+
+![_config.yml]({{ site.baseurl }}/img/DiamondBlack/auction.png)
+
 ### 5. API 설계
 
 ### 6. 역할 분담
@@ -210,6 +222,7 @@ DB 설계와 DTO를 먼저 구성하고 팀원들에게 배포 후, 각자 회�
 - 정자윤
   - 데이터베이스 Table 구성
   - 장바구니 및 결제 페이지 구현
+  - PPT 작성
 - 박권능
   - 로그인 및 회원 가입 구현
   - 결제API, 지도API 삽입
@@ -225,6 +238,7 @@ DB 설계와 DTO를 먼저 구성하고 팀원들에게 배포 후, 각자 회�
   - 전체적인 UI 디자인 통합 및 수정
   - 관리자 페이지의 게시판 관리, 매출 관리 구현
   - 전체 기능에 로그인이 필요한 기능은 스크립트 처리
+  - PPT 발표
 - 임종민
   - 관리자 페이지 구현
     - 브랜드, 상품관리
@@ -235,8 +249,6 @@ DB 설계와 DTO를 먼저 구성하고 팀원들에게 배포 후, 각자 회�
 ### 7.  화면 설계서
 
 #### 회원 가입<br>
-
-
 
 중복된 ID는 가입 할 수 없다.
 
@@ -260,18 +272,6 @@ ID 와 PASSWORD 가 일치해야 로그인이 가능 하다.
    2. 관리자 창 부분
       1. 회원 정보 수정 기능 추가
       2. 관리창 UI개선
-   3. 채팅창 부분
-      1. 1:1 대화방 구현
-      2. 채팅창 욕설 필터
-      3. DB 와 연결하여 채팅내역 저장 및 접속기록 관리
-   4. 나의 정보 부분
-      1. 나의 정보 수정 기능 추가
-      2. 프로필 이미지 추가
-   5. 친구 추가 부분
-      1. 추가한 친구에게 1:1 대화 구현
-      2. 친구정보 보기
-   6. 동물 병원 정보 부분
-      1. 사이트 이동이 아닌 사이트 내에서 정보 데이터를 직접 불러오기
 
 2. 느낀 점
 
