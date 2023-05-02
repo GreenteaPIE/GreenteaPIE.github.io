@@ -2,7 +2,7 @@
 layout: post
 title: First Project (FindMyDog)
 date: 2023-03-24
-excerpt: "첫 번째 개인 프로젝트."
+excerpt: "첫 번째 개인 프로젝트"
 tags: [project, java, jsp, oracle]
 feature: /assets/img/rucy.jpg
 project: true
