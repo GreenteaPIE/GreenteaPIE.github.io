@@ -1,11 +1,12 @@
 ---
 layout: post
-title: MVC2 Pattern MainForm
+title: MVC2 Pattern MainForm 틀 작성
 date: 2023-04-22
 excerpt: "두 번째 팀 프로젝트 DiamondBlack"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript]
 feature: /img/DiamondBlack/logo.png
 comments: true
+
 
 ---
 
@@ -41,7 +42,8 @@ comments: true
 			<div class="col-lg-4 col-md-6 pb-1">
 				<div class="cat-item text-center" style="padding: 30px;">
 					<p class="text-right"></p>
-					<a href="DBServlet?command=BRAND_LIST&bname=hermes" class="cat-img position-relative overflow-hidden mb-3"> <img class="img-fluid" src="images/hermeslogo.png" alt="">
+					<a href="DBServlet?command=BRAND_LIST&bname=hermes" class="cat-img position-relative overflow-hidden mb-3"> 
+                        <img class="img-fluid" src="images/hermeslogo.png" alt="">
 					</a>
 					<h5 class="font-weight-semi-bold m-0"></h5>
 				</div>
@@ -49,16 +51,8 @@ comments: true
 			<div class="col-lg-4 col-md-6 pb-1">
 				<div class="cat-item text-center" style="padding: 30px;">
 					<p class="text-right"></p>
-					<a href="DBServlet?command=BRAND_LIST&bname=louisvuitton" class="cat-img position-relative overflow-hidden mb-3"> <img class="img-fluid" src="images/louisvuittonlogo.png" alt="">
-					</a>
-					<h5 class="font-weight-semi-bold m-0"></h5>
-				</div>
-
-			</div>
-			<div class="col-lg-4 col-md-6 pb-1">
-				<div class="cat-item text-center" style="padding: 30px;">
-					<p class="text-right"></p>
-					<a href="DBServlet?command=BRAND_LIST&bname=prada" class="cat-img position-relative overflow-hidden mb-3"> <img class="img-fluid" src="images/pradalogo.png" alt="">
+					<a href="DBServlet?command=BRAND_LIST&bname=louisvuitton" class="cat-img position-relative overflow-hidden mb-3"> 
+                        <img class="img-fluid" src="images/louisvuittonlogo.png" alt="">
 					</a>
 					<h5 class="font-weight-semi-bold m-0"></h5>
 				</div>
@@ -67,7 +61,18 @@ comments: true
 			<div class="col-lg-4 col-md-6 pb-1">
 				<div class="cat-item text-center" style="padding: 30px;">
 					<p class="text-right"></p>
-					<a href="DBServlet?command=BRAND_LIST&bname=Saint Laurent" class="cat-img position-relative overflow-hidden mb-3"> <img class="img-fluid" src="images/saintlaurentlogo.png" alt="">
+					<a href="DBServlet?command=BRAND_LIST&bname=prada" class="cat-img position-relative overflow-hidden mb-3"> 
+                        <img class="img-fluid" src="images/pradalogo.png" alt="">
+					</a>
+					<h5 class="font-weight-semi-bold m-0"></h5>
+				</div>
+
+			</div>
+			<div class="col-lg-4 col-md-6 pb-1">
+				<div class="cat-item text-center" style="padding: 30px;">
+					<p class="text-right"></p>
+					<a href="DBServlet?command=BRAND_LIST&bname=Saint Laurent" class="cat-img position-relative overflow-hidden mb-3"> 
+                        <img class="img-fluid" src="images/saintlaurentlogo.png" alt="">
 					</a>
 					<h5 class="font-weight-semi-bold m-0"></h5>
 				</div>
@@ -124,7 +129,8 @@ comments: true
 
 		<div class="row align-items-center py-3 px-xl-5">
 			<div class="col-lg-3 d-none d-lg-block">
-				<a href="index.jsp" class="text-decoration-none"> <img src="images/logo.png" alt="DB로고" height="50px" class="img-fluid">
+				<a href="index.jsp" class="text-decoration-none"> 
+                    <img src="images/logo.png" alt="DB로고" height="50px" class="img-fluid">
 
 				</a>
 			</div>
@@ -147,12 +153,16 @@ comments: true
 
 				<c:if test="${not empty loginUser}">
 
-					<a href="DBServlet?command=user_cart&loginUser=${loginUser.userid }" class="btn border"> <i class="fas fa-shopping-cart text-primary"></i> <span class="badge"></span>
+					<a href="DBServlet?command=user_cart&loginUser=${loginUser.userid }" class="btn border"> 
+                        <i class="fas fa-shopping-cart text-primary"></i> 
+                        <span class="badge"></span>
 					</a>
 				</c:if>
 				<c:if test="${empty loginUser}">
 
-					<a href="#" class="btn border" onclick="alert('로그인 후에 이용이 가능합니다.'); return false;"> <i class="fas fa-shopping-cart text-primary"></i> <span class="badge"></span>
+					<a href="#" class="btn border" onclick="alert('로그인 후에 이용이 가능합니다.'); return false;"> 
+                        <i class="fas fa-shopping-cart text-primary"></i> 
+                        <span class="badge"></span>
 					</a>
 				</c:if>
 
@@ -169,40 +179,51 @@ comments: true
 		<div class="row border-top px-xl-5">
 			<div class="col-lg-3 d-none d-lg-block">
 				<a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-					<h6 class="m-0" style="color: white;">Categories</h6> <i class="fa fa-angle-down text-white"></i>
+					<h6 class="m-0" style="color: white;">Categories</h6> 
+                    <i class="fa fa-angle-down text-white"></i>
 				</a>
 				<nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
 					<div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
 						<div class="nav-item dropdown">
 							<a href="#" class="nav-link" data-toggle="dropdown">BALENCIAGA <i class="fa fa-angle-down float-right mt-1"></i></a>
 							<div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-								<a href="DBServlet?command=BRAND_TOP_LIST&bname=balenciaga" class="dropdown-item">TOP</a><a href="DBServlet?command=BRAND_Bottom_LIST&bname=balenciaga" class="dropdown-item">BOTTOM</a> <a href="DBServlet?command=BRAND_Bcollection_LIST&bname=balenciaga" class="dropdown-item">boutique collection</a>
+								<a href="DBServlet?command=BRAND_TOP_LIST&bname=balenciaga" class="dropdown-item">TOP</a>
+                                <a href="DBServlet?command=BRAND_Bottom_LIST&bname=balenciaga" class="dropdown-item">BOTTOM</a> 
+                                <a href="DBServlet?command=BRAND_Bcollection_LIST&bname=balenciaga" class="dropdown-item">boutique collection</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
 							<a href="#" class="nav-link" data-toggle="dropdown">HERMES <i class="fa fa-angle-down float-right mt-1"></i></a>
 							<div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-								<a href="DBServlet?command=BRAND_TOP_LIST&bname=hermes" class="dropdown-item">TOP</a> <a href="DBServlet?command=BRAND_Bottom_LIST&bname=hermes" class="dropdown-item">BOTTOM</a> <a href="DBServlet?command=BRAND_Bcollection_LIST&bname=hermes" class="dropdown-item">boutique collection</a>
+								<a href="DBServlet?command=BRAND_TOP_LIST&bname=hermes" class="dropdown-item">TOP</a> 
+                                <a href="DBServlet?command=BRAND_Bottom_LIST&bname=hermes" class="dropdown-item">BOTTOM</a> 
+                                <a href="DBServlet?command=BRAND_Bcollection_LIST&bname=hermes" class="dropdown-item">boutique collection</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">
 							<a href="#" class="nav-link" data-toggle="dropdown">LOUIS VUITTON <i class="fa fa-angle-down float-right mt-1"></i></a>
 							<div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-								<a href="DBServlet?command=BRAND_TOP_LIST&bname=louisvuitton" class="dropdown-item">TOP</a> <a href="DBServlet?command=BRAND_Bottom_LIST&bname=louisvuitton" class="dropdown-item">BOTTOM</a> <a href="DBServlet?command=BRAND_Bcollection_LIST&bname=louisvuitton" class="dropdown-item">boutique collection</a>
+								<a href="DBServlet?command=BRAND_TOP_LIST&bname=louisvuitton" class="dropdown-item">TOP</a> 
+                                <a href="DBServlet?command=BRAND_Bottom_LIST&bname=louisvuitton" class="dropdown-item">BOTTOM</a> 
+                                <a href="DBServlet?command=BRAND_Bcollection_LIST&bname=louisvuitton" class="dropdown-item">boutique collection</a>
 							</div>
 						</div>
 
 						<div class="nav-item dropdown">
 							<a href="#" class="nav-link" data-toggle="dropdown">PRADA <i class="fa fa-angle-down float-right mt-1"></i></a>
 							<div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-								<a href="DBServlet?command=BRAND_TOP_LIST&bname=prada" class="dropdown-item">TOP</a> <a href="DBServlet?command=BRAND_Bottom_LIST&bname=prada" class="dropdown-item">BOTTOM</a> <a href="DBServlet?command=BRAND_Bcollection_LIST&bname=prada" class="dropdown-item">boutique collection</a>
+								<a href="DBServlet?command=BRAND_TOP_LIST&bname=prada" class="dropdown-item">TOP</a> 
+                                <a href="DBServlet?command=BRAND_Bottom_LIST&bname=prada" class="dropdown-item">BOTTOM</a> 
+                                <a href="DBServlet?command=BRAND_Bcollection_LIST&bname=prada" class="dropdown-item">boutique collection</a>
 							</div>
 						</div>
 
 						<div class="nav-item dropdown">
 							<a href="#" class="nav-link" data-toggle="dropdown">SAINT LAURENT <i class="fa fa-angle-down float-right mt-1"></i></a>
 							<div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-								<a href="DBServlet?command=BRAND_TOP_LIST&bname=Saint Laurent" class="dropdown-item">TOP</a> <a href="DBServlet?command=BRAND_Bottom_LIST&bname=Saint Laurent" class="dropdown-item">BOTTOM</a> <a href="DBServlet?command=BRAND_Bcollection_LIST&bname=Saint Laurent" class="dropdown-item">boutique collection</a>
+								<a href="DBServlet?command=BRAND_TOP_LIST&bname=Saint Laurent" class="dropdown-item">TOP</a> 
+                                <a href="DBServlet?command=BRAND_Bottom_LIST&bname=Saint Laurent" class="dropdown-item">BOTTOM</a> 
+                                <a href="DBServlet?command=BRAND_Bcollection_LIST&bname=Saint Laurent" class="dropdown-item">boutique collection</a>
 							</div>
 						</div>
 
@@ -225,7 +246,8 @@ comments: true
 							<div class="nav-item dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">게시판</a>
 								<div class="dropdown-menu rounded-0 m-0">
-									<a href="DBServlet?command=free_board_list" class="dropdown-item">자유게시판</a> <a href="DBServlet?command=qna_board_list" class="dropdown-item">Q&A게시판</a>
+									<a href="DBServlet?command=free_board_list" class="dropdown-item">자유게시판</a> 
+                                    <a href="DBServlet?command=qna_board_list" class="dropdown-item">Q&A게시판</a>
 								</div>
 							</div>
 							<a href="DBServlet?command=auction_view" class="nav-item nav-link">Auction</a>
@@ -256,7 +278,11 @@ comments: true
 								<div class="nav-item dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">관리자</a>
 									<div class="dropdown-menu rounded-0 m-0">
-										<a href="DBServlet?command=product_management" class="dropdown-item">상품 관리</a> <a href="DBServlet?command=user_management" class="dropdown-item">회원 관리</a> <a href="DBServlet?command=board_management" class="dropdown-item">게시판 관리</a> <a href="DBServlet?command=auction" class="dropdown-item">옥 션</a> <a href="DBServlet?command=sales_management" class="dropdown-item">매출 관리</a>
+										<a href="DBServlet?command=product_management" class="dropdown-item">상품 관리</a> 
+                                        <a href="DBServlet?command=user_management" class="dropdown-item">회원 관리</a> 
+                                        <a href="DBServlet?command=board_management" class="dropdown-item">게시판 관리</a> 
+                                        <a href="DBServlet?command=auction" class="dropdown-item">옥 션</a> 
+                                        <a href="DBServlet?command=sales_management" class="dropdown-item">매출 관리</a>
 									</div>
 								</div>
 
