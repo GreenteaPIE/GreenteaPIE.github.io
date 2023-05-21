@@ -122,6 +122,7 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
   - Event
     1. 등급에 따른 쿠폰 수령
     2. 반복수령 불가
+
   - Contact
     1. 지도 API를 이용하여 회사 위치 확인
     2. 회사 정보 확인
@@ -310,6 +311,7 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
 
 #### 게시판 이용<br>
 
+​              
 
 자유 게시판 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고,<br> 본인이 작성한 글만 수정 및 삭제를 할 수 있다.<br>QnA 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제는 어드민만 가능 하다.
 
@@ -322,7 +324,7 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
 
 ### 7. 개발 내용
 
-[초기 설정]()
+[초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)
 
 ### 8. 개선 사항과 느낀 점 
 
