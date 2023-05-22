@@ -270,13 +270,27 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
 
 ### 5. API 설계
 
+#### 1. 유저 관련 API
+
+|   Description   |      Return Page       |         url          |                           Request                            | Response |
+| :-------------: | :--------------------: | :------------------: | :----------------------------------------------------------: | :------: |
+| 회원가입 페이지 | 회원가입 페이지로 이동 |    GET /user/join    |                              -                               |    -     |
+|    회원가입     |  회원가입 환영 페이지  |   POST /user/join    | String userid<br />String pass<br />String name<br />String email<br />String address1<br />String address2<br />String address3<br />String phone<br />Int gender<br />Int point<br />Int grade<br />SYSDATE enter |    -     |
+| 아이디 중복검사 |    회원가입 페이지     | POST /user/userIDChk |                        String userid                         |  user[]  |
+|   이메일 인증   |    회원가입 페이지     | GET /user/mailCheck  |                              -                               |    -     |
+|  로그인 페이지  |  로그인 페이지로 이동  |   GET /user/login    |                              -                               |    -     |
+|     로그인      |      메인 페이지       |   POST /user/login   |                String userid<br />String pass                |  user[]  |
+|    로그아웃     |      메인 페이지       |   GET /user/logout   |                              -                               |    -     |
+
+
+
 ### 6. 화면 설계서
 
 #### 로그인을 하지 않았을 경우<br>
 
+![_config.yml]({{ site.baseurl }}/img/SpringDB/nologin.png)
 
-
-로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니등 기능들을 이용할 수 없다.
+로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니, 쿠폰수령등의 기능들을 이용할 수 없다.
 
 #### 회원 가입 & 로그인<br>
 
@@ -324,7 +338,7 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
 
 ### 7. 개발 내용
 
-[초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)
+[Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)
 
 ### 8. 개선 사항과 느낀 점 
 
