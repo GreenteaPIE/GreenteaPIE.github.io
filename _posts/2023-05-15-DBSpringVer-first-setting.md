@@ -496,7 +496,7 @@ src/main/webapp/WEB-INF/spring/appServlet 경로에 `servlet-context.xml` 에서
 
 동적 SQL문을 사용할 xml 파일을 저장할 경로를 생성 해준다.<br>src/main/resources 경로에 mapper 패키지명(com.db.mapper)과 동일한 폴더 경로를 생성한다.
 
-추가로 log4jdbc 라이브러리의 로깅 구현을 결정하는 설정 `log4jdbc.log4j2.properties`를 추가한다.
+추가로 log4jdbc 라이브러리의 로깅 구현을 결정하는 설정 `log4jdbc.log4j2.properties`을  추가한다.
 
 ```xml
 log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
