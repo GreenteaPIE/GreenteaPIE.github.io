@@ -415,7 +415,9 @@ src/main/java 경로에 3개의 패키지를 추가한다.
 - com.db.mapper : DAO(Data Access Obejt) 역할을 하는 패키지, 데이터베이스 접속하는 역할을 한다.
 - com.db.service : Service 패키지, Mapper와 Controller 사이를 연결해주는 역할을 한다.
 
-스프링에서 각 패키지를 인식 할 수 있도록 `root-context.xml` 파일 설정을 변경해준다.<br>먼저 하단의 `namespaces`를 클릭하여 "context" 와 "mybatis-spring"을 체크하고 저장한 후,<br>아래 코드를 추가한다.
+스프링에서 각 패키지를 인식 할 수 있도록 `root-context.xml` 파일 설정을 변경해준다.
+
+먼저 하단의 `namespaces`를 클릭하여 "context" 와 "mybatis-spring"을 체크하고 저장한 후,<br>아래 코드를 추가한다.
 
 ```xml
 <mybatis-spring:scan base-package="com.db.mapper" />
@@ -494,7 +496,9 @@ src/main/webapp/WEB-INF/spring/appServlet 경로에 `servlet-context.xml` 에서
 
 ### 7. Mapper XML 저장 경로 생성
 
-동적 SQL문을 사용할 xml 파일을 저장할 경로를 생성 해준다.<br>src/main/resources 경로에 mapper 패키지명(com.db.mapper)과 동일한 폴더 경로를 생성한다.
+동적 SQL문을 사용할 xml 파일을 저장할 경로를 생성 해준다.
+
+src/main/resources 경로에 mapper 패키지명(com.db.mapper)과 동일한 폴더 경로를 생성한다.
 
 추가로 log4jdbc 라이브러리의 로깅 구현을 결정하는 설정 `log4jdbc.log4j2.properties`을  추가한다.
 
