@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Team Project Spring(DiamondBlack)
+title: Team Project Spring (DiamondBlack)
 date: 2023-05-15
 excerpt: "팀 프로젝트 DB Spring Version"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript, Spring, FrameWork]
@@ -38,8 +38,6 @@ comments: true
   * [프로젝트 주소](#프로젝트-주소)
 </div>
 </details>
-
-
 
 # **시작하며**
 
@@ -254,19 +252,177 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
 
 ### 4. DB 설계
 
-![_config.yml]({{ site.baseurl }}/img/DiamondBlack/DB.jpg)
+![_config.yml]({{ site.baseurl }}/img/SpringDB/DBdiagram.png)
 
-![_config.yml]({{ site.baseurl }}/img/DiamondBlack/user.png)
+#### USER
 
-![_config.yml]({{ site.baseurl }}/img/DiamondBlack/free.png)
+|  컬럼명  | 데이터 타입 |      조건       |   설명   |
+| :------: | :---------: | :-------------: | :------: |
+|  USERID  |  VARCHAR2   |       PK        |  아이디  |
+|   PASS   |  VARCHAR2   |    NOT NULL     | 비밀번호 |
+|   NAME   |  VARCHAR2   |    NOT NULL     |   이름   |
+|  EMAIL   |  VARCHAR2   |    NOT NULL     |  이메일  |
+| ADDRESS1 |  VARCHAR2   |    NOT NULL     | 우편번호 |
+| ADDRESS2 |  VARCHAR2   |    NOT NULL     |   주소   |
+| ADDRESS3 |  VARCHAR2   |    NOT NULL     | 상세주소 |
+|  PHONE   |  VARCHAR2   |                 | 전화번호 |
+|  GENDER  |   NUMBER    |                 |   성별   |
+|  GRADE   |   NUMBER    |    DEFAULT 0    |   등급   |
+|  POINT   |   NUMBER    |    DEFAULT 0    |  포인트  |
+|  ENTER   |    DATE     | DEFUALT STSDATE | 가입일자 |
 
-![_config.yml]({{ site.baseurl }}/img/DiamondBlack/qna.png)
+```sql
+/* 누적 포인트 등급 상승 admin grade = 1 */
+CREATE OR REPLACE TRIGGER update_user_grade
+BEFORE UPDATE OF point ON shopuser
+FOR EACH ROW
+DECLARE
+  new_grade NUMBER(10);
+BEGIN
+  IF :new.point >= 500000 THEN
+    new_grade := 4; 
+  ELSIF :new.point >= 100000 THEN
+    new_grade := 3;
+  ELSIF :new.point >= 30000 THEN
+    new_grade := 2;
+  ELSE
+    new_grade := 0;
+  END IF;
+  
+  :new.grade := new_grade;
+END;
+/
+```
 
-![_config.yml]({{ site.baseurl }}/img/DiamondBlack/product.png)
+상품 구매에 따라 총 구매 금액의 0.1% 만큼 포인트가 지급되고, 누적된 포인트에 다른 등급을 설정하는 SQL문을 추가한다.
 
-![_config.yml]({{ site.baseurl }}/img/DiamondBlack/cart.png)
+#### BOARD
 
-![_config.yml]({{ site.baseurl }}/img/DiamondBlack/auction.png)
+|  컬럼명   | 데이터 타입 |      조건       |      설명      |
+| :-------: | :---------: | :-------------: | :------------: |
+|    NUM    |   NUMBER    |       PK        |  게시글 번호   |
+|  USERID   |  VARCHAR2   |       FK        | 아이디(작성자) |
+|   TITLE   |  VARCHAR2   |    NOT NULL     |      제목      |
+|  CONTENT  |  VARCHAR2   |    NOT NULL     |      내용      |
+| CATEGORY  |  VARCHAR2   |    NOT NULL     |     말머리     |
+| WRITEDATE |    DATE     | DEFAULT SYSDATE |    작성일자    |
+| READCOUNT |   NUMBER    |    DEFAULT 0    |     조회수     |
+
+#### BOARD REPLY
+
+|   컬럼명    | 데이터 타입 |         조건         |    설명     |
+| :---------: | :---------: | :------------------: | :---------: |
+|     RNO     |   NUMBER    |          PK          |  댓글 번호  |
+|     NUM     |   NUMBER    |          FK          | 게시글 번호 |
+|   WRITER    |  VARCHAR2   |       NOT NULL       |   작성자    |
+| CONTENTVARH |  VARCHAR2   |       NOT NULL       |    내용     |
+|   REGDATE   |  TIMESTAMP  | DEFAULT SYSTIMESTAMP |  작성일자   |
+
+#### COUPON
+
+|    컬럼명     | 데이터 타입 |   조건    |    설명     |
+| :-----------: | :---------: | :-------: | :---------: |
+|    USERID     |  VARCHAR2   |    FK     |   아이디    |
+|  COUPONNAME   |  VARCHAR2   | NOT NULL  |  쿠폰 이름  |
+|     CNUM      |   NUMBER    |    PK     |  쿠폰 번호  |
+| DISCOUNTPRICE |   NUMBER    | NOT NULL  |  할인 가격  |
+| COUPONRESULT  |   NUMBER    | DEFAULT 1 |  사용 유무  |
+|    IMGURL     |   VARCHAR   | NOT NULL  | 쿠폰 이미지 |
+
+#### PRODUCT
+
+|    컬럼명    | 데이터 타입 |   조건    |     설명      |
+| :----------: | :---------: | :-------: | :-----------: |
+|     NUM      |   NUMBER    |    PK     |   상품 번호   |
+|   PGENDER    |   NUMBER    | NOT NULL  |   상품 성별   |
+|    BNAME     |  VARCHAR2   | NOT NULL  |   브랜드명    |
+|     KIND     |   NUMBER    | NOT NULL  | 상품 카테고리 |
+|    PNAME     |  VARCHAR2   | NOT NUILL |   상품 이름   |
+|    IMGURL    |  VARCHAR2   | NOT NULL  |  상품 이미지  |
+|    PSIZE     |  VARCHAR2   | NOT NULL  |    사이즈     |
+| DISCOUNTRATE |   NUMBER    | DEFAULT 0 |    할인율     |
+|   BALANCE    |   NUMBER    | DEFAULT 0 |    재고량     |
+|    PRICE     |   NUMBER    | NOT NULL  |     가격      |
+|   EXPLAIN    |  VARCHAR2   | NOT NULL  |   상품 설명   |
+
+PRODUCT TABLE에서 사용하지 않는 컬럼 [PURCHASEDNUM(구매번호), WRITEDATE(상품등록일),READCOUNT(조회수)] 는 제거한다.
+
+#### BRAND
+
+| 컬럼명 | 데이터 타입 |   조건   |     설명      |
+| :----: | :---------: | :------: | :-----------: |
+| BNAME  |  VARCHAR2   |    PK    |   브랜드명    |
+| IMGURL |  VARCHAR2   | NOT NULL | 브랜드 이미지 |
+
+#### CART
+
+|  컬럼명   | 데이터 타입 |      조건       |        설명        |
+| :-------: | :---------: | :-------------: | :----------------: |
+|  CARTNUM  |   NUMBER    |       PK        |   장바구니 번호    |
+|  USERID   |  VARCHAR2   |       FK        |       아이디       |
+|    NUM    |   NUMBER    |       FK        |     상품 번호      |
+|   PSIZE   |  VARCHAR2   |    NOT NULL     | 선택한 상품 사이즈 |
+| QUANTITY  |   NUMBER    |    NOT NULL     |  선택한 상품 수량  |
+|   PRICE   |   NUMBER    |    NOT NULL     |  선택한 상품 가격  |
+| ORDERDATE |    DATE     | DEFAULT SYSDATE | 장바구니 담은 일자 |
+|  RESULT   |    CHAR     |    DEFAULT 1    |     주문 유무      |
+
+#### ORDERS
+
+|   컬럼명    | 데이터 타입 |      조건       |      설명      |
+| :---------: | :---------: | :-------------: | :------------: |
+| ORDERNUMBER |   NUMBER    |       PK        |   주문 번호    |
+|   USERID    |  VARCHAR2   |       FK        | 아이디(주문자) |
+|   INDATE    |    DATE     | DEFAULT SYSDATE |    주문일자    |
+
+#### ORDER_DETAIL
+
+|      컬럼명       | 데이터 타입 |   조건    |      설명      |
+| :---------------: | :---------: | :-------: | :------------: |
+| ORDERDETAILNUMBER |   NUMBER    |    PK     | 주문상세 번호  |
+|    ORDERNUMBER    |   NUMBER    |    FK     |   주문 번호    |
+|        NUM        |   NUMBER    |    FK     |   상품 번호    |
+|     QUANTITY      |   NUMBER    | NOT NULL  |   상품 수량    |
+|       PRICE       |   NUMBER    | DEFAULT 0 |      가격      |
+|    TOTALPRICE     |   NUMBER    | NOT NULL  |    총 가격     |
+|       PSZIE       |  VARCHAR2   | NOT NULL  |  상품 사이즈   |
+|       NAME        |  VARCHAR2   | NOT NULL  | 배송받는 사람  |
+|       EMAIL       |  VARCHAR2   | NOT NULL  |     이메일     |
+|     ADDRESS1      |  VARCHAR2   | NOT NULL  |    우편번호    |
+|     ADDRESS2      |  VARCHAR2   | NOT NULL  |      주소      |
+|     ADDRESS3      |  VARCHAR2   | NOT NULL  |    상세주소    |
+|       PHONE       |  VARCHAR2   | NOT NULL  |    전화번호    |
+|      RESULT       |    CHAR     | DEFAULT 1 | 주문 진행 과정 |
+
+```sql
+/* join table(order, order_detail) */
+CREATE VIEW order_view AS
+SELECT
+  orders.orderNumber,
+  orders.userid,
+  orders.indate,
+  order_detail.orderDetailNumber,
+  order_detail.num,
+  order_detail.quantity,
+  order_detail.totalprice,
+  order_detail.price,
+  order_detail.psize,
+  order_detail.name,
+  order_detail.phone,
+  order_detail.address1,
+  order_detail.address2,
+  order_detail.address3,
+  order_detail.result
+FROM
+  orders
+JOIN
+  order_detail
+ON
+  orders.orderNumber = order_detail.orderNumber;
+
+```
+
+ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하는 값을 불러올수있게 VIEW를 생성하는 SQL문을 추가한다.
 
 ### 5. API 설계
 
