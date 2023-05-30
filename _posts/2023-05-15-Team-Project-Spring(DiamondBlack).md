@@ -455,14 +455,19 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 로그인을 하지 않았을 경우<br>
 
-![_config.yml]({{ site.baseurl }}/img/SpringDB/nologin.png)
+<details>
+<summary>>펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe>
+</div>
+</details>
 
 로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니, 쿠폰수령등의 기능들을 이용할 수 없다.
 
 #### 회원 가입 <br>
 
 <details>
-<summary>펼치기</summary>
+<summary>>펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/v-okLiZIZWw" frameborder="0"> </iframe>
 </div>
@@ -477,7 +482,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 로그인 & 로그아웃<br>
 
 <details>
-<summary>펼치기</summary>
+<summary>>펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/DU73zKQwWbg" frameborder="0"> </iframe>
 </div>
@@ -487,7 +492,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 내 정보 수정 & 탈퇴<br>
 
 <details>
-<summary>펼치기</summary>
+<summary>>펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/pD0cKIQ_gNk" frameborder="0"> </iframe>
 </div>
