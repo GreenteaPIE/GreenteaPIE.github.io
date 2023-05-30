@@ -462,6 +462,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
+
 로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니, 쿠폰수령등의 기능들을 이용할 수 없다.
 
 #### 회원 가입 <br>
@@ -472,6 +473,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/v-okLiZIZWw" frameborder="0"> </iframe>
 </div>
 </details>
+
 
 회원 가입은 유효성 검사를 거쳐 진행된다.
 
@@ -489,6 +491,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </details>
 
 
+
 #### 내 정보 수정 & 탈퇴<br>
 
 <details>
@@ -497,6 +500,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/pD0cKIQ_gNk" frameborder="0"> </iframe>
 </div>
 </details>
+
 
 PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 같은 유효성 검사를 진행하여 정보 수정을 완료한다.
 
@@ -538,7 +542,7 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 
 ### 7. 개발 내용
 
-[Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)
+[Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[로그인 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>
 
 
 
