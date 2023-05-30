@@ -144,27 +144,25 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
 
 - 회원 가입
   - 유효성 검사
-    - 이름은 한글(자음+모음)의 조합 2글자 이상
-    - 아이디는 영문 대소문자와 숫자 4~12 자리의 조합으로 입력
+    - 이름, 아이디, 이메일, 주소, 비밀번호 미입력시 "xxx를 확인해주세요." 메시지 출력 
     - 아이디 중복 검사
       - 아이디 중복 시 "아이디가 이미 존재합니다." 메시지 출력
     - 이메일 형식은 Emailid 뒤에 @ 과 ###.### 의 형식으로 입력
     - 이메일인증
       - 인증번호 전송 후 일치 여부 검사
     - 우편번호와 주소는 주소API를 이용하여 자신의 집 검색 후 자동 입력
-    - 비밀번호는 영문과 숫자 조합으로 입력
     - 비밀번호는 sha256 알고리즘으로 암호화 되어 DataBase에 저장 
+      - 비밀번호 입력칸과 비밀번호 확인칸의 일치 여부 검사
 - 로그인
   - 로그인을 하지 않은 경우 아래 페이지만 이용 가능
     - 회원 가입 페이지
     - 로그인 페이지
-    - 자유,Q&A게시판의 게시글 목록 조회 페이지
-    - 자유,Q&A게시판의 게시글 상세 보기 페이지
-    - 상품 페이지 상품 리스트
-    - 옥션 페이지 상품 리스트
-    - 세일 페이지 상품 리스트
+    - 게시판의 게시글 목록 조회, 상세 보기 페이지
+    - Q&N 페이지
+    - 브랜드 상품(카테고리) 페이지 상품 리스트
+    - 옥션,세일 상품 페이지 상품 리스트
+    - Event 페이지 쿠폰 리스트
     - 로그인을 하지 않고 위에 페이지를 제외한 다른 페이지를 이용하려 할 시<br>"로그인 후 사용 가능 합니다." 메시지 출력 후 기능 이용 제한
-
   - 로그인 검사
     - 아이디와 비밀번호가 일치하지 않을 경우 "ID 또는 비밀번호를 잘못 입력 하셨습니다." 메시지 출력
     - 아이디가 존재하지 않을 경우 "ID 또는 비밀번호를 잘못 입력 하셨습니다." 메시지 출력
@@ -337,15 +335,15 @@ END;
 |   PGENDER    |   NUMBER    | NOT NULL  |   상품 성별   |
 |    BNAME     |  VARCHAR2   | NOT NULL  |   브랜드명    |
 |     KIND     |   NUMBER    | NOT NULL  | 상품 카테고리 |
-|    PNAME     |  VARCHAR2   | NOT NUILL |   상품 이름   |
+|    PNAME     |  VARCHAR2   | NOT NUILL |    상품 명    |
 |    IMGURL    |  VARCHAR2   | NOT NULL  |  상품 이미지  |
-|    PSIZE     |  VARCHAR2   | NOT NULL  |    사이즈     |
+|    PSIZE     |  VARCHAR2   | NOT NULL  |  상품 사이즈  |
 | DISCOUNTRATE |   NUMBER    | DEFAULT 0 |    할인율     |
 |   BALANCE    |   NUMBER    | DEFAULT 0 |    재고량     |
-|    PRICE     |   NUMBER    | NOT NULL  |     가격      |
+|    PRICE     |   NUMBER    | NOT NULL  |   상품 가격   |
 |   EXPLAIN    |  VARCHAR2   | NOT NULL  |   상품 설명   |
 
-PRODUCT TABLE에서 사용하지 않는 컬럼 [PURCHASEDNUM(구매번호), WRITEDATE(상품등록일),READCOUNT(조회수)] 는 제거한다.
+PRODUCT TABLE에서 사용하지 않는 컬럼 [PURCHASEDNUM(구매번호), WRITEDATE(상품등록일), READCOUNT(조회수)] 는 제거한다.
 
 #### BRAND
 
@@ -424,6 +422,21 @@ ON
 
 ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하는 값을 불러올수있게 VIEW를 생성하는 SQL문을 추가한다.
 
+#### AUCTION
+
+|   컬렴명   | 데이터 타입 |   조건   |         설          |
+| :--------: | :---------: | :------: | :-----------------: |
+|    NUM     |   NUMBER    |    PK    |      상품 번호      |
+|   USERID   |  VARCHAR2   |    FK    |   아이디(낙찰자)    |
+|   BNAME    |  VARCHAR2   | NOT NULL |      브랜드 명      |
+|   PNAME    |  VARCHAR2   | NOT NULL |       상품 명       |
+|   PRICE    |   NUMBER    | NOT NULL |      상품 가격      |
+| STARTPRICE |   NUMBER    | NOT NULL |       시작가        |
+|   IMGURL   |  VARCHAR2   | NOT NULL |     상품 이미지     |
+|  ENDPRICE  |   NUMBER    | NOT NULL |       입찰가        |
+|  ENDTIME   |    DATE     | NOT NULL |      종료일자       |
+|   ONOFF    |   NUMBER    | NOT NULL | 옥션 시작/종료 여부 |
+
 ### 5. API 설계
 
 #### 1. 유저 관련 API
@@ -438,8 +451,6 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 |     로그인      |      메인 페이지       |   POST /user/login   |                String userid<br />String pass                |  user[]  |
 |    로그아웃     |      메인 페이지       |   GET /user/logout   |                              -                               |    -     |
 
-
-
 ### 6. 화면 설계서
 
 #### 로그인을 하지 않았을 경우<br>
@@ -448,15 +459,43 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니, 쿠폰수령등의 기능들을 이용할 수 없다.
 
-#### 회원 가입 & 로그인<br>
+#### 회원 가입 <br>
 
+<details>
+<summary>펼치기</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/v-okLiZIZWw" frameborder="0"> </iframe>
+</div>
+</details>
 
-
-회원 가입과 로그인은 유효성 검사를 거쳐 진행된다.
+회원 가입은 유효성 검사를 거쳐 진행된다.
 
 회원 가입시 입력한 패스워드는 아래처럼 암호화 되어 저장된다.
 
 ![_config.yml]({{ site.baseurl }}/img/DiamondBlack/sha256.png)
+
+#### 로그인 & 로그아웃<br>
+
+<details>
+<summary>펼치기</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/DU73zKQwWbg" frameborder="0"> </iframe>
+</div>
+</details>
+
+
+#### 내 정보 수정 & 탈퇴<br>
+
+<details>
+<summary>펼치기</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/pD0cKIQ_gNk" frameborder="0"> </iframe>
+</div>
+</details>
+
+PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 같은 유효성 검사를 진행하여 정보 수정을 완료한다.
+
+내 정보 수정 페이지 에서 confirm을 이용해 탈퇴 진행 여부를 한번 더 확인 후 탈퇴를 한다.
 
 #### 어드민<br>
 
@@ -494,7 +533,9 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 ### 7. 개발 내용
 
-[Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)
+[Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)
+
+
 
 ### 8. 개선 사항과 느낀 점 
 
