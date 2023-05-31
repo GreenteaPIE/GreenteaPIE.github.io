@@ -179,52 +179,52 @@ comments: true
 "MY PAGE" 버튼과 "로그아웃" 버튼을 추가 한다.
 
 ```jsp
-  <c:if test="${user != null }">
-								<c:if test="${user.grade != 1 }">
-									<div class="nav-item dropdown">
-										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MY PAGE</a>
-										<div class="dropdown-menu rounded-0 m-0">
-											<c:if test="${user.grade == 0 }">
-												<h6 style="text-align: center;">
-													<span style="color: #775e39;">Bronze</span>
-													등급
-												</h6>
-											</c:if>
-											<c:if test="${user.grade == 2 }">
-												<h6 style="text-align: center;">
-													<span style="color: #c0c0c0;">Silver</span>
-													등급
-												</h6>
-											</c:if>
-											<c:if test="${user.grade == 3 }">
-												<h6 style="text-align: center;">
-													<span style="color: #ffd700;">Gold</span>
-													등급
-												</h6>
-											</c:if>
-											<c:if test="${user.grade == 4 }">
-												<h6 style="text-align: center;">
-													<span style="color: #87ddb1;">Diamond</span>
-													등급
-												</h6>
-											</c:if>
-											<div style="text-align: center;">
-												<b style="font-size: 13px; color: gray;">${user.point} Point</b>
-											</div>
-											<hr>
-											<a href="#" class="dropdown-item">내 정보 수정</a>
-											<a href="#" class="dropdown-item">나의 작성 글</a>
-											<a href="#" class="dropdown-item">나의 주문내역</a>
-											<a href="#" class="dropdown-item">보유 쿠폰</a>
-											<hr>
-											<div style="text-align: center;">
-												<b style="font-size: 12px; color: gray;">가입일 <fmt:formatDate value="${user.enter}" pattern="yyyy-MM-dd" /></b>
-											</div>
-										</div>
-									</div>
-                                    </c:if>
-								<a href="#" class="nav-item nav-link">로그아웃</a>
-							</c:if>
+ <c:if test="${user != null }">
+		<c:if test="${user.grade != 1 }">
+			<div class="nav-item dropdown">
+				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MY PAGE</a>
+				<div class="dropdown-menu rounded-0 m-0">
+					<c:if test="${user.grade == 0 }">
+						<h6 style="text-align: center;">
+							<span style="color: #775e39;">Bronze</span>
+							등급
+						</h6>
+					</c:if>
+					<c:if test="${user.grade == 2 }">
+						<h6 style="text-align: center;">
+							<span style="color: #c0c0c0;">Silver</span>
+							등급
+						</h6>
+					</c:if>
+					<c:if test="${user.grade == 3 }">
+						<h6 style="text-align: center;">
+							<span style="color: #ffd700;">Gold</span>
+							등급
+						</h6>
+					</c:if>
+					<c:if test="${user.grade == 4 }">
+						<h6 style="text-align: center;">
+							<span style="color: #87ddb1;">Diamond</span>
+							등급
+						</h6>
+					</c:if>
+					<div style="text-align: center;">
+						<b style="font-size: 13px; color: gray;">${user.point} Point</b>
+					</div>
+					<hr>
+					<a href="#" class="dropdown-item">내 정보 수정</a>
+					<a href="#" class="dropdown-item">나의 작성 글</a>
+					<a href="#" class="dropdown-item">나의 주문내역</a>
+					<a href="#" class="dropdown-item">보유 쿠폰</a>
+					<hr>
+					<div style="text-align: center;">
+						<b style="font-size: 12px; color: gray;">가입일 <fmt:formatDate value="${user.enter}" pattern="yyyy-MM-dd" /></b>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<a href="#" class="nav-item nav-link">로그아웃</a>
+	</c:if>
 ```
 
 ![_config.yml]({{ site.baseurl }}/img/SpringDB/login2.png)
