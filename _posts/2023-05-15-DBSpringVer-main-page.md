@@ -1,11 +1,12 @@
 ---
 layout: post
-title: DB Spring MainPage 제작
+title: DB Spring -2 MainPage 제작
 date: 2023-05-15
 excerpt: "팀 프로젝트 DB Spring Version"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript, Spring, FrameWork]
 feature: /img/SpringDB/logo.png
 comments: true
+
 
 
 ---
