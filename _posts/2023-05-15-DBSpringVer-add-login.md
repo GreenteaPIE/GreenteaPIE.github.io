@@ -8,6 +8,7 @@ feature: /img/SpringDB/logo.png
 comments: true
 
 
+
 ---
 
 
@@ -136,7 +137,7 @@ comments: true
 	}
 ```
 
-UserMapper.xml 에 추가
+#### UserMapper.xml 에 추가
 
 ```xml
 <!-- 로그인 -->
@@ -147,6 +148,88 @@ UserMapper.xml 에 추가
 
 	</select>
 ```
+
+#### header.jsp 로그인 버튼 수정
+
+```jsp
+<a href="/user/login" class="nav-item nav-link">로그인</a>
+```
+
+로그인시 로그인된 유저의 이름을 출력하게 수정한다.
+
+```jsp
+<div class="navbar-nav mr-auto py-0" align="right">
+							<c:if test="${user != null}">
+								
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <b>${user.name} 님</b>
+							</c:if>
+						</div>
+```
+
+로그인시 세션에 로그인 되어있다면 "로그인" 과 "회원가입" 버튼이 안보이게 수정한다.
+
+```jsp
+<c:if test="${user == null }">
+								<a href="/user/login" class="nav-item nav-link">로그인</a>
+								<a href="/user/join" class="nav-item nav-link">회원가입</a>
+							</c:if>
+```
+
+"MY PAGE" 버튼과 "로그아웃" 버튼을 추가 한다.
+
+```JSP
+<c:if test="${user != null }">
+								<c:if test="${user.grade != 1 }">
+									<div class="nav-item dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MY PAGE</a>
+										<div class="dropdown-menu rounded-0 m-0">
+											<c:if test="${user.grade == 0 }">
+												<h6 style="text-align: center;">
+													<span style="color: #775e39;">Bronze</span>
+													등급
+												</h6>
+											</c:if>
+											<c:if test="${user.grade == 2 }">
+												<h6 style="text-align: center;">
+													<span style="color: #c0c0c0;">Silver</span>
+													등급
+												</h6>
+											</c:if>
+											<c:if test="${user.grade == 3 }">
+												<h6 style="text-align: center;">
+													<span style="color: #ffd700;">Gold</span>
+													등급
+												</h6>
+											</c:if>
+											<c:if test="${user.grade == 4 }">
+												<h6 style="text-align: center;">
+													<span style="color: #87ddb1;">Diamond</span>
+													등급
+												</h6>
+											</c:if>
+											<div style="text-align: center;">
+												<b style="font-size: 13px; color: gray;">${user.point} Point</b>
+											</div>
+											<hr>
+											<a href="#" class="dropdown-item">내 정보 수정</a>
+											<a href="#" class="dropdown-item">나의 작성 글</a>
+											<a href="#" class="dropdown-item">나의 주문내역</a>
+											<a href="#" class="dropdown-item">보유 쿠폰</a>
+											<hr>
+											<div style="text-align: center;">
+												<b style="font-size: 12px; color: gray;">가입일 <fmt:formatDate value="${user.enter}" pattern="yyyy-MM-dd" /></b>
+											</div>
+										</div>
+									</div>
+                                    </c:if>
+								<a href="#" class="nav-item nav-link">로그아웃</a>
+							</c:if>
+```
+
+![_config.yml]({{ site.baseurl }}/img/SpringDB/login2.png)
+
+![_config.yml]({{ site.baseurl }}/img/SpringDB/login3.png)
 
 ### 3. 로그아웃 기능 추가
 
@@ -166,6 +249,12 @@ UserMapper.xml 에 추가
 		return "redirect:/";
 
 	}
+```
+
+#### header.jsp에 로그아웃 버튼 수정
+
+```jsp
+<a href="/user/logout" class="nav-item nav-link">로그아웃</a>
 ```
 
 ## [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
