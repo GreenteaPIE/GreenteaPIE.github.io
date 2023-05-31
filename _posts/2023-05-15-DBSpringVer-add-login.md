@@ -178,8 +178,8 @@ comments: true
 
 "MY PAGE" 버튼과 "로그아웃" 버튼을 추가 한다.
 
-```JSP
-<c:if test="${user != null }">
+```jsp
+  <c:if test="${user != null }">
 								<c:if test="${user.grade != 1 }">
 									<div class="nav-item dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MY PAGE</a>
