@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 4 - DB Spring 로그인과 로그아웃
-date: 2023-05-15
+date: 2023-05-14
 excerpt: "팀 프로젝트 DB Spring Version"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript, Spring, FrameWork]
 feature: /img/SpringDB/logo.png
