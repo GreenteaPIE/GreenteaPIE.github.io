@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1-DB Spring 초기설정
+title: 1 - DB Spring 초기설정
 date: 2023-05-15
 excerpt: "팀 프로젝트 DB Spring Version"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript, Spring, FrameWork]
