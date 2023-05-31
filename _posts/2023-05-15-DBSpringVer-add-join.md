@@ -163,7 +163,7 @@ join.jsp 이미지
 
 ![_config.yml]({{ site.baseurl }}/img/SpringDB/join.png)
 
-### 2.  com.db.controller에 UserController 추가
+### 2.  com.db.controller 에 UserController 추가
 
 회원가입 페이지로 이동하기 위한 GET Mapping 을 추가한다.
 
@@ -231,7 +231,7 @@ public class UserController {
 				});// function 종료
 ```
 
-#### UserController.java에 메서드 추가
+#### UserController.java 에 메서드 추가
 
 ```java
 // 아이디 중복 검사
@@ -356,7 +356,7 @@ UserMapper를 @Autowired 어노테이션으로 의존성 주입 대상으로 지
 		});
 ```
 
-#### UserController에 추가
+#### UserController 에 추가
 
 ```java
 @Autowired
@@ -675,21 +675,21 @@ UserService 를 @Autowired 어노테이션으로 의존성 주입 대상으로 �
 
 입력한 비밀번호 값을 인코딩하여 DB로 전송해준다.
 
-#### UserMapper.java에 추가
+#### UserMapper.java 에 추가
 
 ```java
 // 회원가입
 	public void userJoin(UserVO user);
 ```
 
-#### UserService.java에 추가
+#### UserService.java 에 추가
 
 ```java
 // 회원가입
 	public void userJoin(UserVO user) throws Exception;
 ```
 
-#### UserServiceImpl.java에 추가
+#### UserServiceImpl.java 에 추가
 
 ```java
 @Override
@@ -700,7 +700,7 @@ UserService 를 @Autowired 어노테이션으로 의존성 주입 대상으로 �
 	}
 ```
 
-#### UserMapper.xml에 추가
+#### UserMapper.xml 에 추가
 
 ```xml
 <!-- 회원가입 -->
