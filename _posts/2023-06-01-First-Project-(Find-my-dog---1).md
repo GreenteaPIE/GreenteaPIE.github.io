@@ -1,9 +1,9 @@
 ---
 layout: post
 title: First Project (FindMyDog)
-date: 2023-03-24
+date: 2023-06-01
 excerpt: "첫 번째 개인 프로젝트"
-tags: [project, java, jsp, oracle]
+tags: [project, SpringBoot, JPA, mysql]
 feature: /assets/img/rucy.jpg
 project: true
 comments: true
@@ -48,6 +48,6 @@ comments: true
 
 - 프로젝트 명 : Find My Dog
 - 인원 : 1명
-- 기간 : 2023.03.24 ~ ing
+- 기간 : 2023.06.01 ~ ing
 - 기능 :
   - 게시판
