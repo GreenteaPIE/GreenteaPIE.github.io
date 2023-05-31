@@ -68,15 +68,15 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
 
 - 인원 : 1명
 
-- 기간 : 2023.05.15 ~ ing
+- 기간 : 2023.05.11 ~ ing
 
 - 기능 :
 
   - 유저 
     1. 회원 가입
     2. 로그인
-    3. (자유 게시판)게시글 등록, 수정, 삭제
-    4. 자유 게시판의 게시글에 댓글 작성, 수정, 삭제
+    3. 자유, 질문 게시판 게시글 등록, 수정, 삭제
+    4. 자유, 질문 게시판의 게시글에 댓글 작성, 수정, 삭제
     5. 마이페이지
        - 주문 내역
        - 나의 작성 글 확인
@@ -91,7 +91,7 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
     1. 회원 관리
        - 회원 정보 수정
        - 회원 탈퇴
-    2. 게시판 관리(자유 게시판, QnA 게시판)
+    2. 게시판 관리(자유, 질문, 공지사항 게시판)
        - 게시글 등록, 수정, 삭제
     3. 상품 관리
        - 상품 등록, 삭제
@@ -195,7 +195,7 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
     - 각 입력란이 비어있을 시  <br>"xxx를 입력해주세요." 메시지 출력
     - 비밀번호를 재차 확인하여 비밀번호 일치 여부 확인
     - 이메일 인증으로 이메일 확인
-    - 회원 탈퇴 가능
+    - 탈퇴 진행 여부를 재차 확인 후 회원 탈퇴 진행
   - 주문 내역
     - 자신이 구매한 주문 번호, 주문 날짜, 상태 목록 출력
     - 주문 번호 클릭 시 구매한 해당 주문 번호의 상품과 가격 등의 상세 내역을 확인
@@ -441,15 +441,19 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 1. 유저 관련 API
 
-|   Description   |      Return Page       |         url          |                           Request                            | Response |
-| :-------------: | :--------------------: | :------------------: | :----------------------------------------------------------: | :------: |
-| 회원가입 페이지 | 회원가입 페이지로 이동 |    GET /user/join    |                              -                               |    -     |
-|    회원가입     |  회원가입 환영 페이지  |   POST /user/join    | String userid<br />String pass<br />String name<br />String email<br />String address1<br />String address2<br />String address3<br />String phone<br />Int gender<br />Int point<br />Int grade<br />SYSDATE enter |    -     |
-| 아이디 중복검사 |    회원가입 페이지     | POST /user/userIDChk |                        String userid                         |  user[]  |
-|   이메일 인증   |    회원가입 페이지     | GET /user/mailCheck  |                              -                               |    -     |
-|  로그인 페이지  |  로그인 페이지로 이동  |   GET /user/login    |                              -                               |    -     |
-|     로그인      |      메인 페이지       |   POST /user/login   |                String userid<br />String pass                |  user[]  |
-|    로그아웃     |      메인 페이지       |   GET /user/logout   |                              -                               |    -     |
+|   Description   |      Return Page       |          url          |                           Request                            | Response |
+| :-------------: | :--------------------: | :-------------------: | :----------------------------------------------------------: | :------: |
+| 회원가입 페이지 | 회원가입 페이지로 이동 |    GET /user/join     |                              -                               |    -     |
+|    회원가입     |  회원가입 환영 페이지  |    POST /user/join    | String userid<br />String pass<br />String name<br />String email<br />String address1<br />String address2<br />String address3<br />String phone<br />Int gender<br />Int point<br />Int grade<br />SYSDATE enter |    -     |
+| 아이디 중복검사 |    회원가입 페이지     | POST /user/userIDChk  |                        String userid                         |  user[]  |
+|   이메일 인증   |    회원가입 페이지     |  GET /user/mailCheck  |                              -                               |    -     |
+|  로그인 페이지  |  로그인 페이지로 이동  |    GET /user/login    |                              -                               |    -     |
+|     로그인      |      메인 페이지       |   POST /user/login    |                String userid<br />String pass                |  user[]  |
+|    로그아웃     |      메인 페이지       |   GET /user/logout    |                              -                               |    -     |
+|  내 정보 수정   |    본인 인증 페이지    |  GET /user/mypagechk  |                              -                               |    -     |
+|    본인 인증    |  내 정보 수정 페이지   | POST /user/mypagechk  |                String userid<br />String pass                |  user[]  |
+|  내 정보 수정   |      메인 페이지       | POST /user/userupdate |                            user[]                            |    -     |
+|    회원탈퇴     |      메인 페이지       |  POST /user/userexit  |                        String userid                         |    -     |
 
 ### 6. 화면 설계서
 
@@ -542,9 +546,7 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 
 ### 7. 개발 내용
 
-[Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[로그인 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>
-
-
+[Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[]
 
 ### 8. 개선 사항과 느낀 점 
 
