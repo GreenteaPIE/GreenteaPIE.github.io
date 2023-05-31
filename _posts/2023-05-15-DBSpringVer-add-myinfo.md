@@ -1,11 +1,13 @@
 ---
 layout: post
-title: 5 - DB Spring 내 정보 수정과 탈퇴
+title: Team Project Spring (DiamondBlack)
 date: 2023-05-15
 excerpt: "팀 프로젝트 DB Spring Version"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript, Spring, FrameWork]
 feature: /img/SpringDB/logo.png
+project: true
 comments: true
+
 
 
 ---
@@ -13,665 +15,569 @@ comments: true
 
 > **사용한 플랫폼 : Spring, Oracle**
 
+<details>
+<summary><span style="font-size:25pt; font-weight:bold; color:gray;">>목차<</span></summary>
+<div markdown="1">
+- [**시작하며**](#시작하며)
+  * [프로젝트 명세서](#프로젝트-명세서)
+    + [1. 프로젝트 진행 순서](#1-프로젝트-진행-순서)
+    + [2. 개요](#2-개요)
+    + [3. 기능 별 요구 사항](#3-기능-별-요구-사항)
+    + [4. DB 설계](#4-db-설계)
+    + [5. API 설계](#5-api-설계)
+    + [6.  화면 설계서](#6-화면-설계서)
+      - [로그인을 하지 않았을 경우<br>](#로그인을-하지-않았을-경우)
+      - [회원 가입 & 로그인<br>](#회원-가입--로그인)
+      - [어드민<br>](#어드민)
+      - [상품 검색<br>](#상품-검색)
+      - [상품 구매<br>](#상품-구매)
+      - [게시판 이용<br>](#게시판-이용)
+      - [마이 페이지<br>](#마이-페이지)
+    + [7. 개발 내용](#7-개발-내용)
+    + [8. 개선 사항과 느낀 점](#8-개선-사항과-느낀-점)
+  * [프로젝트 주소](#프로젝트-주소)
+</div>
+</details>
+
+# **시작하며**
+
+SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다음 프로젝트는 <br>Boot로 진행 한다고 하여, 개인적으로 기존에 만든 프로젝트를 Spring 형식에 맞춰서 구현하고 싶었지만 <br>못 만들었던 기능들을 추가하고, 아쉬웠던 기능들의 Detail을 살려 만들어 보기로 했다.
 
 
-### 1.  myPageCheck.jsp
 
-정보 수정 전 본인 확인을 위한 페이지를 만든다.
+## 프로젝트 명세서
 
-```jsp
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
-	
-</script>
-<%@ include file="../header.jsp"%>
-</head>
-<body>
-	<hr>
-	<form id="infochk_form" method="post">
-		<div class="form-group input-group fg-x700">
-			<div class="col-lg-4"></div>
-			<div class="col-lg-4">
-				<div class="jumbotron" style="padding-top: 20px;">
-					<h3 style="text-align: center;">정보 확인</h3>
-					<div class="form-group">
-						<input type="text" class="form-control id_input" placeholder="아이디" name="userid" value="${user.userid }" maxlength="20" readonly="readonly">
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control pw_input" placeholder="비밀번호" name="pass" maxlength="20">
-					</div>
-					<input type="button" class="btn btn-primary form-control info_chk_btn" value="확인"> <input type="reset" class="btn btn-primary form-control" value="취소">
-					<hr>
-					<c:if test="${result==0}">
-						<div class="login_warn">ID 또는 비밀번호를 잘못 입력 하셨습니다.</div>
-					</c:if>
-				</div>
-			</div>
-			<div class="col-lg-4"></div>
-		</div>
-	</form>
-	<script>
-		/* 로그인 버튼 클릭 */
-		$(".info_chk_btn").click(function() {
-			//alert("로그인 버튼 작동");
+1. 프로젝트 진행 순서
+2. 개요
+3. 기능 별 요구 사항
+4. DB 설계
+5. API 설계
+6. 화면 설계서
+7. 개발 내용
+8. 개선 사항 과 느낀 점
 
-			// 로그인 메서드 서버 요청
-			$("#infochk_form").attr("action", "/user/mypagechk");
-			$("#infochk_form").submit();
-		});
-	</script>
-	<hr>
-</body>
-<%@ include file="../footer.jsp"%>
-</html>
+### 1. 프로젝트 진행 순서
+
+기존에 있던 DB에서 구현할 기능들에 필요한 컬럼들을 정리 후 추가하고 스프링에 <br>설정할 dependency들 pom.xml에 넣고 기본적인 설정을 마친 후 설계한 API를 토대로 기존의 form들을 <br>가져와 수정하고 추가한다. 
+
+기능들을 하나씩 구현할때마다 JUnit 테스트를 통해 모듈들이 정상적으로 동작하는지 확인한다.
+
+### 2. 개요
+
+- 프로젝트 명 : DiamondBlack Spring Version
+
+- 인원 : 1명
+
+- 기간 : 2023.05.11 ~ ing
+
+- 기능 :
+
+  - 유저 
+    1. 회원 가입
+    2. 로그인
+    3. 자유, 질문 게시판 게시글 등록, 수정, 삭제
+    4. 자유, 질문 게시판의 게시글에 댓글 작성, 수정, 삭제
+    5. 마이페이지
+       - 주문 내역
+       - 나의 작성 글 확인
+       - 내 정보 수정 및 탈퇴
+       - 보유쿠폰 확인
+    6. 상품 구매
+       - 경매 및 세일상품 등 상품 구매
+       - 장바구니 기능 및 결제
+       - 쿠폰 적용
+       - 상품 검색
+  - 어드민
+    1. 회원 관리
+       - 회원 정보 수정
+       - 회원 탈퇴
+    2. 게시판 관리(자유, 질문, 공지사항 게시판)
+       - 게시글 등록, 수정, 삭제
+    3. 상품 관리
+       - 상품 등록, 삭제
+    4. 브랜드 관리
+       - 브랜드 추가, 삭제
+    5. 옥션
+       - 옥션 상품 관리
+       - 시간 설정 및 시작가격 설정 등
+  - 게시판
+    1. 자유 게시판
+       - CRUD기능, 조회수, 페이징 처리, 댓글, 멀티 이미지 첨부, 게시글 검색
+    2. QnA 게시판
+       - CRUD기능, 조회수, 페이징 처리, 멀티 이미지 첨부, 게시글 검색
+  - 상품
+    1. 상품 등록
+       - 가격, 이미지, 상품 설명, 사이즈, 브랜드
+    2. 장바구니 담기
+  - 장바구니
+    1. 장바구니 담긴 상품 수량 조정, 삭제
+    2. 총 상품 가격 확인
+  - 결제
+    1. 구매자 정보 확인
+    2. 배송받을 배송지 변경
+    3. 총 결제 금액 확인
+    4. 결제 API를 이용하여 결제
+  - Event
+    1. 등급에 따른 쿠폰 수령
+    2. 반복수령 불가
+
+  - Contact
+    1. 지도 API를 이용하여 회사 위치 확인
+    2. 회사 정보 확인
+  - 옥션(경매)
+    1. 어드민이 설정한 상품, 시간, 시작 가 확인
+    2. 입찰이 끝나면 낙찰자에게 구매 권한 부여
+  - 세일
+    1. 어드민이 상품등록 시 할인율을 설정 후 등록
+
+  
+
+- 개발 언어 : Java 11, HTML, JavaScript, JSP
+
+- 개발 환경 : Spring, Apache Tomcat 9.0
+
+- 데이터베이스 : Oracle
+
+- 간단 소개 : 해외 명품 직구 샵
+
+### 3. 기능 별 요구 사항
+
+- 회원 가입
+  - 유효성 검사
+    - 이름, 아이디, 이메일, 주소, 비밀번호 미입력시 "xxx를 확인해주세요." 메시지 출력 
+    - 아이디 중복 검사
+      - 아이디 중복 시 "아이디가 이미 존재합니다." 메시지 출력
+    - 이메일 형식은 Emailid 뒤에 @ 과 ###.### 의 형식으로 입력
+    - 이메일인증
+      - 인증번호 전송 후 일치 여부 검사
+    - 우편번호와 주소는 주소API를 이용하여 자신의 집 검색 후 자동 입력
+    - 비밀번호는 sha256 알고리즘으로 암호화 되어 DataBase에 저장 
+      - 비밀번호 입력칸과 비밀번호 확인칸의 일치 여부 검사
+- 로그인
+  - 로그인을 하지 않은 경우 아래 페이지만 이용 가능
+    - 회원 가입 페이지
+    - 로그인 페이지
+    - 게시판의 게시글 목록 조회, 상세 보기 페이지
+    - Q&N 페이지
+    - 브랜드 상품(카테고리) 페이지 상품 리스트
+    - 옥션,세일 상품 페이지 상품 리스트
+    - Event 페이지 쿠폰 리스트
+    - 로그인을 하지 않고 위에 페이지를 제외한 다른 페이지를 이용하려 할 시<br>"로그인 후 사용 가능 합니다." 메시지 출력 후 기능 이용 제한
+  - 로그인 검사
+    - 아이디와 비밀번호가 일치하지 않을 경우 "ID 또는 비밀번호를 잘못 입력 하셨습니다." 메시지 출력
+    - 아이디가 존재하지 않을 경우 "ID 또는 비밀번호를 잘못 입력 하셨습니다." 메시지 출력
+    - 아이디와 비밀번호가 일치할 시 메인 페이지로 이동
+    - 어드민 계정으로 로그인할 시 관리자 기능을 사용할 수 있는 버튼 생성
+- 유저
+  - 상품 장바구니 담기
+    - 장바구니에 담긴 상품의 수만큼 뱃지에 숫자 표기
+  - 장바구니 상품 구매
+    - 주문자 정보와 동일 버튼 체크 시 배송지 입력에 유저정보 자동입력
+    - 구매 시 이용 약관에 동의 하지 않았거나, 결제 방식을 선택 하지 않았으면<br>각각의 선택 메시지 출력
+    - 위의 이용 약관과 결제 방식을 선택 후 구매 버튼을 눌렀다면, 결제API 모듈 실행
+  - 옥션 상품 입찰, 구매
+    - 낙찰된 최종 입찰자만 구매 가능
+  - 세일 상품 구매
+    - 어드민이 등록한 상품 할인율 만큼 할인된 가격으로 구매 가능
+  - 자유 게시판 이용
+    - 등록, 수정, 삭제 가능(수정과 삭제는 작성한 본인만 가능)
+    - 댓글 작성, 수정, 삭제(수정과 삭제는 작성한 본인만 가능 )
+  - QnA 게시판 이용
+    - 등록, 수정, 삭제는 어드민만 가능
+  - Event 페이지 이용
+    - 상품 구매 시 지급된 누적point에 따른 등급 별로 쿠폰수령 가능
+    - 등급 조건이 맞지 않을 시 "등급이 낮아 수령 할 수 없습니다." 메시지 출력
+    - 이미 수령한 쿠폰의 수령을 시도할 시 "이미 지급된 쿠폰입니다." 메시지 출력 
+- 마이 페이지
+  - 내 정보 수정
+    - 비밀번호 입력 후 수정 페이지로 이동
+    - 아이디와 이름을 제외한 정보들을 수정 가능
+    - 각 입력란이 비어있을 시  <br>"xxx를 입력해주세요." 메시지 출력
+    - 비밀번호를 재차 확인하여 비밀번호 일치 여부 확인
+    - 이메일 인증으로 이메일 확인
+    - 탈퇴 진행 여부를 재차 확인 후 회원 탈퇴 진행
+  - 주문 내역
+    - 자신이 구매한 주문 번호, 주문 날짜, 상태 목록 출력
+    - 주문 번호 클릭 시 구매한 해당 주문 번호의 상품과 가격 등의 상세 내역을 확인
+  - 내가 쓴 글
+    - 자유 게시판에 작성한 나의 글 확인 및 수정, 삭제 가능
+    - 내가 단 댓글 확인 및 수정, 삭제 가능
+  - 보유 쿠폰
+    - 수령한 쿠폰의 리스트를 확인
+- 어드민
+  - 상품관리
+    1. 브랜드 관리
+       - 브랜드 로고 이미지와 브랜드 명을 추가, 삭제 가능
+       - 브랜드 추가 시 categories 와 main page에 해당 브랜드 자동 추가
+    2. 상품 관리
+       - 브랜드, 상품 카테고리, 상품 이름, 사이즈, 가격, 성별, 이미지,<br>상품 설명, 재고량, 할인율 등을 설정하여 추가, 삭제 가능
+  - 회원 관리
+    1. 회원 정보 수정
+       - 가입 일자, 비밀번호를 제외한 모든 정보 수정 가능
+
+    2. 회원 삭제
+
+  - 게시판 관리
+    1. 자유 게시판 관리
+       - 자유 게시판 등록, 수정, 삭제 가능
+       - 댓글 등록, 수정, 삭제 가능
+       - 어드민이 작성한 게시글은 상단에 위치
+
+    2. QnA 게시판 관리
+       - QnA 게시판 등록, 수정, 삭제 가능
+
+  - 옥션
+    1. 옥션 상품 등록
+       - 등록할 상품을 선택 후 시작가, 제한시간 설정
+
+  - 세일
+    1. 상품 할인률을 설정하여 등록하면  Sale페이지에 노출
+
+  - 매출 관리
+    1. 판매한 총 매출 가격과 구매자, 주문 번호 출력
+- 상품
+  - 브랜드 로고 클릭 시 해당 브랜드의 모든 상품 리스트 출력
+  - 카테고리 클릭 시 해당 브랜드의 카테고리가 설정된 상품 리스트 출력
+  - 상품 검색 시 해당 검색어가 들어가는 상품 리스트 출력
+  - 검색한 상품이 존재 하지 않을 시 "상품 "xx"의 검색 결과 없음" 메시지 출력
+- Contact
+  - Kakao지도API를 활용하여 설정한 임의의 회사 위치를 지도로 확인 가능
+  - 회사의 상세 정보를 확인 가능
+- 디자인
+  - Bootstrap을 이용하여 모바일과 pc에 따른 반응형 웹으로 제작
+
+
+
+### 4. DB 설계
+
+![_config.yml]({{ site.baseurl }}/img/SpringDB/DBdiagram.png)
+
+#### USER
+
+|  컬럼명  | 데이터 타입 |      조건       |   설명   |
+| :------: | :---------: | :-------------: | :------: |
+|  USERID  |  VARCHAR2   |       PK        |  아이디  |
+|   PASS   |  VARCHAR2   |    NOT NULL     | 비밀번호 |
+|   NAME   |  VARCHAR2   |    NOT NULL     |   이름   |
+|  EMAIL   |  VARCHAR2   |    NOT NULL     |  이메일  |
+| ADDRESS1 |  VARCHAR2   |    NOT NULL     | 우편번호 |
+| ADDRESS2 |  VARCHAR2   |    NOT NULL     |   주소   |
+| ADDRESS3 |  VARCHAR2   |    NOT NULL     | 상세주소 |
+|  PHONE   |  VARCHAR2   |                 | 전화번호 |
+|  GENDER  |   NUMBER    |                 |   성별   |
+|  GRADE   |   NUMBER    |    DEFAULT 0    |   등급   |
+|  POINT   |   NUMBER    |    DEFAULT 0    |  포인트  |
+|  ENTER   |    DATE     | DEFUALT STSDATE | 가입일자 |
+
+```sql
+/* 누적 포인트 등급 상승 admin grade = 1 */
+CREATE OR REPLACE TRIGGER update_user_grade
+BEFORE UPDATE OF point ON shopuser
+FOR EACH ROW
+DECLARE
+  new_grade NUMBER(10);
+BEGIN
+  IF :new.point >= 500000 THEN
+    new_grade := 4; 
+  ELSIF :new.point >= 100000 THEN
+    new_grade := 3;
+  ELSIF :new.point >= 30000 THEN
+    new_grade := 2;
+  ELSE
+    new_grade := 0;
+  END IF;
+  
+  :new.grade := new_grade;
+END;
+/
 ```
 
-해당 페이지에선 로그인 되어있는 아이디와 입력한 비밀번호가 일치하는지 확인한다.
+상품 구매에 따라 총 구매 금액의 0.1% 만큼 포인트가 지급되고, 누적된 포인트에 다른 등급을 설정하는 SQL문을 추가한다.
 
-![_config.yml]({{ site.baseurl }}/img/SpringDB/mycheck.png)
+#### BOARD
 
-### 2. 본인 확인 기능 추가
+|  컬럼명   | 데이터 타입 |      조건       |      설명      |
+| :-------: | :---------: | :-------------: | :------------: |
+|    NUM    |   NUMBER    |       PK        |  게시글 번호   |
+|  USERID   |  VARCHAR2   |       FK        | 아이디(작성자) |
+|   TITLE   |  VARCHAR2   |    NOT NULL     |      제목      |
+|  CONTENT  |  VARCHAR2   |    NOT NULL     |      내용      |
+| CATEGORY  |  VARCHAR2   |    NOT NULL     |     말머리     |
+| WRITEDATE |    DATE     | DEFAULT SYSDATE |    작성일자    |
+| READCOUNT |   NUMBER    |    DEFAULT 0    |     조회수     |
 
-#### UserController.java 에 추가
+#### BOARD REPLY
 
-```java
-// 내 정보 본인 확인 페이지로 이동
-	@GetMapping("mypagechk")
-	public String mypagechkGET(HttpServletRequest request, UserVO user) {
+|   컬럼명    | 데이터 타입 |         조건         |    설명     |
+| :---------: | :---------: | :------------------: | :---------: |
+|     RNO     |   NUMBER    |          PK          |  댓글 번호  |
+|     NUM     |   NUMBER    |          FK          | 게시글 번호 |
+|   WRITER    |  VARCHAR2   |       NOT NULL       |   작성자    |
+| CONTENTVARH |  VARCHAR2   |       NOT NULL       |    내용     |
+|   REGDATE   |  TIMESTAMP  | DEFAULT SYSTIMESTAMP |  작성일자   |
 
-		logger.info("mypagecheck 페이지 진입");
+#### COUPON
 
-		try {
+|    컬럼명     | 데이터 타입 |   조건    |    설명     |
+| :-----------: | :---------: | :-------: | :---------: |
+|    USERID     |  VARCHAR2   |    FK     |   아이디    |
+|  COUPONNAME   |  VARCHAR2   | NOT NULL  |  쿠폰 이름  |
+|     CNUM      |   NUMBER    |    PK     |  쿠폰 번호  |
+| DISCOUNTPRICE |   NUMBER    | NOT NULL  |  할인 가격  |
+| COUPONRESULT  |   NUMBER    | DEFAULT 1 |  사용 유무  |
+|    IMGURL     |   VARCHAR   | NOT NULL  | 쿠폰 이미지 |
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+#### PRODUCT
 
-		return "/user/myPageCheck";
+|    컬럼명    | 데이터 타입 |   조건    |     설명      |
+| :----------: | :---------: | :-------: | :-----------: |
+|     NUM      |   NUMBER    |    PK     |   상품 번호   |
+|   PGENDER    |   NUMBER    | NOT NULL  |   상품 성별   |
+|    BNAME     |  VARCHAR2   | NOT NULL  |   브랜드명    |
+|     KIND     |   NUMBER    | NOT NULL  | 상품 카테고리 |
+|    PNAME     |  VARCHAR2   | NOT NUILL |    상품 명    |
+|    IMGURL    |  VARCHAR2   | NOT NULL  |  상품 이미지  |
+|    PSIZE     |  VARCHAR2   | NOT NULL  |  상품 사이즈  |
+| DISCOUNTRATE |   NUMBER    | DEFAULT 0 |    할인율     |
+|   BALANCE    |   NUMBER    | DEFAULT 0 |    재고량     |
+|    PRICE     |   NUMBER    | NOT NULL  |   상품 가격   |
+|   EXPLAIN    |  VARCHAR2   | NOT NULL  |   상품 설명   |
 
-	}
+PRODUCT TABLE에서 사용하지 않는 컬럼 [PURCHASEDNUM(구매번호), WRITEDATE(상품등록일), READCOUNT(조회수)] 는 제거한다.
 
-// 내 정보 수정 본인 확인
-	@PostMapping("mypagechk")
-	public String mypagechkPOST(HttpServletRequest request, UserVO user, RedirectAttributes rttr) throws Exception {
-		HttpSession session = request.getSession();
-		System.out.println("mypagecheck 메소드 진입");
-		String rawPw = "";
-		String encodePw = "";
-		UserVO vo = userService.myPageCheck(user);
+#### BRAND
 
-		// 비밀번호 인코딩
-		if (vo != null) { // 아이디&비밀번호 일치
-			rawPw = user.getPass(); // 사용자가 제출한 비밀번호
-			encodePw = vo.getPass(); // DB에 저장 되어있는 인코딩된 비밀번호
-			if (true == pwEncoder.matches(rawPw, encodePw)) {
-				vo.setPass("");
-				session.setAttribute("user", vo);
-				return "/user/myPageInfo";
-			} else { // 비밀번호가 일치 하지 않을때
-				request.setAttribute("result", 0);
-				return "/user/myPageCheck";
-			}
-		} else { // 일치하는 아이디가 없을때
-			request.setAttribute("result", 0);
-			return "/user/myPageCheck";
-		}
-	}
-```
+| 컬럼명 | 데이터 타입 |   조건   |     설명      |
+| :----: | :---------: | :------: | :-----------: |
+| BNAME  |  VARCHAR2   |    PK    |   브랜드명    |
+| IMGURL |  VARCHAR2   | NOT NULL | 브랜드 이미지 |
 
-로그인과 마찬가지로 DB에 저장되어있는 비밀번호와 입력한 비밀번호를 비교하여 일치 여부를 확인 후 정보 수정 페이지로 이동시킨다.
+#### CART
 
-#### UserMapper.java 에 추가
+|  컬럼명   | 데이터 타입 |      조건       |        설명        |
+| :-------: | :---------: | :-------------: | :----------------: |
+|  CARTNUM  |   NUMBER    |       PK        |   장바구니 번호    |
+|  USERID   |  VARCHAR2   |       FK        |       아이디       |
+|    NUM    |   NUMBER    |       FK        |     상품 번호      |
+|   PSIZE   |  VARCHAR2   |    NOT NULL     | 선택한 상품 사이즈 |
+| QUANTITY  |   NUMBER    |    NOT NULL     |  선택한 상품 수량  |
+|   PRICE   |   NUMBER    |    NOT NULL     |  선택한 상품 가격  |
+| ORDERDATE |    DATE     | DEFAULT SYSDATE | 장바구니 담은 일자 |
+|  RESULT   |    CHAR     |    DEFAULT 1    |     주문 유무      |
 
-```java
-	// 내 정보 수정 본인 확인
-	public UserVO myPageCheck(UserVO user);
-```
+#### ORDERS
 
-#### UserService.java 에 추가
+|   컬럼명    | 데이터 타입 |      조건       |      설명      |
+| :---------: | :---------: | :-------------: | :------------: |
+| ORDERNUMBER |   NUMBER    |       PK        |   주문 번호    |
+|   USERID    |  VARCHAR2   |       FK        | 아이디(주문자) |
+|   INDATE    |    DATE     | DEFAULT SYSDATE |    주문일자    |
 
-```java
-    // 내 정보 수정 본인 확인
-	public UserVO myPageCheck(UserVO user) throws Exception;
-```
+#### ORDER_DETAIL
 
-#### UserServiceImpl.java 에 추가
+|      컬럼명       | 데이터 타입 |   조건    |      설명      |
+| :---------------: | :---------: | :-------: | :------------: |
+| ORDERDETAILNUMBER |   NUMBER    |    PK     | 주문상세 번호  |
+|    ORDERNUMBER    |   NUMBER    |    FK     |   주문 번호    |
+|        NUM        |   NUMBER    |    FK     |   상품 번호    |
+|     QUANTITY      |   NUMBER    | NOT NULL  |   상품 수량    |
+|       PRICE       |   NUMBER    | DEFAULT 0 |      가격      |
+|    TOTALPRICE     |   NUMBER    | NOT NULL  |    총 가격     |
+|       PSZIE       |  VARCHAR2   | NOT NULL  |  상품 사이즈   |
+|       NAME        |  VARCHAR2   | NOT NULL  | 배송받는 사람  |
+|       EMAIL       |  VARCHAR2   | NOT NULL  |     이메일     |
+|     ADDRESS1      |  VARCHAR2   | NOT NULL  |    우편번호    |
+|     ADDRESS2      |  VARCHAR2   | NOT NULL  |      주소      |
+|     ADDRESS3      |  VARCHAR2   | NOT NULL  |    상세주소    |
+|       PHONE       |  VARCHAR2   | NOT NULL  |    전화번호    |
+|      RESULT       |    CHAR     | DEFAULT 1 | 주문 진행 과정 |
 
-```java
-	@Override
-	public UserVO myPageCheck(UserVO user) throws Exception {
-
-		return usermapper.myPageCheck(user);
-	}
-```
-
-#### UserMapper.xml 에 추가
-
-```xml
-<!-- 내 정보 수정 본인 확인 -->
-	<select id="myPageCheck" resultType="com.db.model.UserVO">
-
-		select * from shopuser where
-		userid = #{userid}
-
-	</select>
-```
-
-#### header.jsp 내 정보 수정 버튼 수정
-
-```jsp
-<a href="/user/mypagechk" class="dropdown-item">내 정보 수정</a>
-```
-
-
-
-### 3. myPageInfo.jsp
-
-```jsp
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<head>
-<meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
-	
-</script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<%@ include file="../header.jsp"%>
-</head>
-<body>
-	<hr>
-	<div class="frame user-frm">
-		<article class="card-body" style="max-width: 700px; margin: auto;">
-			<!-- 회원가입 form태그 시작 -->
-			<form id="userUpdate_form" method="post">
-				<div class="form-group input-group fg-x700">
-					<div class="input-group-prepend" style="height: 38px">
-						<span class="input-group-text">
-							<i class="fa fa-user"></i>
-						</span>
-					</div>
-					<input name="name" class="form-control user_input" placeholder="이름 입력" type="text" value="${user.name }" readonly="readonly">
-					<div class="btn-group" date-toggle="buttons">
-						<c:if test="${user.gender == 1 }">
-							<label class="btn  active" style="background-color: #D9D9D9;"> <input type="radio" name="gender" autocomplete="off" value="1" checked>남자
-							</label>
-							<label class="btn " style="color: #737272; background-color: #D9D9D9;"> <input type="radio" name="gender" autocomplete="off" value="2">여자
-							</label>
-						</c:if>
-						<c:if test="${user.gender == 2 }">
-							<label class="btn  active" style="background-color: #D9D9D9;"> <input type="radio" name="gender" autocomplete="off" value="1">남자
-							</label>
-							<label class="btn " style="color: #737272; background-color: #D9D9D9;"> <input type="radio" name="gender" autocomplete="off" value="2" checked>여자
-							</label>
-						</c:if>
-					</div>
-				</div>
-				<!-- form-group// -->
-				<div class="form-group input-group fg-x700">
-					<div class="input-group-prepend">
-						<span class="input-group-text">
-							<i class="fa fa-user"></i>
-						</span>
-					</div>
-					<input id="userid" name="userid" class="form-control id_input" placeholder="ID 입력" type="text" value="${user.userid }" readonly="readonly">
-				</div>
-				<!-- form-group// -->
-				<span class="final_mail_ck">메일을 입력해주세요.</span>
-				<div class="form-group input-group fg-x700">
-					<div class="input-group-prepend">
-						<span class="input-group-text">
-							<i class="fa fa-envelope"></i>
-						</span>
-					</div>
-					<input id="email" name="email" class="form-control mail_input" placeholder="Email 입력" value="${user.email }" type="email" required />
-				</div>
-				<span class="mail_input_box_warn"></span>
-				<div class="mail_check_wrap">
-					<div class="form-group input-group fg-x700">
-						<input class="mail_check_input form-control mail_check_input_box" id="mail_check_input_box_false" disabled="disabled"> <input type="button" class="btn btn-primary mail_check_button" value="인증번호 전송">
-					</div>
-					<div class="clearfix"></div>
-					<span id="mail_check_input_box_warn"></span>
-				</div>
-				<!-- form-group// -->
-				<div class="form-group input-group fg-x700">
-					<div class="input-group-prepend">
-						<span class="input-group-text">
-							<i class="fa fa-phone"></i>
-						</span>
-					</div>
-					<input id="phone" name="phone" class="form-control" placeholder="휴대폰번호 입력('-' 제외)" value="${user.phone }" type="text" required />
-				</div>
-				<!-- form-group// -->
-				<span class="final_addr_ck">상세 주소를 입력해주세요.</span>
-				<div class="form-group input-group fg-x700">
-					<div class="input-group-prepend">
-						<span class="input-group-text">
-							<i class="fa fa-building"></i>
-						</span>
-					</div>
-					<input type="text" id="address1" class="form-control address_input_1" name="address1" placeholder="우편번호" value="${user.address1 }" readonly="readonly" /> <br />
-					<div class="form-group input-group fg-x700">
-						<input type="text" id="address2" class="form-control address_input_2" name="address2" placeholder="주소" value="${user.address2 }" readonly="readonly" />
-					</div>
-					<br /> <input type="text" id="address3" class="form-control address_input_3" name="address3" placeholder="상세주소" value="${user.address3 }" /> <br /> <input type="button" onclick="execution_daum_address()" class="rbutton xsmall white btn btn-primary" value="우편번호 찾기"> <br>
-				</div>
-				<!-- form-group end.// -->
-				<span class="final_pw_ck">비밀번호를 입력해주세요.</span>
-				<span class="final_pwck_ck">비밀번호를 확인해주세요.</span>
-				<div class="form-group input-group fg-x700">
-					<div class="input-group-prepend">
-						<span class="input-group-text">
-							<i class="fa fa-lock"></i>
-						</span>
-					</div>
-					<input id="pass" name="pass" class="form-control pw_input" placeholder="비밀번호 입력" type="password" required> <input id="passCheck" name="" class="form-control pwck_input" placeholder="비밀번호 확인" type="password" required>
-				</div>
-				<span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
-				<span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
-				<!-- form-group// -->
-				<div class="fg-x700 form-group">
-					<input type="button" class="btn btn-primary btn-block update_button" value="정보 수정">
-				</div>
-				<!-- form-group// -->
-				<p class="text-right">
-					<input class="btn" type="button" value="회원 탈퇴" id="user_exit_btn">
-				</p>
-			</form>
-		</article>
-	</div>
-	<!-- card.// -->
-	<!--container end.//-->
-	<hr>
-	<script>
-		// 이메일전송 인증번호 저장을 위한 코드
-		var code = "";
-
-		/* 유효성 검사 통과유무 변수 */
-		var pwCheck = false; // 비번
-		var pwckCheck = false; // 비번 확인
-		var pwckcorCheck = false; // 비번 확인 일치 확인
-		var nameCheck = false; // 이름
-		var mailCheck = false; // 이메일
-		var mailnumCheck = false; // 이메일 인증번호 확인
-		var addressCheck = false; // 주소
-
-		// 회원가입 버튼(회원가입 기능 작동)
-		$(document).ready(
-				function() {
-					$(".update_button")
-							.click(
-									function() {
-										
-
-										/* 입력값 변수 */
-
-										var pw = $('.pw_input').val(); // 비밀번호 입력란
-										var pwck = $('.pwck_input').val(); // 비밀번호 확인 입력란
-										var name = $('.user_input').val(); // 이름 입력란
-										var mail = $('.mail_input').val(); // 이메일 입력란
-										var addr = $('.address_input_3').val(); // 주소 입력란
-
-										
-
-										/* 비밀번호 확인 유효성 검사 */
-										if (pwck == "") {
-											$('.final_pwck_ck').css('display',
-													'block');
-											pwckCheck = false;
-										} else {
-											$('.final_pwck_ck').css('display',
-													'none');
-											pwckCheck = true;
-										}
-
-										/* 이름 유효성 검사 */
-										if (name == "") {
-											$('.final_name_ck').css('display',
-													'block');
-											nameCheck = false;
-										} else {
-											$('.final_name_ck').css('display',
-													'none');
-											nameCheck = true;
-										}
-
-										/* 이메일 유효성 검사 */
-										if (mail == "") {
-											$('.final_mail_ck').css('display',
-													'block');
-											mailCheck = false;
-										} else {
-											$('.final_mail_ck').css('display',
-													'none');
-											mailCheck = true;
-										}
-
-										/* 주소 유효성 검사 */
-										if (addr == "") {
-											$('.final_addr_ck').css('display',
-													'block');
-											addressCheck = false;
-										} else {
-											$('.final_addr_ck').css('display',
-													'none');
-											addressCheck = true;
-										}
-
-										/* 최종 유효성 검사 */
-										if (pwckCheck
-												&& pwckcorCheck && nameCheck
-												&& mailCheck && mailnumCheck
-												&& addressCheck) {
-											$("#userUpdate_form").attr("action",
-													"/user/userupdate");
-											$("#userUpdate_form").submit();
-										}
-										return false;
-									});
-				});
-
-
-
-		/* 인증번호 이메일 전송 */
-		$(".mail_check_button").click(function() {
-			var email = $(".mail_input").val(); 		// 입력한 이메일
-			var checkBox = $(".mail_check_input"); 		// 인증번호 입력란
-			var boxWrap = $(".mail_check_input_box"); 	// 인증번호 입력란 박스
-			var warnMsg = $(".mail_input_box_warn");	// 이메일 입력 경고글
-			
-			/* 이메일 형식 유효성 검사 */
-			if(mailFormCheck(email)){
-				warnMsg.html("메일이 전송 되었습니다. 메일을 확인해주세요.");
-				warnMsg.css("display", "inline-block");
-			}else{
-				warnMsg.html("올바르지 못한 메일 형식입니다.");
-				warnMsg.css("display", "inline-block");
-				return false;
-			}
-			
-			$.ajax({
-				type : "GET",
-				url : "mailCheck?email=" + email,
-				success : function(data) {
-					//console.log("data : " + data);
-					checkBox.attr("disabled", false);
-					boxWrap.attr("id", "mail_check_input_box_true");
-					code = data;
-				}
-			});
-		});
-
-		// 인증번호 비교 (마우스 커서가 벗어났을때 비교)
-		$(".mail_check_input").blur(function() {
-			var inputCode = $(".mail_check_input").val(); // 입력코드 
-			var checkResult = $("#mail_check_input_box_warn"); // 비교 결과   
-
-			if (inputCode == code) { // 일치할 경우
-				checkResult.html("인증번호가 일치합니다.");
-				checkResult.attr("class", "correct");
-				mailnumCheck = true; // 일치할 경우
-			} else { // 일치하지 않을 경우
-				checkResult.html("인증번호를 다시 확인해주세요.");
-				checkResult.attr("class", "incorrect");
-				mailnumCheck = false; // 불일치할 경우
-			}
-		});
-
-		// 인증번호 비교 (인증번호를 입력하는 동시에 비교)
-		$(".mail_check_input").on("input", function() {
-			var inputCode = $(".mail_check_input").val(); // 입력코드
-			var checkResult = $("#mail_check_input_box_warn"); // 입력결과
-			
-			if (inputCode == code) { // 인증번호가 일치할 경우
-				checkResult.html("인증번호가 일치합니다.");
-				checkResult.attr("class", "correct");
-				mailnumCheck = true; // 일치할 경우
-			} else { // 인증번호가 불일치할 경우
-				checkResult.html("인증번호를 다시 확인해주세요.");
-				checkResult.attr("class", "incorrect");
-				mailnumCheck = false; // 불일치 할경우
-			}
-		});
-
-		// 다음 주소 연동
-		function execution_daum_address() {
-
-			new daum.Postcode(
-					{
-						oncomplete : function(data) {
-							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-							var addr = ''; // 주소 변수
-							var extraAddr = ''; // 참고항목 변수
-
-							//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-								addr = data.roadAddress;
-							} else { // 사용자가 지번 주소를 선택했을 경우(J)
-								addr = data.jibunAddress;
-							}
-
-							// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-							if (data.userSelectedType === 'R') {
-								// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-								// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-								if (data.bname !== ''
-										&& /[동|로|가]$/g.test(data.bname)) {
-									extraAddr += data.bname;
-								}
-								// 건물명이 있고, 공동주택일 경우 추가한다.
-								if (data.buildingName !== ''
-										&& data.apartment === 'Y') {
-									extraAddr += (extraAddr !== '' ? ', '
-											+ data.buildingName
-											: data.buildingName);
-								}
-								// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-								if (extraAddr !== '') {
-									extraAddr = ' (' + extraAddr + ')';
-								}
-								// 조합된 참고항목을 해당 필드에 넣는다.
-								// document.getElementById("sample6_extraAddress").value = extraAddr;
-								addr += extraAddr;
-
-							} else {
-								//document.getElementById("sample6_extraAddress").value = '';
-								addr += ' ';
-							}
-
-							// 우편번호와 주소 정보를 해당 필드에 넣는다.
-							//document.getElementById('sample6_postcode').value = data.zonecode;
-							//document.getElementById("sample6_address").value = addr;
-							// 커서를 상세주소 필드로 이동한다.
-							$(".address_input_1").val(data.zonecode);
-							$(".address_input_2").val(addr);
-
-							//  document.getElementById("sample6_detailAddress").focus();
-
-							// 상세주소 입력란 disabled 속성 변경 및 커서를 상세주소 필드로 이동한다.
-							$(".address_input_3").attr("readonly", false);
-							$(".address_input_3").focus();
-						}
-					}).open();
-		}
-
-		/* 비밀번호 확인 일치 유효성 검사 */
-		$('.pwck_input').on("propertychange change keyup paste input",
-				function() {
-
-					var pw = $('.pw_input').val();
-					var pwck = $('.pwck_input').val();
-					$('.final_pwck_ck').css('display', 'none');
-
-					if (pw == pwck) {
-						$('.pwck_input_re_1').css('display', 'block');
-						$('.pwck_input_re_2').css('display', 'none');
-						pwckcorCheck = true;
-					} else {
-						$('.pwck_input_re_1').css('display', 'none');
-						$('.pwck_input_re_2').css('display', 'block');
-						pwckcorCheck = false;
-					}
-				});
-		
-		/* 입력 이메일 형식 유효성 검사 */
-		function mailFormCheck(email){
-			var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-			return form.test(email);
-		}
-		
-	</script>
-</body>
-<%@ include file="../footer.jsp"%>
-</html>
+```sql
+/* join table(order, order_detail) */
+CREATE VIEW order_view AS
+SELECT
+  orders.orderNumber,
+  orders.userid,
+  orders.indate,
+  order_detail.orderDetailNumber,
+  order_detail.num,
+  order_detail.quantity,
+  order_detail.totalprice,
+  order_detail.price,
+  order_detail.psize,
+  order_detail.name,
+  order_detail.phone,
+  order_detail.address1,
+  order_detail.address2,
+  order_detail.address3,
+  order_detail.result
+FROM
+  orders
+JOIN
+  order_detail
+ON
+  orders.orderNumber = order_detail.orderNumber;
 
 ```
 
-회원가입과 거의 동일하게 만들어 놓은 후 수정이 불가능한 부분은 readonly로 수정을 막고, 수정이 가능한 변수만 입력 할 수 있게 만든다.
+ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하는 값을 불러올수있게 VIEW를 생성하는 SQL문을 추가한다.
 
-![_config.yml]({{ site.baseurl }}/img/SpringDB/myinfo.png)
+#### AUCTION
 
-### 4. 내 정보 수정 기능 추가
+|   컬렴명   | 데이터 타입 |   조건   |         설          |
+| :--------: | :---------: | :------: | :-----------------: |
+|    NUM     |   NUMBER    |    PK    |      상품 번호      |
+|   USERID   |  VARCHAR2   |    FK    |   아이디(낙찰자)    |
+|   BNAME    |  VARCHAR2   | NOT NULL |      브랜드 명      |
+|   PNAME    |  VARCHAR2   | NOT NULL |       상품 명       |
+|   PRICE    |   NUMBER    | NOT NULL |      상품 가격      |
+| STARTPRICE |   NUMBER    | NOT NULL |       시작가        |
+|   IMGURL   |  VARCHAR2   | NOT NULL |     상품 이미지     |
+|  ENDPRICE  |   NUMBER    | NOT NULL |       입찰가        |
+|  ENDTIME   |    DATE     | NOT NULL |      종료일자       |
+|   ONOFF    |   NUMBER    | NOT NULL | 옥션 시작/종료 여부 |
 
-#### UserController.java 에 추가
+### 5. API 설계
 
-```java
-// 내 정보 수정
-	@PostMapping("/userupdate")
-	public String userUpdatePOST(UserVO user, RedirectAttributes rttr) throws Exception {
+#### 1. 유저 관련 API
 
-		String rawPw = ""; // 인코딩 전 비밀번호
-		String encodePw = ""; // 인코딩 후 비밀번호
+|   Description   |      Return Page       |          url          |                           Request                            | Response |
+| :-------------: | :--------------------: | :-------------------: | :----------------------------------------------------------: | :------: |
+| 회원가입 페이지 | 회원가입 페이지로 이동 |    GET /user/join     |                              -                               |    -     |
+|    회원가입     |  회원가입 환영 페이지  |    POST /user/join    | String userid<br />String pass<br />String name<br />String email<br />String address1<br />String address2<br />String address3<br />String phone<br />Int gender<br />Int point<br />Int grade<br />SYSDATE enter |    -     |
+| 아이디 중복검사 |    회원가입 페이지     | POST /user/userIDChk  |                        String userid                         |  user[]  |
+|   이메일 인증   |    회원가입 페이지     |  GET /user/mailCheck  |                              -                               |    -     |
+|  로그인 페이지  |  로그인 페이지로 이동  |    GET /user/login    |                              -                               |    -     |
+|     로그인      |      메인 페이지       |   POST /user/login    |                String userid<br />String pass                |  user[]  |
+|    로그아웃     |      메인 페이지       |   GET /user/logout    |                              -                               |    -     |
+|  내 정보 수정   |    본인 인증 페이지    |  GET /user/mypagechk  |                              -                               |    -     |
+|    본인 인증    |  내 정보 수정 페이지   | POST /user/mypagechk  |                String userid<br />String pass                |  user[]  |
+|  내 정보 수정   |      메인 페이지       | POST /user/userupdate |                            user[]                            |    -     |
+|    회원탈퇴     |      메인 페이지       |  POST /user/userexit  |                        String userid                         |    -     |
 
-		rawPw = user.getPass(); // 비밀번호 데이터 얻음
-		encodePw = pwEncoder.encode(rawPw); // 비밀번호 인코딩
-		user.setPass(encodePw); // 인코딩된 비밀번호 member객체에 다시 저장
+### 6. 화면 설계서
 
-		userService.userUpdate(user);
+#### 로그인을 하지 않았을 경우<br>
 
-		return "redirect:/";
+<details>
+<summary>>펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe>
+</div>
+</details>
 
-	}
-```
 
-수정한 비밀번호는 다시 인코딩을 거친 후 DB에 저장된다.
+로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니, 쿠폰수령등의 기능들을 이용할 수 없다.
 
-#### UserMapper.java 에 추가
+#### 회원 가입 <br>
 
-```java
-	// 내 정보 수정
-	public int userUpdate(UserVO user);
-```
+<details>
+<summary>>펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/v-okLiZIZWw" frameborder="0"> </iframe>
+</div>
+</details>
 
-#### UserService.java 에 추가
 
-```java
-	// 내 정보 수정
-	public int userUpdate(UserVO user) throws Exception;
-```
+회원 가입은 유효성 검사를 거쳐 진행된다.
 
-#### UserServiceImpl.java 에 추가
+회원 가입시 입력한 패스워드는 아래처럼 암호화 되어 저장된다.
 
-```java
-	@Override
-	public int userUpdate(UserVO user) throws Exception {
+![_config.yml]({{ site.baseurl }}/img/DiamondBlack/sha256.png)
 
-		return usermapper.userUpdate(user);
-	}
-```
+#### 로그인 & 로그아웃<br>
 
-#### UserMapper.xml 에 추가
+<details>
+<summary>>펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/DU73zKQwWbg" frameborder="0"> </iframe>
+</div>
+</details>
 
-```xml
-	<!-- 내 정보 수정 -->
-	<update id="userUpdate">
 
-		update shopuser set pass = #{pass}, name = #{name},
-		email = #{email},
-		address1 = #{address1}, address2 = #{address2},
-		address3 = #{address3}, phone = #{phone}, gender = #{gender}
-		where
-		userid = #{userid}
 
-	</update>
-```
+#### 내 정보 수정 & 탈퇴<br>
 
-### 5. 탈퇴 기능 추가
+<details>
+<summary>>펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/pD0cKIQ_gNk" frameborder="0"> </iframe>
+</div>
+</details>
 
-#### myPageInfo 에 스크립트 추가
 
-```js
-$(document).ready(function() {
-			  $('#user_exit_btn').on('click', function() {
-			    if(confirm("DB에서 탈퇴 시 모든 정보는 되돌릴 수 없습니다.\n탈퇴 하시겠습니까?")) {
-			      var form = $('form');
-			      form.attr('action', '/user/userexit');
-			      form.attr('method', 'post');
-			      form.submit();
-			    }
-			  });
-			});
-```
+PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 같은 유효성 검사를 진행하여 정보 수정을 완료한다.
 
-오른쪽 아래에 있는 탈퇴하기 버튼을 클릭 하면 confirm 후 해당 메서드를 실행한다.
+내 정보 수정 페이지 에서 confirm을 이용해 탈퇴 진행 여부를 한번 더 확인 후 탈퇴를 한다.
 
-#### UserController.java 에 추가
+#### 어드민<br>
 
-```java
-	// 회원 탈퇴
-	@PostMapping("/userexit")
-	public String userExitPOST(UserVO user, RedirectAttributes rttr, HttpServletRequest request) throws Exception {
 
-		userService.userExit(user);
 
-		HttpSession session = request.getSession();
+회원 관리, 게시판 관리, 상품 관리, 및 옥션(경매) 상품을 등록 할 수 있다.
 
-		session.invalidate(); // 탈퇴 메소드 실행 후 세션 종료
+#### 상품 검색<br>
 
-		return "redirect:/";
-	}
-```
 
-#### UserMapper.java 에 추가
 
-```java
-	// 회원 탈퇴
-	public int userExit(UserVO user);
-```
+검색한 단어를 포함한 상품을 출력하며, 검색한 단어를 포함한 상품이 존재하지 않을 시<br>
+검색 결과 없음 페이지를 보여준다.
 
-#### UserService.java 에 추가
+#### 상품 구매<br>
 
-```java
-	// 회원 탈퇴
-	public int userExit(UserVO user) throws Exception;
-```
 
-#### UserServiceImpl.java 에 추가
 
-```java
-	@Override
-	public int userExit(UserVO user) throws Exception {
+옥션(경매)에 낙찰되면 낙찰자는 구매버튼을 이용하여 상품을 구매 할 수 있고, 핫딜<br>
+을 통해 할인된 상품을 구매, 상품 페이지에서 장바구니에 담은 상품을 일괄적으로 구매할 수 있다.<br> 결제는 실제로 이루어지며, 결제testAPI이기때문에 자정이되면 payback된다.<br>
+상품의 금액이 높기 때문에 테스트를 위해 결제를 취소해도 결제 완료 페이지로 넘어가게 구현했다.
 
-		return usermapper.userExit(user);
-	}
-```
+#### 게시판 이용<br>
 
-#### UserMapper.xml 에 추가
+​              
 
-```xml
-	<!-- 회원 탈퇴 -->
-	<delete id="userExit">
+자유 게시판 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고,<br> 본인이 작성한 글만 수정 및 삭제를 할 수 있다.<br>QnA 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제는 어드민만 가능 하다.
 
-		delete from shopuser where userid = #{userid}
+#### 마이 페이지<br>
 
-	</delete>
-```
+
+
+본인이 구매한 상품들의 주문내역을 확인 할 수 있고, 내가 작성한 글의 목록을 볼 수 있다.<br>
+내 정보에 들어가면 내 정보를 수정 할 수 있고, 탈퇴가 가능하다.
+
+### 7. 개발 내용
+
+[Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[]
+
+### 8. 개선 사항과 느낀 점 
+
+1. 개선 사항
+
+   1. 로그인 부분
+      1. 카카오톡/ 구글 API를 이용하여 로그인 가능하게 구현
+      1. 이메일 인증 기능 구현
+   2. 유저
+      1. 찜하기 기능
+      2. 장바구니에 담은 상품 수를 장바구니 뱃지에 표현
+      3. 결제 시 결제한 금액에 따른 포인트 지급 및 포인트에 따른 회원 등급 조정
+      4. 회원 등급에 따른 상품 할인 쿠폰 지급
+   3. 상품
+      1. 상품 구매 할 시 재고량의 변동을 구현
+      2. 할인 쿠폰 구현
+      3. 취소 및 반품 구현
+      4. 옥션의 낙찰자가 상품 구매 후 해당 상품의 구매하기 버튼을 사라지게 구현
+      5. 상품 페이지의 페이징 처리
+      6. 핫딜 기능을 코드로 직접 고쳐서 반영 시키는게 아닌 어드민 페이지에서<br>조정 할 수 있게 구현
+   4. 게시판의 답글 달기 및 API를 이용한 댓글이 아닌 웹페이지 자체의 댓글 기능 구현
+
+2. 느낀 점
+   MCV1 패턴과 MVC2 패턴을 이용하여 CRUD 웹 페이지를 구현 해봤는데 확실히<br>MVC2 패턴이 팀원들과 협업 했을 때에 기능을 나누어 만들기 편했고, 취합 하는 것 또한 수월했다.
+
+   
+
+   이번 프로젝트를 진행 하면서 더 완벽하게 더 깔끔한 그런 웹을 작업하고 싶었지만,  <br>현재 배운것들로는 구현하고 싶었던 다른 기능들은 AJAX나 배우지 못한 다른 기능들을 이용해야 해서 구현하지 못한게 아쉬웠다.
+
+   
+
+   다음 프로젝트는 Spring과 Framework를 이용하여 이번 프로젝트를 이어서 서버의 응답을 더 빠르게<br>코드들을 간결화 하여 기능들을 보안하고 정말 운영하고 있는 사이트로 배포할 수 있을 만큼의 퀄리티로<br>완벽하게 만들 예정이다.
 
 ## [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
