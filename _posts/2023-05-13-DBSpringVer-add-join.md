@@ -720,7 +720,7 @@ UserService 를 @Autowired 어노테이션으로 의존성 주입 대상으로 �
 
 #### 회원가입 완료 후 환영 페이지 추가
 
-```
+```jsp
 <!DOCTYPE html><%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <html>
 <head>
