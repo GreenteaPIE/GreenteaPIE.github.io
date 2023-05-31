@@ -109,13 +109,12 @@ body {
 					<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 						<div class="navbar-nav mr-auto py-0">
 							<a href="/" class="nav-item nav-link">Home</a>
-							<!--<a href="shop.jsp" class="nav-item nav-link active">미입력</a> <a href="detail.jsp" class="nav-item nav-link">미입력</a>-->
 							<div class="nav-item dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">게시판</a>
 								<div class="dropdown-menu rounded-0 m-0">
 									<a href="#" class="dropdown-item">자유 게시판</a>
 									<a href="#" class="dropdown-item">질문 게시판</a>
-									<a href=#" class="dropdown-item">공지사항</a>
+									<a href="#" class="dropdown-item">공지사항</a>
 								</div>
 							</div>
 							<a href="#" class="nav-item nav-link">Q&A</a>
