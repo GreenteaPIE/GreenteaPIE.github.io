@@ -125,8 +125,8 @@ body {
 							<a href="#" class="nav-item nav-link">Contact</a>
 						</div>
 						<div class="navbar-nav ml-auto py-0">
-								<a href="/user/login" class="nav-item nav-link">로그인</a>
-								<a href="/user/join" class="nav-item nav-link">회원가입</a>
+								<a href="#" class="nav-item nav-link">로그인</a>
+								<a href="#" class="nav-item nav-link">회원가입</a>
 						</div>
 					</div>
 				</nav>
