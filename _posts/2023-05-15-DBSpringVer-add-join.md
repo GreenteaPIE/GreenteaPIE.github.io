@@ -303,6 +303,24 @@ public class UserServiceImpl implements UserService{
 
 UserMapper를 @Autowired 어노테이션으로 의존성 주입 대상으로 지정해준다.
 
+#### UserMapper.xml 생성 후 추가
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.db.mapper.UserMapper">
+  
+  <!-- 아이디 중복검사 -->
+	<select id="idCheck" resultType="int">
+		select count(*) from shopuser
+		where userid = #{userid}
+	</select>
+  
+  </mapper>
+```
+
 ### 4. 이메일 인증 기능 추가
 
 #### join.jsp 에 스크립트 추가
@@ -680,6 +698,18 @@ UserService 를 @Autowired 어노테이션으로 의존성 주입 대상으로 �
 		usermapper.userJoin(user);
 
 	}
+```
+
+#### UserMapper.xml에 추가
+
+```xml
+<!-- 회원가입 -->
+	<insert id="userJoin">
+		insert into shopuser values(#{userid}, #{pass},
+		#{name}, #{email}, #{address1},
+		#{address2}, #{address3}, #{phone},
+		#{gender}, 0, 0, sysdate)
+	</insert>
 ```
 
 #### header.jsp 에 회원가입 버튼 수정
