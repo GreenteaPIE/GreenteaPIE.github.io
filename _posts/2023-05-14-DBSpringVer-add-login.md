@@ -111,7 +111,7 @@ comments: true
 
 인코딩 되어 저장된 DB와 사용자가 입력한 비밀번호를 인코딩하여 일치하는지 비교한다.
 
-로그인이 성공하면 불러온 user정보를 session에 입력한다.
+로그인이 성공하면 불러온 user정보를 session에 저장한다.
 
 #### UserMapper.java 에 추가
 
