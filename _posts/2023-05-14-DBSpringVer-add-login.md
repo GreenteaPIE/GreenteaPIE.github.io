@@ -167,7 +167,7 @@ comments: true
 						</div>
 ```
 
-로그인시 세션에 로그인 되어있다면 "로그인" 과 "회원가입" 버튼이 안보이게 수정한다.
+세션에 유저 정보가 입력 되어있다면 "로그인" 과 "회원가입" 버튼이 안보이게 수정한다.
 
 ```jsp
 <c:if test="${user == null }">
@@ -179,7 +179,7 @@ comments: true
 "MY PAGE" 버튼과 "로그아웃" 버튼을 추가 한다.
 
 ```jsp
- <c:if test="${user != null }">
+<c:if test="${user != null }">
 		<c:if test="${user.grade != 1 }">
 			<div class="nav-item dropdown">
 				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MY PAGE</a>
