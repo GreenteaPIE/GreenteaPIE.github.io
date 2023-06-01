@@ -16,7 +16,7 @@ comments: true
 > **사용한 플랫폼 : Spring, Oracle**
 
 <details>
-<summary><span class="details-container" style="font-size:25pt; font-weight:bold; color:gray;">>목차<</span></summary>
+<summary><span class="summary-text" style="font-size:25pt; font-weight:bold; color:gray;">>목차<</span></summary>
 <div markdown="1">
 - [**시작하며**](#시작하며)
   * [프로젝트 명세서](#프로젝트-명세서)
@@ -462,8 +462,8 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 |     브랜드 리스트      |    메인 페이지     |             GET /             |             -              |  brand[]  |
 |   브랜드 상품 리스트   | 상품 리스트 페이지 | GET /product/brandProductList |        String bname        | product[] |
 | 카테고리별 상품 리스트 | 상품 리스트 페이지 |  GET /product/categoriesList  | String bname<br />Int kind | product[] |
-|                        |                    |                               |                            |           |
-|                        |                    |                               |                            |           |
+|       상품 검색        | 상품 리스트 페이지 |  GET /product/searchProduct   |        String pname        | product[] |
+|     상품 상세보기      | 상품 디테일 페이지 |  GET /product/productDetail   | Int num<br />String pname  | product[] |
 |                        |                    |                               |                            |           |
 |                        |                    |                               |                            |           |
 |                        |                    |                               |                            |           |
@@ -476,7 +476,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 로그인을 하지 않았을 경우<br>
 
 <details>
-<summary class="details-container">펼치기</summary>
+<summary class="summary-text">펼치기</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe>
 </div>
@@ -488,7 +488,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 회원 가입 <br>
 
 <details>
-<summary class="details-container">펼치기</summary>
+<summary class="summary-text">펼치기</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/v-okLiZIZWw" frameborder="0"> </iframe>
 </div>
@@ -504,7 +504,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 로그인 & 로그아웃<br>
 
 <details>
-<summary>>펼치기<</summary>
+<summary class="summary-text">펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/DU73zKQwWbg" frameborder="0"> </iframe>
 </div>
@@ -515,7 +515,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 내 정보 수정 & 탈퇴<br>
 
 <details>
-<summary class="details-container">펼치기</summary>
+<summary class="summary-text">펼치기</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/pD0cKIQ_gNk" frameborder="0"> </iframe>
 </div>
@@ -535,7 +535,7 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 #### 상품 리스트 & 디테일 & 검색<br>
 
 <details>
-<summary class="details-container">펼치기</summary>
+<summary class="summary-text">펼치기</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/lFGOfML9tZo" frameborder="0"> </iframe>
 </div>
@@ -606,11 +606,11 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 ## [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
 
 <style>
-  @keyframes blink {
-  0%, 100% { background-color: transparent; }
-  50% { background-color: black; }
+ @keyframes blink {
+  0%, 100% { color: transparent; }
+  50% { color: black; }
 }
-.details-container {
+.summary-text {
   animation: blink 2s linear infinite;
 }
 table {
