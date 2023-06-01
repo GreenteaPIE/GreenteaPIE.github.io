@@ -501,34 +501,47 @@ home.jsp 에서 불러온 브랜드 로고를 클릭하면 브랜드명(bname을
 #### ProductMapper.java 에 추가
 
 ```java
-	// 모든 상품 정보 불러오기
-	public ArrayList<ProductVO> getAllProduct();
+	// 모든 상품을 중복 없이 불러오기
+	public ArrayList<ProductVO> getAllProductNoDup();
 ```
 
 #### ProductService.java 에 추가
 
 ```java
-	// 모든 상품 정보 불러오기
-	public ArrayList<ProductVO> getAllProduct() throws Exception;
+	// 모든 상품을 중복 없이 불러오기
+	public ArrayList<ProductVO> getAllProductNoDup() throws Exception;
 ```
 
 #### ProductServiceImpl.java 에 추가
 
 ```java
 	@Override
-	public ArrayList<ProductVO> getAllProduct() throws Exception {
+	public ArrayList<ProductVO> getAllProductNoDup() throws Exception {
 
-		return productmapper.getAllProduct();
+		return productmapper.getAllProductNoDup();
 	}
 ```
 
 #### ProductMapper.xml 에 추가
 
 ```xml
-	<!-- 모든 상품정보 불러오기 -->
-	<select id="getAllProduct" resultType="com.db.model.ProductVO">
+	<!-- 모든 상품을 중복 없이 불러오기 -->
+	<select id="getAllProductNoDup"
+		resultType="com.db.model.ProductVO">
 
-		select * from product
+		SELECT num, pGender, bName, kind, pName, imgUrl, pSize,
+		balance, price, purchasedNum, explain, writedate, readcount,
+		discountrate
+		FROM (
+		SELECT num, pGender, bName, kind, pName, imgUrl,
+		pSize,
+		balance, price, purchasedNum, explain, writedate, readcount,
+		discountrate,
+		ROW_NUMBER() OVER (PARTITION BY pName ORDER BY num) RN
+		FROM PRODUCT
+		)
+		WHERE RN = 1
+
 
 	</select>
 ```
