@@ -389,7 +389,7 @@ home.jsp 에서 불러온 브랜드 로고를 클릭하면 브랜드명(bname을
 
 불러올 상품의 브랜드 명을 불러온 상품이 없을 땐 "상품이 존재 하지 않습니다."를 페이지에 띄우게 만든다.
 
-어드민의 상품등록 기능을 구현할 때, 상품 할인율을 1이상 설정한 상품은 Sale 페이지에만 불러오게 할 예정이기 때문에 discountrate 가 0인 상품만 불러오게 만든다.
+상품 할인율을 1이상 설정한 상품은 Sale 페이지에만 불러오게 할 예정이기 때문에 discountrate 가 0인 상품만 불러오게 만든다.
 
 ### 3. 카테고리 별 상품 리스트 불러오기
 
@@ -471,7 +471,140 @@ home.jsp 에서 불러온 브랜드 로고를 클릭하면 브랜드명(bname을
 
 위 sql문도 동일하게 만들지만 kind를 추가하여 카테고리 별로 분류하게 만든다.
 
-### 4. 상품 검색
+### 4. Sale 상품 리스트 불러오기
+
+#### header.jsp 수정
+
+```jsp
+<a href="/product/saleList" class="nav-item nav-link">Sale</a>
+```
+
+#### ProductController.java 에 추가
+
+```java
+	// 세일 상품 리스트
+	@GetMapping("/saleList")
+	public String hotDealListGET(HttpServletRequest request, RedirectAttributes rttr) {
+
+		try {
+			ArrayList<ProductVO> plist = productService.getAllProductNoDup(); // 모든 상품 중복없이 가져오기
+			request.setAttribute("hdlist", plist);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return "/product/saleList";
+
+	}
+```
+
+#### ProductMapper.java 에 추가
+
+```java
+	// 모든 상품 정보 불러오기
+	public ArrayList<ProductVO> getAllProduct();
+```
+
+#### ProductService.java 에 추가
+
+```java
+	// 모든 상품 정보 불러오기
+	public ArrayList<ProductVO> getAllProduct() throws Exception;
+```
+
+#### ProductServiceImpl.java 에 추가
+
+```java
+	@Override
+	public ArrayList<ProductVO> getAllProduct() throws Exception {
+
+		return productmapper.getAllProduct();
+	}
+```
+
+#### ProductMapper.xml 에 추가
+
+```xml
+	<!-- 모든 상품정보 불러오기 -->
+	<select id="getAllProduct" resultType="com.db.model.ProductVO">
+
+		select * from product
+
+	</select>
+```
+
+#### saleList.jsp 추가
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<jsp:include page="../header.jsp"></jsp:include>
+</head>
+<body>
+	<hr>
+	<!-- Page Header Start -->
+	<div class="container bg-secondary mb-3" style="max-width: 800px;">
+		<div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 200px">
+			<h1 class="font-weight-semi-bold text-uppercase mb-3">Sale</h1>
+			<div class="d-inline-flex">
+				<p class="m-0">
+					<a href="/">Home</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- Page Header End -->
+	<!-- Shop Start -->
+	<div id="my-container" class="container-fluid pt-5">
+		<!-- Shop Product Start -->
+		<div class="col-lg-9 col-md-12">
+			<div class="row pb-3">
+				<c:forEach var="hdlist" items="${hdlist }">
+					<c:if test="${hdlist.discountrate != 0 }">
+						<div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+							<div class="card product-item border-0 mb-4">
+								<div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+									<a href="#">
+										<img class="img-fluid w-100" style="height: 240px" src="../resources/img/${hdlist.imgUrl}" alt="">
+									</a>
+								</div>
+								<div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+									<h6 class="mb-3">${hdlist.pname}</h6>
+									<div class="d-flex justify-content-center">
+										<%-- 통화 단위 지정 --%>
+										<h6>
+											${hdlist.discountrate}% 할인
+											<del style="text-decoration: line-through; color: gray;">
+												<!-- 할인전 가격 -->
+												<fmt:formatNumber value="${Integer.parseInt(hdlist.price)}" pattern="₩###,###" />
+											</del>
+											<br>
+											<!-- 할인후 가격 -->
+											<c:set var="discountedPrice" value="${Integer.parseInt(hdlist.price) * (100 - hdlist.discountrate) / 100}" />
+											<fmt:formatNumber value="${Math.round(discountedPrice/100)*100}" pattern="₩###,###" />
+										</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+		</div>
+		<!-- Shop Product End -->
+	</div>
+	<!-- Shop End -->
+	<hr>
+</body>
+<jsp:include page="../footer.jsp"></jsp:include>
+</html>
+```
+
+### 5. 상품 검색
 
 #### ProductController.java 에 추가
 
@@ -656,4 +789,3 @@ home.jsp 에서 불러온 브랜드 로고를 클릭하면 브랜드명(bname을
 ```
 
 ## [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
-
