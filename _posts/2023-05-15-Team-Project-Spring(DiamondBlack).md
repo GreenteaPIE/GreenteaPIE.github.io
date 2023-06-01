@@ -424,7 +424,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### AUCTION
 
-|   컬렴명   | 데이터 타입 |   조건   |         설          |
+|   컬럼명   | 데이터 타입 |   조건   |         설          |
 | :--------: | :---------: | :------: | :-----------------: |
 |    NUM     |   NUMBER    |    PK    |      상품 번호      |
 |   USERID   |  VARCHAR2   |    FK    |   아이디(낙찰자)    |
@@ -454,6 +454,22 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 |    본인 인증    |  내 정보 수정 페이지   | POST /user/mypagechk  |                String userid<br />String pass                |  user[]  |
 |  내 정보 수정   |      메인 페이지       | POST /user/userupdate |                            user[]                            |    -     |
 |    회원탈퇴     |      메인 페이지       |  POST /user/userexit  |                        String userid                         |    -     |
+
+#### 2. 상품 관련 API
+
+|      Description       |    Return Page     |              url              |          Request           | Response  |
+| :--------------------: | :----------------: | :---------------------------: | :------------------------: | :-------: |
+|     브랜드 리스트      |    메인 페이지     |             GET /             |             -              |  brand[]  |
+|   브랜드 상품 리스트   | 상품 리스트 페이지 | GET /product/brandProductList |        String bname        | product[] |
+| 카테고리별 상품 리스트 | 상품 리스트 페이지 |  GET /product/categoriesList  | String bname<br />Int kind | product[] |
+|                        |                    |                               |                            |           |
+|                        |                    |                               |                            |           |
+|                        |                    |                               |                            |           |
+|                        |                    |                               |                            |           |
+|                        |                    |                               |                            |           |
+|                        |                    |                               |                            |           |
+
+
 
 ### 6. 화면 설계서
 
@@ -516,12 +532,19 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 
 회원 관리, 게시판 관리, 상품 관리, 및 옥션(경매) 상품을 등록 할 수 있다.
 
-#### 상품 검색<br>
+#### 상품 리스트 & 디테일 & 검색<br>
+
+<details>
+<summary>>펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/lFGOfML9tZo" frameborder="0"> </iframe>
+</div>
+</details>
 
 
+메인 페이지의 브랜드 로고를 클릭하면 해당 브랜드의 모든 상품을 불러오고, 카테고리의 각 브랜드 별 Top, Bottom, Boutique를 클릭하면 카테고리에 맞는 상품 리스트를 불러온다. 
 
-검색한 단어를 포함한 상품을 출력하며, 검색한 단어를 포함한 상품이 존재하지 않을 시<br>
-검색 결과 없음 페이지를 보여준다.
+상품 검색 창에 검색한 단어를 포함한 상품을 출력하며, 검색한 단어를 포함한 상품이 존재하지 않을 시 검색 결과 없음 페이지를 보여준다.
 
 #### 상품 구매<br>
 
@@ -581,3 +604,89 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
    다음 프로젝트는 Spring과 Framework를 이용하여 이번 프로젝트를 이어서 서버의 응답을 더 빠르게<br>코드들을 간결화 하여 기능들을 보안하고 정말 운영하고 있는 사이트로 배포할 수 있을 만큼의 퀄리티로<br>완벽하게 만들 예정이다.
 
 ## [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
+
+<style>
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid black;
+}
+th {
+  font-weight: bold;
+  font-size: 20px;
+}
+td {
+  font-size: 13px;
+}
+</style>
+
+
+<table>
+  <tr>
+    <th>컬럼명</th>
+    <th>데이터 타입</th>
+    <th>조건</th>
+    <th>설</th>
+  </tr>
+  <tr>
+    <td>NUM</td>
+    <td>NUMBER</td>
+    <td>PK</td>
+    <td>상품 번호</td>
+  </tr  <tr>
+    <td>USERID</td>
+    <td>VARCHAR2</td>
+    <td>FK</td>
+    <td>아이디(낙찰자)</td>
+  </tr>
+  <tr>
+    <td>BNAME</td>
+    <td>VARCHAR2</td>
+    <td>NOT</td>
+    <td>브랜드 명</td>
+  </tr>
+  <tr>
+    <td>PNAME</td>
+    <td>VARCHAR2</td>
+    <td>NOT NULL</td>
+    <td>상품 명</td>
+  </tr>
+  <tr>
+    <td>PRICE</td>
+    <td>NUMBER</td>
+   td>NOT NULL</td>
+    <td>상품 가격</td>
+  </tr>
+  <tr>
+    <td>STARTPRICE</td>
+    <td>NUMBER</td>
+    <td>NOT NULL</td>
+    <td>시작가</td>
+  </tr>
+ tr>
+    <td>IMGURL</td>
+    <td>VARCHAR2</td>
+    <td>NOT NULL</td>
+    <td>상품 이미지</td>
+  </tr>
+  <tr>
+    <td>ENDPRICE</td>
+ <td>NUMBER</td>
+    <td>NOT NULL</td>
+    <td>입찰가</td>
+  </tr>
+  <tr>
+    <td>ENDTIME</td>
+    <td>DATE</td>
+    <td>NOT NULL</td>
+    <td>종료일자</td>
+  </tr>
+ <tr>
+    <td>ONOFF</td>
+    <td>NUMBER</td>
+    <td>NOT NULL</td>
+    <td>옥션 시작/종료 여부</td>
+  </tr>
+</table>
+
