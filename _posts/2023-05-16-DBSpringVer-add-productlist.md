@@ -8,6 +8,7 @@ feature: /img/SpringDB/logo.png
 comments: true
 
 
+
 ---
 
 
@@ -388,7 +389,7 @@ home.jsp 에서 불러온 브랜드 로고를 클릭하면 브랜드명(bname을
 
 불러올 상품의 브랜드 명을 불러온 상품이 없을 땐 "상품이 존재 하지 않습니다."를 페이지에 띄우게 만든다.
 
-어드민의 상품등록 기능을 구현할 때, 상품 할인율을 1이상을 설정한 상품은 Sale 페이지에만 불러오게 하기위해 discountrate 가 0인 상품만 불러오게 만든다.
+어드민의 상품등록 기능을 구현할 때, 상품 할인율을 1이상 설정한 상품은 Sale 페이지에만 불러오게 할 예정이기 때문에 discountrate 가 0인 상품만 불러오게 만든다.
 
 ### 3. 카테고리 별 상품 리스트 불러오기
 
@@ -627,15 +628,15 @@ home.jsp 에서 불러온 브랜드 로고를 클릭하면 브랜드명(bname을
 #### searchNotFound.jsp
 
 ```JSP
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<jsp:include page="../header.jsp"></jsp:include>
-</head>
-<body>
+ <%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+ <!DOCTYPE html>
+ <html>
+ <head>
+ <jsp:include page="../header.jsp"></jsp:include>
+ </head>
+ <body>
 	<hr>
 	<!-- Page Header Start -->
 	<div class="container bg-secondary mb-3" style="max-width: 800px; height: 350px;">
@@ -649,9 +650,9 @@ home.jsp 에서 불러온 브랜드 로고를 클릭하면 브랜드명(bname을
 		</div>
 	</div>
 	<hr>
-</body>
-<jsp:include page="../footer.jsp"></jsp:include>
-</html>
+ </body>
+ <jsp:include page="../footer.jsp"></jsp:include>
+ </html>
 ```
 
 ## [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
