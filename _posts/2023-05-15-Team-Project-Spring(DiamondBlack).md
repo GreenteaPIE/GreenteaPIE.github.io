@@ -246,8 +246,6 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
 - 디자인
   - Bootstrap을 이용하여 모바일과 pc에 따른 반응형 웹으로 제작
 
-
-
 ### 4. DB 설계
 
 ![_config.yml]({{ site.baseurl }}/img/SpringDB/DBdiagram.png)
@@ -268,6 +266,8 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
 |  GRADE   |   NUMBER    |    DEFAULT 0    |   등급   |
 |  POINT   |   NUMBER    |    DEFAULT 0    |  포인트  |
 |  ENTER   |    DATE     | DEFUALT STSDATE | 가입일자 |
+
+
 
 ```sql
 /* 누적 포인트 등급 상승 admin grade = 1 */
@@ -392,6 +392,8 @@ PRODUCT TABLE에서 사용하지 않는 컬럼 [PURCHASEDNUM(구매번호), WRIT
 |       PHONE       |  VARCHAR2   | NOT NULL  |    전화번호    |
 |      RESULT       |    CHAR     | DEFAULT 1 | 주문 진행 과정 |
 
+
+
 ```sql
 /* join table(order, order_detail) */
 CREATE VIEW order_view AS
@@ -420,7 +422,7 @@ ON
 
 ```
 
-ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하는 값을 불러올수있게 VIEW를 생성하는 SQL문을 추가한다.
+ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하는 값을 불러올 수 있게 VIEW를 생성하는 SQL문을 추가한다.
 
 #### AUCTION
 
@@ -469,14 +471,12 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 |                        |                    |                               |                            |           |
 |                        |                    |                               |                            |           |
 
-
-
 ### 6. 화면 설계서
 
 #### 로그인을 하지 않았을 경우<br>
 
 <details>
-<summary class="summary-text">펼치기</summary>
+<summary class="summary-text">>펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe>
 </div>
@@ -488,7 +488,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 회원 가입 <br>
 
 <details>
-<summary class="summary-text">펼치기</summary>
+<summary class="summary-text">>펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/v-okLiZIZWw" frameborder="0"> </iframe>
 </div>
@@ -504,7 +504,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 로그인 & 로그아웃<br>
 
 <details>
-<summary class="summary-text">펼치기<</summary>
+<summary class="summary-text">>펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/DU73zKQwWbg" frameborder="0"> </iframe>
 </div>
@@ -515,7 +515,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 내 정보 수정 & 탈퇴<br>
 
 <details>
-<summary class="summary-text">펼치기</summary>
+<summary class="summary-text">>펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/pD0cKIQ_gNk" frameborder="0"> </iframe>
 </div>
@@ -535,7 +535,7 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 #### 상품 리스트 & 디테일 & 검색<br>
 
 <details>
-<summary class="summary-text">펼치기</summary>
+<summary class="summary-text">>펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/lFGOfML9tZo" frameborder="0"> </iframe>
 </div>
@@ -569,7 +569,7 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 
 ### 7. 개발 내용
 
-[Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[]
+[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>
 
 ### 8. 개선 사항과 느낀 점 
 
