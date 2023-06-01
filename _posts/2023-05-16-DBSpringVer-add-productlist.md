@@ -552,7 +552,7 @@ home.jsp 에서 불러온 브랜드 로고를 클릭하면 브랜드명(bname을
 
 #### searchProduct.jsp
 
-```java
+```html
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -627,16 +627,16 @@ home.jsp 에서 불러온 브랜드 로고를 클릭하면 브랜드명(bname을
 
 #### searchNotFound.jsp
 
-```JSP
- <%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
- <!DOCTYPE html>
- <html>
- <head>
- <jsp:include page="../header.jsp"></jsp:include>
- </head>
- <body>
+```html
+<%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<jsp:include page="../header.jsp"></jsp:include>
+</head>
+<body>
 	<hr>
 	<!-- Page Header Start -->
 	<div class="container bg-secondary mb-3" style="max-width: 800px; height: 350px;">
@@ -656,3 +656,4 @@ home.jsp 에서 불러온 브랜드 로고를 클릭하면 브랜드명(bname을
 ```
 
 ## [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
+
