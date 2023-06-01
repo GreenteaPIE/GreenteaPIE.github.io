@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 7 - DB Spring 상품 상세보기
-date: 2023-05-15
+date: 2023-05-17
 excerpt: "팀 프로젝트 DB Spring Version"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript, Spring, FrameWork]
 feature: /img/SpringDB/logo.png
