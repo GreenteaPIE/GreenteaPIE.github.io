@@ -240,6 +240,7 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
   - 카테고리 클릭 시 해당 브랜드의 카테고리가 설정된 상품 리스트 출력
   - 상품 검색 시 해당 검색어가 들어가는 상품 리스트 출력
   - 검색한 상품이 존재 하지 않을 시 "상품 "xx"의 검색 결과 없음" 메시지 출력
+  - 상세 페이지에서 수량과 사이즈를 선택하여 장바구니에 추가 가능
 - Contact
   - Kakao지도API를 활용하여 설정한 임의의 회사 위치를 지도로 확인 가능
   - 회사의 상세 정보를 확인 가능
@@ -465,8 +466,8 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 |   브랜드 상품 리스트   | 상품 리스트 페이지 | GET /product/brandProductList |        String bname        | product[] |
 | 카테고리별 상품 리스트 | 상품 리스트 페이지 |  GET /product/categoriesList  | String bname<br />Int kind | product[] |
 |       상품 검색        | 상품 리스트 페이지 |  GET /product/searchProduct   |        String pname        | product[] |
+|    세일 상품 리스트    |    상품 리스트     |     GET /product/saleList     |             -              | product[] |
 |     상품 상세보기      | 상품 디테일 페이지 |  GET /product/productDetail   | Int num<br />String pname  | product[] |
-|                        |                    |                               |                            |           |
 |                        |                    |                               |                            |           |
 |                        |                    |                               |                            |           |
 |                        |                    |                               |                            |           |
@@ -532,12 +533,12 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 
 회원 관리, 게시판 관리, 상품 관리, 및 옥션(경매) 상품을 등록 할 수 있다.
 
-#### 상품 리스트 & 디테일 & 검색<br>
+#### 상품(검색, 카테고리, 세일) 리스트 & 디테일<br>
 
 <details>
 <summary class="summary-text">>펼치기<</summary>
 <div markdown="1">
-<iframe width="560" height="315" src="//www.youtube.com/embed/lFGOfML9tZo" frameborder="0"> </iframe>
+<iframe width="560" height="315" src="//www.youtube.com/embed/AxOU4ZN1FGg" frameborder="0"> </iframe>
 </div>
 </details>
 
@@ -569,7 +570,7 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 
 ### 7. 개발 내용
 
-[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>
+[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>
 
 ### 8. 개선 사항과 느낀 점 
 
