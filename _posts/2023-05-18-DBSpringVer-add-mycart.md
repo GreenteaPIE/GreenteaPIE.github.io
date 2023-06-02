@@ -8,6 +8,7 @@ feature: /img/SpringDB/logo.png
 comments: true
 
 
+
 ---
 
 
@@ -135,7 +136,7 @@ ResponseEntity<?> 는 자바의 제네릭 타입을 사용하여 응답 본문�
 
 장바구니 추가 메소드를 실행하고 해당 페이지를 새로고침 한다.
 
-#### ### 2. 장바구니 뱃지 숫자 표기
+### 2. 장바구니 뱃지 숫자 표기
 
 #### ProductController.java 에 추가
 
