@@ -39,11 +39,10 @@ comments: true
 </div>
 </details>
 
+
 # **시작하며**
 
-SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다음 프로젝트는 <br>Boot로 진행 한다고 하여, 개인적으로 기존에 만든 프로젝트를 Spring 형식에 맞춰서 구현하고 싶었지만 <br>못 만들었던 기능들을 추가하고, 아쉬웠던 기능들의 Detail을 살려 만들어 보기로 했다.
-
-
+Spring FrameWork를 배웠지만 본격적인 다음 프로젝트는 Boot로 진행 한다고 하여, 기존에 만들었던 프로젝트 DB를 Spring 형식에 맞춰서 기능을 구현하고 싶었지만 못 만들었던 기능들을 추가로 구현하고, 아쉬웠던 기능들의 Detail을 살려 다시 만들어볼 예정이다.
 
 ## 프로젝트 명세서
 
@@ -58,7 +57,7 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
 
 ### 1. 프로젝트 진행 순서
 
-기존에 있던 DB에서 구현할 기능들에 필요한 컬럼들을 정리 후 추가하고 스프링에 <br>설정할 dependency들 pom.xml에 넣고 기본적인 설정을 마친 후 설계한 API를 토대로 기존의 form들을 <br>가져와 수정하고 추가한다. 
+기존에 있던 DB에서 구현할 기능들에 필요한 컬럼들을 정리 후 추가하고 스프링에 설정할 종속성들을 pom.xml에 넣고 기본적인 설정을 마친 후 설계한 API를 토대로 기존의 jsp파일들을 가져와 수정하고 추가한다. 
 
 기능들을 하나씩 구현할때마다 JUnit 테스트를 통해 모듈들이 정상적으로 동작하는지 확인한다.
 
@@ -128,9 +127,7 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
     1. 어드민이 설정한 상품, 시간, 시작 가 확인
     2. 입찰이 끝나면 낙찰자에게 구매 권한 부여
   - 세일
-    1. 어드민이 상품등록 시 할인율을 설정 후 등록
-
-  
+    1. 어드민이 상품등록 시 할인율을 설정 후 등
 
 - 개발 언어 : Java 11, HTML, JavaScript, JSP
 
@@ -172,6 +169,7 @@ SpringBoot 로 넘어가기전 Spring FrameWork를 배웠지만 본격적인 다
   - 상품 장바구니 담기
     - 장바구니에 담긴 상품의 수만큼 뱃지에 숫자 표기
   - 장바구니 상품 구매
+    - 장바구니가 비어있는 상태로 구매 페이지로 이동하려 하면 "구매할 상품이 없습니다" 메시지 출력
     - 주문자 정보와 동일 버튼 체크 시 배송지 입력에 유저정보 자동입력
     - 구매 시 이용 약관에 동의 하지 않았거나, 결제 방식을 선택 하지 않았으면<br>각각의 선택 메시지 출력
     - 위의 이용 약관과 결제 방식을 선택 후 구매 버튼을 눌렀다면, 결제API 모듈 실행
@@ -442,7 +440,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 ### 5. API 설계
 
-#### 1. 유저 관련 API
+#### 유저 관련 API
 
 |   Description   |      Return Page       |          url          |                           Request                            | Response |
 | :-------------: | :--------------------: | :-------------------: | :----------------------------------------------------------: | :------: |
@@ -458,19 +456,22 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 |  내 정보 수정   |      메인 페이지       | POST /user/userupdate |                            user[]                            |    -     |
 |    회원탈퇴     |      메인 페이지       |  POST /user/userexit  |                        String userid                         |    -     |
 
-#### 2. 상품 관련 API
+#### 상품 관련 API
 
-|      Description       |    Return Page     |              url              |          Request           | Response  |
-| :--------------------: | :----------------: | :---------------------------: | :------------------------: | :-------: |
-|     브랜드 리스트      |    메인 페이지     |             GET /             |             -              |  brand[]  |
-|   브랜드 상품 리스트   | 상품 리스트 페이지 | GET /product/brandProductList |        String bname        | product[] |
-| 카테고리별 상품 리스트 | 상품 리스트 페이지 |  GET /product/categoriesList  | String bname<br />Int kind | product[] |
-|       상품 검색        | 상품 리스트 페이지 |  GET /product/searchProduct   |        String pname        | product[] |
-|    세일 상품 리스트    |    상품 리스트     |     GET /product/saleList     |             -              | product[] |
-|     상품 상세보기      | 상품 디테일 페이지 |  GET /product/productDetail   | Int num<br />String pname  | product[] |
-|                        |                    |                               |                            |           |
-|                        |                    |                               |                            |           |
-|                        |                    |                               |                            |           |
+|      Description       |      Return Page       |              url              |                           Request                            | Response  |
+| :--------------------: | :--------------------: | :---------------------------: | :----------------------------------------------------------: | :-------: |
+|     브랜드 리스트      |      메인 페이지       |             GET /             |                              -                               |  brand[]  |
+|   브랜드 상품 리스트   |   상품 리스트 페이지   | GET /product/brandProductList |                         String bname                         | product[] |
+| 카테고리별 상품 리스트 |   상품 리스트 페이지   |  GET /product/categoriesList  |                  String bname<br />Int kind                  | product[] |
+|       상품 검색        |   상품 리스트 페이지   |  GET /product/searchProduct   |                         String pname                         | product[] |
+|    세일 상품 리스트    |      상품 리스트       |     GET /product/saleList     |                              -                               | product[] |
+|     상품 상세보기      |   상품 디테일 페이지   |  GET /product/productDetail   |                  Int num<br />String pname                   | product[] |
+|     장바구니 추가      |   상품 디테일 페이지   |     POST /product/addCart     | String userid<br />Int num<br />String psize<br />Int quantity<br />Int price |     -     |
+|     나의 장바구니      | 장바구니 리스트 페이지 |      GET /product/myCart      |                        String userid                         |  cart[]   |
+|     장바구니 뱃지      |      비동기 작동       |  GET /product/countCartAjax   |                        String userid                         |  cart[]   |
+|   장바구니 수량 감소   |      비동기 작동       |  POST /product/quantityMinus  |                         Int cartnum                          |     -     |
+|   장바구니 수량 증가   |      비동기 작동       |  POST /product/quantityPlus   |                         Int cartnum                          |     -     |
+|   장바구니 상품 삭제   |      비동기 작동       |   POST /product/deleteCart    |                         int cartnum                          |     -     |
 
 ### 6. 화면 설계서
 
@@ -483,7 +484,6 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
-
 로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니, 쿠폰수령등의 기능들을 이용할 수 없다.
 
 #### 회원 가입 <br>
@@ -494,7 +494,6 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/v-okLiZIZWw" frameborder="0"> </iframe>
 </div>
 </details>
-
 
 회원 가입은 유효성 검사를 거쳐 진행된다.
 
@@ -512,7 +511,6 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </details>
 
 
-
 #### 내 정보 수정 & 탈퇴<br>
 
 <details>
@@ -522,16 +520,9 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
-
 PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 같은 유효성 검사를 진행하여 정보 수정을 완료한다.
 
 내 정보 수정 페이지 에서 confirm을 이용해 탈퇴 진행 여부를 한번 더 확인 후 탈퇴를 한다.
-
-#### 어드민<br>
-
-
-
-회원 관리, 게시판 관리, 상품 관리, 및 옥션(경매) 상품을 등록 할 수 있다.
 
 #### 상품(검색, 카테고리, 세일) 리스트 & 디테일<br>
 
@@ -542,14 +533,24 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 </div>
 </details>
 
-
 메인 페이지의 브랜드 로고를 클릭하면 해당 브랜드의 모든 상품을 불러오고, 카테고리의 각 브랜드 별 Top, Bottom, Boutique를 클릭하면 카테고리에 맞는 상품 리스트를 불러온다. 
 
 상품 검색 창에 검색한 단어를 포함한 상품을 출력하며, 검색한 단어를 포함한 상품이 존재하지 않을 시 검색 결과 없음 페이지를 보여준다.
 
+#### 장바구니 담기 & 나의 장바구니<br>
+
+<details>
+<summary class="summary-text">>펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/At4hkN3_9JA" frameborder="0"> </iframe>
+</div>
+</details>
+
+상품 디테일 페이지에서 상품을 장바구니에 담으면 Ajax를 이용해 비동기로 장바구니를 추가하는 메서드를 실행한다. 
+
+추가 되어있는 장바구니 수만큼 오른쪽 상단 뱃지에 숫자로 표기 되고 클릭하면 유저의 장바구니 리스트를 불러온다.
+
 #### 상품 구매<br>
-
-
 
 옥션(경매)에 낙찰되면 낙찰자는 구매버튼을 이용하여 상품을 구매 할 수 있고, 핫딜<br>
 을 통해 할인된 상품을 구매, 상품 페이지에서 장바구니에 담은 상품을 일괄적으로 구매할 수 있다.<br> 결제는 실제로 이루어지며, 결제testAPI이기때문에 자정이되면 payback된다.<br>
@@ -557,20 +558,20 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 
 #### 게시판 이용<br>
 
-​              
+​              자유 게시판 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고,<br> 본인이 작성한 글만 수정 및 삭제를 할 수 있다.<br>QnA 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제는 어드민만 가능 하다.
 
-자유 게시판 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고,<br> 본인이 작성한 글만 수정 및 삭제를 할 수 있다.<br>QnA 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제는 어드민만 가능 하다.
+#### 어드민<br>
+
+회원 관리, 게시판 관리, 상품 관리, 및 옥션(경매) 상품을 등록 할 수 있다.
 
 #### 마이 페이지<br>
-
-
 
 본인이 구매한 상품들의 주문내역을 확인 할 수 있고, 내가 작성한 글의 목록을 볼 수 있다.<br>
 내 정보에 들어가면 내 정보를 수정 할 수 있고, 탈퇴가 가능하다.
 
 ### 7. 개발 내용
 
-[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>
+[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>[8 - 장바구니(담기, 리스트) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mycart/)<br>
 
 ### 8. 개선 사항과 느낀 점 
 
