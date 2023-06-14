@@ -165,6 +165,7 @@ Spring FrameWork를 배웠지만 본격적인 다음 프로젝트는 Boot로 진
   - 장바구니 상품 구매
     - 장바구니가 비어있는 상태로 구매 페이지로 이동하려 하면 "구매할 상품이 없습니다." 메시지 출력
     - 주문자 정보와 동일 버튼 체크 시 배송지 입력에 유저정보 자동입력
+    - 쿠폰 적용시 해당 쿠폰의 할인 가격 만큼 총 결제 금액에서 제외
     - 구매 시 이용 약관에 동의 하지 않았거나, 결제 방식을 선택 하지 않았으면<br>각각의 선택 메시지 출력
     - 위의 이용 약관과 결제 방식을 선택 후 구매 버튼을 눌렀다면, 결제API 모듈 실행
   - 옥션 상품 입찰, 구매
@@ -436,22 +437,25 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 유저 관련 API
 
-|   Description   |      Return Page       |          url          |                           Request                            | Response |
-| :-------------: | :--------------------: | :-------------------: | :----------------------------------------------------------: | :------: |
-| 회원가입 페이지 | 회원가입 페이지로 이동 |    GET /user/join     |                              -                               |    -     |
-|    회원가입     |  회원가입 환영 페이지  |    POST /user/join    | String userid<br />String pass<br />String name<br />String email<br />String address1<br />String address2<br />String address3<br />String phone<br />Int gender<br />Int point<br />Int grade<br />SYSDATE enter |    -     |
-| 아이디 중복검사 |    회원가입 페이지     | POST /user/userIDChk  |                        String userid                         |  user[]  |
-|   이메일 인증   |    회원가입 페이지     |  GET /user/mailCheck  |                              -                               |    -     |
-|  로그인 페이지  |  로그인 페이지로 이동  |    GET /user/login    |                              -                               |    -     |
-|     로그인      |      메인 페이지       |   POST /user/login    |                String userid<br />String pass                |  user[]  |
-|    로그아웃     |      메인 페이지       |   GET /user/logout    |                              -                               |    -     |
-|  내 정보 수정   |    본인 인증 페이지    |  GET /user/mypagechk  |                              -                               |    -     |
-|    본인 인증    |  내 정보 수정 페이지   | POST /user/mypagechk  |                String userid<br />String pass                |  user[]  |
-|  내 정보 수정   |      메인 페이지       | POST /user/userupdate |                            user[]                            |    -     |
-|    회원탈퇴     |      메인 페이지       |  POST /user/userexit  |                        String userid                         |    -     |
-|  Event 페이지   |  Event 페이지로 이동   |      GET /event       |                              -                               |    -     |
-|    쿠폰 발급    |      Event 페이지      | POST /user/addCoupon  | String userid<br />String couponname<br />String imgurl<br />Int discountprice |    -     |
-|    보유 쿠폰    |    보유 쿠폰 페이지    |  GET /user/myCoupon   |                        String userid                         | coupon[] |
+|   Description   |      Return Page       |             url             |                           Request                            |        Response        |
+| :-------------: | :--------------------: | :-------------------------: | :----------------------------------------------------------: | :--------------------: |
+| 회원가입 페이지 | 회원가입 페이지로 이동 |       GET /user/join        |                              -                               |           -            |
+|    회원가입     |  회원가입 환영 페이지  |       POST /user/join       | String userid<br />String pass<br />String name<br />String email<br />String address1<br />String address2<br />String address3<br />String phone<br />Int gender<br />Int point<br />Int grade<br />SYSDATE enter |           -            |
+| 아이디 중복검사 |    회원가입 페이지     |    POST /user/userIDChk     |                        String userid                         |         user[]         |
+|   이메일 인증   |    회원가입 페이지     |     GET /user/mailCheck     |                              -                               |           -            |
+|  로그인 페이지  |  로그인 페이지로 이동  |       GET /user/login       |                              -                               |           -            |
+|     로그인      |      메인 페이지       |      POST /user/login       |                String userid<br />String pass                |         user[]         |
+|    로그아웃     |      메인 페이지       |      GET /user/logout       |                              -                               |           -            |
+|  내 정보 수정   |    본인 인증 페이지    |     GET /user/mypagechk     |                              -                               |           -            |
+|    본인 인증    |  내 정보 수정 페이지   |    POST /user/mypagechk     |                String userid<br />String pass                |         user[]         |
+|  내 정보 수정   |      메인 페이지       |    POST /user/userupdate    |                            user[]                            |           -            |
+|    회원탈퇴     |      메인 페이지       |     POST /user/userexit     |                        String userid                         |           -            |
+|  Event 페이지   |  Event 페이지로 이동   |         GET /event          |                              -                               |           -            |
+|    쿠폰 발급    |      Event 페이지      |    POST /user/addCoupon     | String userid<br />String couponname<br />String imgurl<br />Int discountprice |           -            |
+|    보유 쿠폰    |    보유 쿠폰 페이지    |     GET /user/myCoupon      |                        String userid                         |        coupon[]        |
+| 나의 주문 내역  |    주문 내역 페이지    |    GET /user/myPurchased    |                        String userid                         |        order[]         |
+| 주문 내역 상세  |    주문 상세 페이지    | GET /user/myPurchasedDetail |                       Int ordernumber                        | order[]<br />product[] |
+|    주문 취소    |      비동기 작동       |   GET /user/withdrawOrder   |                       Int ordernumber                        |           -            |
 
 #### 상품 관련 API
 
@@ -468,7 +472,9 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 |     장바구니 뱃지      |      비동기 작동       |  GET /product/countCartAjax   |                        String userid                         |                        count int num                         |
 |   장바구니 수량 감소   |      비동기 작동       |  POST /product/quantityMinus  |                         Int cartnum                          |                              -                               |
 |   장바구니 수량 증가   |      비동기 작동       |  POST /product/quantityPlus   |                         Int cartnum                          |                              -                               |
-|   장바구니 상품 삭제   |      비동기 작동       |   POST /product/deleteCart    |                         int cartnum                          |                              -                               |
+|   장바구니 상품 삭제   |      비동기 작동       |   POST /product/deleteCart    |                         Int cartnum                          |                              -                               |
+|     상품 주문 결제     |    체크아웃 페이지     |     GET /product/checkOut     |                        String userid                         |             product[]<br />cart[]<br />coupon[]              |
+|       결제 완료        |    주문 완료 페이지    |    POST /product/purchased    | Integer cnum<br />Int cartnum<br />String userid<br />Int totalprice<br />String email<br />String phone<br />String address1<br />String address2<br />String address3<br />Cart[] |                    order[]<br />product[]                    |
 
 ### 6. 화면 설계서
 
@@ -557,12 +563,30 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
+#### 상품 결제<br>
 
-#### 상품 구매<br>
+<details>
+<summary class="summary-text">>펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/tbXL0L7wo-A" frameborder="0"> </iframe>
+</div>
+</details>
 
-옥션(경매)에 낙찰되면 낙찰자는 구매버튼을 이용하여 상품을 구매 할 수 있고, 핫딜<br>
-을 통해 할인된 상품을 구매, 상품 페이지에서 장바구니에 담은 상품을 일괄적으로 구매할 수 있다.<br> 결제는 실제로 이루어지며, 결제testAPI이기때문에 자정이되면 payback된다.<br>
+옥션(경매)에 낙찰되면 낙찰자는 구매버튼을 이용하여 상품을 구매 할 수 있고, 상품 페이지에서 장바구니에 담은 상품을 일괄적으로 구매할 수 있다.
+
+결제는 실제로 이루어지며, 결제test모듈이기때문에 자정이되면 payback된다.<br>
 상품의 금액이 높기 때문에 테스트를 위해 결제를 취소해도 결제 완료 페이지로 넘어가게 구현했다.
+
+#### 나의 주문 내역 & 주문 취소
+
+<details>
+<summary class="summary-text">>펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/BtGtNDj5HqM" frameborder="0"> </iframe>
+</div>
+</details>
+
+주문 번호를 클릭하면 상세 주문 내역을 볼 수 있고, 주문 취소 요청을 통해 어드민이 요청을 확인하고 취소 처리를 할 수 있다.
 
 #### 게시판 이용<br>
 
@@ -581,7 +605,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 Junit 을 통한 Test 과정은 아래와 같이 하나의 메소드를 추가 할때마다 진행 하였고, 개발 내용에서 생략 하였다.
 
-![_config.yml]({{ site.baseurl }}/img/DiamondBlack/test.png)
+![_config.yml]({{ site.baseurl }}/img/SpringDB/test.png)
 
 [1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>[8 - 장바구니(담기, 리스트) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mycart/)<br>[9 - 쿠폰(발급, 나의 쿠폰) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-coupon/)<br>[10 - 상품 결제 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-purchased/)<br>[11 - 나의 결제내역(주문취소) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mypurchased/)<br>
 
@@ -595,15 +619,18 @@ Junit 을 통한 Test 과정은 아래와 같이 하나의 메소드를 추가 �
       1. 장바구니에 담은 상품 수를 장바구니 뱃지에 표현
       2. 결제 시 결제한 금액에 따른 포인트 지급 및 포인트에 따른 회원 등급 조정
       3. 회원 등급에 따른 상품 할인 쿠폰 지급
-   3. 상품
+   3. 어드민
+      1. 주문 처리 구현
+   4. 상품
       1. 브랜드 추가 시 헤더와 메인 페이지에 추가된 브랜드 출력
-      2. 할인 쿠폰 적용 구현
-      3. 취소 및 반품 구현
-      4. 옥션의 낙찰자가 상품 구매 후 해당 상품의 구매하기 버튼을 사라지게 구현
-   4. 게시판
+      2. 주문지 변경 추가
+      3. 할인 쿠폰 적용 구현
+      4. 결제 취소 구현
+      5. 옥션의 낙찰자가 상품 구매 후 해당 상품의 구매하기 버튼을 사라지게 구현
+   5. 게시판
       1. 게시판의 답글 달기 및 API를 이용한 댓글이 아닌 웹페이지 자체의 댓글 기능 구현
       2. 게시판내 검색 기능 추가
-   5. 코딩
+   6. 코딩
       1. 불필요한 코드들을 삭제하고, 중복되는 코드들을 간추림
 2. 느낀 점
    서칭을 통해서 호스팅 하는 방법도 알아보고 git brench 로 협업하는 방법도 알아봤는데 어렵구나..
