@@ -26,13 +26,6 @@ comments: true
     + [4. DB 설계](#4-db-설계)
     + [5. API 설계](#5-api-설계)
     + [6.  화면 설계서](#6-화면-설계서)
-      - [로그인을 하지 않았을 경우<br>](#로그인을-하지-않았을-경우)
-      - [회원 가입 & 로그인<br>](#회원-가입--로그인)
-      - [어드민<br>](#어드민)
-      - [상품 검색<br>](#상품-검색)
-      - [상품 구매<br>](#상품-구매)
-      - [게시판 이용<br>](#게시판-이용)
-      - [마이 페이지<br>](#마이-페이지)
     + [7. 개발 내용](#7-개발-내용)
     + [8. 개선 사항과 느낀 점](#8-개선-사항과-느낀-점)
   * [프로젝트 주소](#프로젝트-주소)
@@ -168,8 +161,9 @@ Spring FrameWork를 배웠지만 본격적인 다음 프로젝트는 Boot로 진
 - 유저
   - 상품 장바구니 담기
     - 장바구니에 담긴 상품의 수만큼 뱃지에 숫자 표기
+    - 장바구니 수량 조절, 0이하로 수량을 조정하려 하면 "장바구니에서 삭제 하시겠습니까?" 메시지 출력
   - 장바구니 상품 구매
-    - 장바구니가 비어있는 상태로 구매 페이지로 이동하려 하면 "구매할 상품이 없습니다" 메시지 출력
+    - 장바구니가 비어있는 상태로 구매 페이지로 이동하려 하면 "구매할 상품이 없습니다." 메시지 출력
     - 주문자 정보와 동일 버튼 체크 시 배송지 입력에 유저정보 자동입력
     - 구매 시 이용 약관에 동의 하지 않았거나, 결제 방식을 선택 하지 않았으면<br>각각의 선택 메시지 출력
     - 위의 이용 약관과 결제 방식을 선택 후 구매 버튼을 눌렀다면, 결제API 모듈 실행
@@ -266,7 +260,7 @@ Spring FrameWork를 배웠지만 본격적인 다음 프로젝트는 Boot로 진
 |  POINT   |   NUMBER    |    DEFAULT 0    |  포인트  |
 |  ENTER   |    DATE     | DEFUALT STSDATE | 가입일자 |
 
-
+<br>
 
 ```sql
 /* 누적 포인트 등급 상승 admin grade = 1 */
@@ -391,7 +385,7 @@ PRODUCT TABLE에서 사용하지 않는 컬럼 [PURCHASEDNUM(구매번호), WRIT
 |       PHONE       |  VARCHAR2   | NOT NULL  |    전화번호    |
 |      RESULT       |    CHAR     | DEFAULT 1 | 주문 진행 과정 |
 
-
+<br>
 
 ```sql
 /* join table(order, order_detail) */
@@ -455,23 +449,26 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 |    본인 인증    |  내 정보 수정 페이지   | POST /user/mypagechk  |                String userid<br />String pass                |  user[]  |
 |  내 정보 수정   |      메인 페이지       | POST /user/userupdate |                            user[]                            |    -     |
 |    회원탈퇴     |      메인 페이지       |  POST /user/userexit  |                        String userid                         |    -     |
+|  Event 페이지   |  Event 페이지로 이동   |      GET /event       |                              -                               |    -     |
+|    쿠폰 발급    |      Event 페이지      | POST /user/addCoupon  | String userid<br />String couponname<br />String imgurl<br />Int discountprice |    -     |
+|    보유 쿠폰    |    보유 쿠폰 페이지    |  GET /user/myCoupon   |                        String userid                         | coupon[] |
 
 #### 상품 관련 API
 
-|      Description       |      Return Page       |              url              |                           Request                            | Response  |
-| :--------------------: | :--------------------: | :---------------------------: | :----------------------------------------------------------: | :-------: |
-|     브랜드 리스트      |      메인 페이지       |             GET /             |                              -                               |  brand[]  |
-|   브랜드 상품 리스트   |   상품 리스트 페이지   | GET /product/brandProductList |                         String bname                         | product[] |
-| 카테고리별 상품 리스트 |   상품 리스트 페이지   |  GET /product/categoriesList  |                  String bname<br />Int kind                  | product[] |
-|       상품 검색        |   상품 리스트 페이지   |  GET /product/searchProduct   |                         String pname                         | product[] |
-|    세일 상품 리스트    |      상품 리스트       |     GET /product/saleList     |                              -                               | product[] |
-|     상품 상세보기      |   상품 디테일 페이지   |  GET /product/productDetail   |                  Int num<br />String pname                   | product[] |
-|     장바구니 추가      |   상품 디테일 페이지   |     POST /product/addCart     | String userid<br />Int num<br />String psize<br />Int quantity<br />Int price |     -     |
-|     나의 장바구니      | 장바구니 리스트 페이지 |      GET /product/myCart      |                        String userid                         |  cart[]   |
-|     장바구니 뱃지      |      비동기 작동       |  GET /product/countCartAjax   |                        String userid                         |  cart[]   |
-|   장바구니 수량 감소   |      비동기 작동       |  POST /product/quantityMinus  |                         Int cartnum                          |     -     |
-|   장바구니 수량 증가   |      비동기 작동       |  POST /product/quantityPlus   |                         Int cartnum                          |     -     |
-|   장바구니 상품 삭제   |      비동기 작동       |   POST /product/deleteCart    |                         int cartnum                          |     -     |
+|      Description       |      Return Page       |              url              |                           Request                            |                           Response                           |
+| :--------------------: | :--------------------: | :---------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|     브랜드 리스트      |      메인 페이지       |             GET /             |                              -                               |                           brand[]                            |
+|   브랜드 상품 리스트   |   상품 리스트 페이지   | GET /product/brandProductList |                         String bname                         |                          product[]                           |
+| 카테고리별 상품 리스트 |   상품 리스트 페이지   |  GET /product/categoriesList  |                  String bname<br />Int kind                  | String pname<br />Int price<br />Int discountrate<br />String imgurl<br />Int num |
+|       상품 검색        |   상품 리스트 페이지   |  GET /product/searchProduct   |                         String pname                         | String pname<br />Int price<br />Int discountrate<br />String imgurl<br />Int num |
+|    세일 상품 리스트    |      상품 리스트       |     GET /product/saleList     |                              -                               | String pname<br />Int price<br />Int discountrate<br />String imgurl<br />Int num |
+|     상품 상세보기      |   상품 디테일 페이지   |  GET /product/productDetail   |                  Int num<br />String pname                   |                          product[]                           |
+|     장바구니 추가      |   상품 디테일 페이지   |     POST /product/addCart     | String userid<br />Int num<br />String psize<br />Int quantity<br />Int price |                              -                               |
+|     나의 장바구니      | 장바구니 리스트 페이지 |      GET /product/myCart      |                        String userid                         |                            cart[]                            |
+|     장바구니 뱃지      |      비동기 작동       |  GET /product/countCartAjax   |                        String userid                         |                        count int num                         |
+|   장바구니 수량 감소   |      비동기 작동       |  POST /product/quantityMinus  |                         Int cartnum                          |                              -                               |
+|   장바구니 수량 증가   |      비동기 작동       |  POST /product/quantityPlus   |                         Int cartnum                          |                              -                               |
+|   장바구니 상품 삭제   |      비동기 작동       |   POST /product/deleteCart    |                         int cartnum                          |                              -                               |
 
 ### 6. 화면 설계서
 
@@ -520,7 +517,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
-PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 같은 유효성 검사를 진행하여 정보 수정을 완료한다.
+ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 같은 유효성 검사를 진행하여 정보 수정을 완료한다.
 
 내 정보 수정 페이지 에서 confirm을 이용해 탈퇴 진행 여부를 한번 더 확인 후 탈퇴를 한다.
 
@@ -546,9 +543,20 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 </div>
 </details>
 
+
 상품 디테일 페이지에서 상품을 장바구니에 담으면 Ajax를 이용해 비동기로 장바구니를 추가하는 메서드를 실행한다. 
 
 추가 되어있는 장바구니 수만큼 오른쪽 상단 뱃지에 숫자로 표기 되고 클릭하면 유저의 장바구니 리스트를 불러온다.
+
+#### 쿠폰 발급 & 보유 쿠폰<br>
+
+<details>
+<summary class="summary-text">>펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/5qZ8n1p8x6A" frameborder="0"> </iframe>
+</div>
+</details>
+
 
 #### 상품 구매<br>
 
@@ -571,39 +579,34 @@ PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 �
 
 ### 7. 개발 내용
 
-[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>[8 - 장바구니(담기, 리스트) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mycart/)<br>
+Junit 을 통한 Test 과정은 아래와 같이 하나의 메소드를 추가 할때마다 진행 하였고, 개발 내용에서 생략 하였다.
 
-### 8. 개선 사항과 느낀 점 
+![_config.yml]({{ site.baseurl }}/img/DiamondBlack/test.png)
 
-1. 개선 사항
+[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>[8 - 장바구니(담기, 리스트) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mycart/)<br>[9 - 쿠폰(발급, 나의 쿠폰) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-coupon/)<br>[10 - 상품 결제 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-purchased/)<br>[11 - 나의 결제내역(주문취소) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mypurchased/)<br>
+
+### 8. 완료한 개선 사항과 느낀 점 
+
+1. 완료 개선 사항
 
    1. 로그인 부분
-      1. 카카오톡/ 구글 API를 이용하여 로그인 가능하게 구현
       1. 이메일 인증 기능 구현
    2. 유저
-      1. 찜하기 기능
-      2. 장바구니에 담은 상품 수를 장바구니 뱃지에 표현
-      3. 결제 시 결제한 금액에 따른 포인트 지급 및 포인트에 따른 회원 등급 조정
-      4. 회원 등급에 따른 상품 할인 쿠폰 지급
+      1. 장바구니에 담은 상품 수를 장바구니 뱃지에 표현
+      2. 결제 시 결제한 금액에 따른 포인트 지급 및 포인트에 따른 회원 등급 조정
+      3. 회원 등급에 따른 상품 할인 쿠폰 지급
    3. 상품
-      1. 상품 구매 할 시 재고량의 변동을 구현
-      2. 할인 쿠폰 구현
+      1. 브랜드 추가 시 헤더와 메인 페이지에 추가된 브랜드 출력
+      2. 할인 쿠폰 적용 구현
       3. 취소 및 반품 구현
       4. 옥션의 낙찰자가 상품 구매 후 해당 상품의 구매하기 버튼을 사라지게 구현
-      5. 상품 페이지의 페이징 처리
-      6. 핫딜 기능을 코드로 직접 고쳐서 반영 시키는게 아닌 어드민 페이지에서<br>조정 할 수 있게 구현
-   4. 게시판의 답글 달기 및 API를 이용한 댓글이 아닌 웹페이지 자체의 댓글 기능 구현
-
+   4. 게시판
+      1. 게시판의 답글 달기 및 API를 이용한 댓글이 아닌 웹페이지 자체의 댓글 기능 구현
+      2. 게시판내 검색 기능 추가
+   5. 코딩
+      1. 불필요한 코드들을 삭제하고, 중복되는 코드들을 간추림
 2. 느낀 점
-   MCV1 패턴과 MVC2 패턴을 이용하여 CRUD 웹 페이지를 구현 해봤는데 확실히<br>MVC2 패턴이 팀원들과 협업 했을 때에 기능을 나누어 만들기 편했고, 취합 하는 것 또한 수월했다.
-
-   
-
-   이번 프로젝트를 진행 하면서 더 완벽하게 더 깔끔한 그런 웹을 작업하고 싶었지만,  <br>현재 배운것들로는 구현하고 싶었던 다른 기능들은 AJAX나 배우지 못한 다른 기능들을 이용해야 해서 구현하지 못한게 아쉬웠다.
-
-   
-
-   다음 프로젝트는 Spring과 Framework를 이용하여 이번 프로젝트를 이어서 서버의 응답을 더 빠르게<br>코드들을 간결화 하여 기능들을 보안하고 정말 운영하고 있는 사이트로 배포할 수 있을 만큼의 퀄리티로<br>완벽하게 만들 예정이다.
+   서칭을 통해서 호스팅 하는 방법도 알아보고 git brench 로 협업하는 방법도 알아봤는데 어렵구나..
 
 ## [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
 
