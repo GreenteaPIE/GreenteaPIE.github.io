@@ -8,6 +8,7 @@ feature: /img/SpringDB/logo.png
 comments: true
 
 
+
 ---
 
 
@@ -317,6 +318,32 @@ checkCoupon 은 addCoupon 메소드가 작동할때 먼저 해당 쿠폰을 보�
 
 checkCoupon 메소드를 작동하고 검색한 값이 존재 한다면 2를 반환하여 "이미 지급된 쿠폰 입니다." 메시지를 띄우고, 그렇지 않다면 addCoupon메서드를 작동한다.
 
+#### UserMapper.xml 에 추가
+
+```xml
+	<!-- 쿠폰 추가 -->
+	<insert id="addCoupon">
+
+		insert into coupon(cnum,
+		userid, couponname,
+		discountprice, imgurl)
+		values (coupon_seq.nextval,
+		#{userid},
+		#{couponname},
+		#{discountprice}, #{imgurl})
+
+	</insert>
+
+	<!-- 쿠폰 보유 확인 -->
+	<select id="checkCoupon" resultType="com.db.model.CouponVO">
+
+		select*from coupon
+		where
+		userid=#{userid} and couponname=#{couponname}
+
+	</select>
+```
+
 #### header.jsp 수정
 
 ```jsp
@@ -457,6 +484,19 @@ checkCoupon 메소드를 작동하고 검색한 값이 존재 한다면 2를 반
 	
 		return usermapper.getMyCoupon(userid);
 	}
+```
+
+#### UserMapper.xml 에 추가
+
+```xml
+	<!-- 보유 쿠폰 보기 -->
+	<select id="getMyCoupon" resultType="com.db.model.CouponVO">
+
+		select*from coupon
+		where
+		userid=#{userid}
+
+	</select>
 ```
 
 #### header.jsp 수정
