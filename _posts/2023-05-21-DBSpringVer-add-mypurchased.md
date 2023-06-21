@@ -8,6 +8,7 @@ feature: /img/SpringDB/logo.png
 comments: true
 
 
+
 ---
 
 
@@ -146,6 +147,12 @@ comments: true
 		userid=#{userid}
 
 	</select>
+```
+
+#### header.jsp 에 수정
+
+```jsp
+<a href="/user/myPurchased?userid=${user.userid }" class="dropdown-item">나의 주문내역</a>
 ```
 
 ### 2. 주문 상세 보기
