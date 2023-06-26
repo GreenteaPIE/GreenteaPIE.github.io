@@ -599,6 +599,17 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 게시판 이용<br>
 
+```javascript
+<button class="btn">
+  <span class="btn-text">펼치기</span>
+</button>
+<details>
+  <div class="content">
+    <iframe width="560" height="315" src="//www.youtube.com/embed/-xVuB8a_zQ8" frameborder="0"> </iframe>
+  </div>
+</details>
+```
+
 <details>
 <summary class="summary-text">>펼치기<</summary>
 <div markdown="1">
@@ -606,9 +617,9 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
-#### 자유&질문 게시판은 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고, 본인이 작성한 게시글, 댓글만 수정 및 삭제를 할 수 있다.
+자유&질문 게시판은 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고, 본인이 작성한 게시글, 댓글만 수정 및 삭제를 할 수 있다.
 
-#### QnA 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제는 어드민만 가능 하다.
+QnA 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제는 어드민만 가능 하다.
 
 #### 나의 작성 글<br>
 
@@ -693,5 +704,28 @@ th {
 td {
   font-size: 13px;
 }
+ .btn {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+
+.btn-text {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.content {
+  margin-top: 10px;
+}   
+    
 </style>
 
