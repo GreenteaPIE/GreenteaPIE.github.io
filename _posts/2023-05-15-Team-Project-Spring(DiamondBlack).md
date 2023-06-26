@@ -599,17 +599,6 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 게시판 이용<br>
 
-```javascript
-<button class="btn">
-  <span class="btn-text">펼치기</span>
-</button>
-<details>
-  <div class="content">
-    <iframe width="560" height="315" src="//www.youtube.com/embed/-xVuB8a_zQ8" frameborder="0"> </iframe>
-  </div>
-</details>
-```
-
 <details>
 <summary class="summary-text">>펼치기<</summary>
 <div markdown="1">
@@ -704,28 +693,7 @@ th {
 td {
   font-size: 13px;
 }
- .btn {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 6px 12px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-
-.btn-text {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-}
-
-.content {
-  margin-top: 10px;
-}   
+    
     
 </style>
 
