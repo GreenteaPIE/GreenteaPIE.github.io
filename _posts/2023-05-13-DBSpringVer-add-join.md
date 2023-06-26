@@ -16,7 +16,7 @@ comments: true
 
 ### 1. com.db.model에 UserVO 추가
 
-```
+```java
 package com.db.model;
 
 import java.sql.Timestamp;
