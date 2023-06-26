@@ -9,6 +9,7 @@ project: true
 comments: true
 
 
+
 ---
 
 
@@ -30,6 +31,7 @@ comments: true
   * [프로젝트 주소](#프로젝트-주소)
 </div>
 </details>
+
 
 # **시작하며**
 
@@ -442,6 +444,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 | 주문 내역 상세  |    주문 상세 페이지    | GET /user/myPurchasedDetail |                       Int ordernumber                        | order[]<br />product[] |
 |    주문 취소    |      비동기 작동       |   GET /user/withdrawOrder   |                       Int ordernumber                        |           -            |
 |  나의 작성 글   |  나의 작성 글 페이지   |     GET /user/myWriting     |                        String userid                         |        board[]         |
+
 #### 상품 관련 API
 
 |      Description       |      Return Page       |              url              |                           Request                            |                           Response                           |
@@ -463,11 +466,6 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 게시판 관련 API
 
-
-<details>
-<summary class="summary-text">>접기/펼치기<</summary>
-<div markdown="1">
-
 |     Description     |        Return Page        |        url         |                           Request                            |       Response       |
 | :-----------------: | :-----------------------: | :----------------: | :----------------------------------------------------------: | :------------------: |
 | 게시판 등록 페이지  | 게시판 등록 페이지로 이동 | GET /board/enroll  |                              -                               |          -           |
@@ -484,10 +482,6 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 |      댓글 삭제      |    게시판 상세 페이지     | GET /reply/delete  |                           Int num                            |          -           |
 
 
-</div>
-</details>
-
-
 ### 6. 화면 설계서
 
 #### 로그인을 하지 않았을 경우<br>
@@ -498,15 +492,18 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe>
 </div>
 </details>
+
 로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니, 쿠폰수령등의 기능들을 이용할 수 없다.
 
 #### 회원 가입 <br>
+
 <details>
 <summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/v-okLiZIZWw" frameborder="0"> </iframe>
 </div>
 </details>
+
 회원 가입은 유효성 검사를 거쳐 진행된다.
 
 회원 가입시 입력한 패스워드는 아래처럼 암호화 되어 저장된다.
@@ -514,6 +511,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 ![_config.yml]({{ site.baseurl }}/img/DiamondBlack/sha256.png)
 
 #### 로그인 & 로그아웃<br>
+
 <details>
 <summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
@@ -521,13 +519,16 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
+
 #### 내 정보 수정 & 탈퇴<br>
+
 <details>
 <summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/pD0cKIQ_gNk" frameborder="0"> </iframe>
 </div>
 </details>
+
  PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 같은 유효성 검사를 진행하여 정보 수정을 완료한다.
 
 내 정보 수정 페이지 에서 confirm을 이용해 탈퇴 진행 여부를 한번 더 확인 후 탈퇴를 한다.
@@ -540,6 +541,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/AxOU4ZN1FGg" frameborder="0"> </iframe>
 </div>
 </details>
+
 메인 페이지의 브랜드 로고를 클릭하면 해당 브랜드의 모든 상품을 불러오고, 카테고리의 각 브랜드 별 Top, Bottom, Boutique를 클릭하면 카테고리에 맞는 상품 리스트를 불러온다. 
 
 상품 검색 창에 검색한 단어를 포함한 상품을 출력하며, 검색한 단어를 포함한 상품이 존재하지 않을 시 검색 결과 없음 페이지를 보여준다.
@@ -553,6 +555,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
+
 상품 디테일 페이지에서 상품을 장바구니에 담으면 Ajax를 이용해 비동기로 장바구니를 추가하는 메서드를 실행한다. 
 
 추가 되어있는 장바구니 수만큼 오른쪽 상단 뱃지에 숫자로 표기 되고 클릭하면 유저의 장바구니 리스트를 불러온다.
@@ -565,6 +568,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/5qZ8n1p8x6A" frameborder="0"> </iframe>
 </div>
 </details>
+
 #### 상품 결제<br>
 
 <details>
@@ -573,6 +577,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/tbXL0L7wo-A" frameborder="0"> </iframe>
 </div>
 </details>
+
 
 옥션(경매)에 낙찰되면 낙찰자는 구매버튼을 이용하여 상품을 구매 할 수 있고, 상품 페이지에서 장바구니에 담은 상품을 일괄적으로 구매할 수 있다.
 
@@ -588,6 +593,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
+
 주문 번호를 클릭하면 상세 주문 내역을 볼 수 있고, 주문 취소 요청을 통해 어드민이 요청을 확인하고 취소 처리를 할 수 있다.
 
 #### 게시판 이용<br>
@@ -598,6 +604,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/-xVuB8a_zQ8" frameborder="0"> </iframe>
 </div>
 </details>
+
 
 자유&질문 게시판은 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고, 본인이 작성한 게시글, 댓글만 수정 및 삭제를 할 수 있다.
 
@@ -611,6 +618,7 @@ QnA 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제�
 <iframe width="560" height="315" src="//www.youtube.com/embed/nmREYGqOFPQ" frameborder="0"> </iframe>
 </div>
 </details>
+
 
 내가 작성한 글의 목록을 볼 수 있다.
 
@@ -686,6 +694,7 @@ th {
 td {
   font-size: 13px;
 }
-    
-    
+
+
+​    
 </style>
