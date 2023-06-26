@@ -463,9 +463,9 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 게시판 관련 API
 
-```
+
 <details>
-<summary>접기/펼치기 버튼</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 
 |     Description     |        Return Page        |        url         |                           Request                            |       Response       |
@@ -486,7 +486,6 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 </div>
 </details>
-```
 
 
 ### 6. 화면 설계서
@@ -494,7 +493,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 로그인을 하지 않았을 경우<br>
 
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe>
 </div>
@@ -503,7 +502,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 회원 가입 <br>
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/v-okLiZIZWw" frameborder="0"> </iframe>
 </div>
@@ -516,7 +515,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 로그인 & 로그아웃<br>
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/DU73zKQwWbg" frameborder="0"> </iframe>
 </div>
@@ -524,7 +523,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 내 정보 수정 & 탈퇴<br>
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/pD0cKIQ_gNk" frameborder="0"> </iframe>
 </div>
@@ -536,7 +535,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 상품(검색, 카테고리, 세일) 리스트 & 디테일<br>
 
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/AxOU4ZN1FGg" frameborder="0"> </iframe>
 </div>
@@ -548,7 +547,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 장바구니 담기 & 나의 장바구니<br>
 
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/At4hkN3_9JA" frameborder="0"> </iframe>
 </div>
@@ -561,7 +560,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 쿠폰 발급 & 보유 쿠폰<br>
 
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/5qZ8n1p8x6A" frameborder="0"> </iframe>
 </div>
@@ -569,7 +568,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 상품 결제<br>
 
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/tbXL0L7wo-A" frameborder="0"> </iframe>
 </div>
@@ -583,7 +582,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 나의 주문 내역 & 주문 취소
 
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/BtGtNDj5HqM" frameborder="0"> </iframe>
 </div>
@@ -594,7 +593,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 #### 게시판 이용<br>
 
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/-xVuB8a_zQ8" frameborder="0"> </iframe>
 </div>
@@ -607,7 +606,7 @@ QnA 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제�
 #### 나의 작성 글<br>
 
 <details>
-<summary class="summary-text">>펼치기<</summary>
+<summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/nmREYGqOFPQ" frameborder="0"> </iframe>
 </div>
