@@ -2,7 +2,7 @@
 layout: post
 title: Team Project (Pet Talk)
 date: 2023-03-22
-excerpt: "첫 번째 팀 프로젝트 [23.03.15 ~ 23.03.21]"
+excerpt: "첫 번째 팀 프로젝트(펫톡) - 23.03.15 ~ 23.03.21"
 tags: [project, java, MySQL]
 feature: /img/PetTalk/main.png
 project: true
