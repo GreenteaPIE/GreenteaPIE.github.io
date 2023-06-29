@@ -1,12 +1,13 @@
 ---
 layout: post
-title: Team Project MVC2 Pattern (DiamondBlack)
+title: Project MVC2 Pattern (DiamondBlack)
 date: 2023-04-22
-excerpt: "두 번째 팀 프로젝트"
+excerpt: "두 번째 팀 프로젝트 [23.04.10 ~ 23.04.21]"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript]
 feature: /img/DiamondBlack/logo.png
 project: true
 comments: true
+
 
 
 ---
@@ -36,7 +37,6 @@ comments: true
   * [프로젝트 주소](#프로젝트-주소)
 </div>
 </details>
-
 
 
 # **시작하며**
