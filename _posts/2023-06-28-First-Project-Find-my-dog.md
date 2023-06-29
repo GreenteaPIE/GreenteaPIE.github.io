@@ -2,7 +2,7 @@
 layout: post
 title: Personal Project (FindMyDog)
 date: 2023-06-28
-excerpt: "개인 프로젝트 - 내 강아지 찾기"
+excerpt: "개인 프로젝트"
 tags: [project, SpringBoot, JPA, mysql]
 feature: /assets/img/rucy.jpg
 project: true
