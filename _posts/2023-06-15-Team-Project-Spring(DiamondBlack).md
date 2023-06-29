@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Team Project Spring (DiamondBlack)
-date: 2023-05-15
-excerpt: "팀 프로젝트 DB Spring Version"
+title: Project(DiamondBlack) Spring Version 
+date: 2023-06-15
+excerpt: "프로젝트 DB Spring Version[23.05.11 ~ 23.06.03]"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript, Spring, FrameWork]
 feature: /img/SpringDB/logo.png
 project: true
@@ -16,7 +16,7 @@ comments: true
 > **사용한 플랫폼 : Spring, Oracle**
 
 <details>
-<summary><span class="summary-text" style="font-size:25pt; font-weight:bold; color:gray;">>목차<</span></summary>
+<summary><span class="summary-text" style="font-size:25pt; font-weight:bold; color:gray;">>목차 접기/펼치기<</span></summary>
 <div markdown="1">
 - [**시작하며**](#시작하며)
   * [프로젝트 명세서](#프로젝트-명세서)
@@ -31,6 +31,7 @@ comments: true
   * [프로젝트 주소](#프로젝트-주소)
 </div>
 </details>
+
 
 
 # **시작하며**
@@ -57,8 +58,13 @@ Spring FrameWork를 배웠지만 본격적인 다음 프로젝트는 Boot로 진
 ### 2. 개요
 
 - 프로젝트 명 : DiamondBlack Spring Version
+
 - 인원 : 1명
-- 기간 : 2023.05.11 ~ ing
+
+- 기간 : 2023.05.11 ~ 2023.06.03 
+
+  (~ 2023.06.15 리펙터링, 클린코드)
+
 - 기능 :
 
   - 유저 
@@ -117,9 +123,13 @@ Spring FrameWork를 배웠지만 본격적인 다음 프로젝트는 Boot로 진
     2. 입찰이 끝나면 낙찰자에게 구매 권한 부여
   - 세일
     1. 어드민이 상품등록 시 할인율을 설정 후 등
+
 - 개발 언어 : Java 11, HTML, JavaScript, JSP
+
 - 개발 환경 : Spring, Apache Tomcat 9.0
+
 - 데이터베이스 : Oracle
+
 - 간단 소개 : 해외 명품 직구 샵
 
 ### 3. 기능 별 요구 사항
@@ -407,7 +417,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### AUCTION
 
-|   컬럼명   | 데이터 타입 |   조건   |         설          |
+|   컬럼명   | 데이터 타입 |   조건   |        설명         |
 | :--------: | :---------: | :------: | :-----------------: |
 |    NUM     |   NUMBER    |    PK    |      상품 번호      |
 |   USERID   |  VARCHAR2   |    FK    |   아이디(낙찰자)    |
@@ -664,7 +674,7 @@ Junit 을 통한 Test 과정은 아래와 같이 하나의 메소드를 추가 �
    6. 웹 디자인
       1. 로고 변경
       2. 마우스 커서 디자인 적용
-   7. 코딩
+   7. 리펙터링
       1. 불필요한 코드들을 삭제하고, 중복되는 코드들을 간추림
 
 2. 느낀 점
