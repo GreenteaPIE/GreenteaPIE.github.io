@@ -2,7 +2,7 @@
 layout: post
 title: Project(DiamondBlack) Spring Version 
 date: 2023-06-15
-excerpt: "프로젝트 DB Spring Version[23.05.11 ~ 23.06.03]"
+excerpt: "프로젝트 DB Spring Version[23.05.11 ~ 23.06.01]"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript, Spring, FrameWork]
 feature: /img/SpringDB/logo.png
 project: true
@@ -61,9 +61,9 @@ comments: true
 
 - 인원 : 1명
 
-- 기간 : 2023.05.11 ~ 2023.06.03 
+- 기간 : 2023.05.11 ~ 2023.06.01 
 
-  (~ 2023.06.15 리펙터링, 클린코드)
+  (~ 2023.06.13 리펙터링, 클린코드)
 
 - 기능 :
 
@@ -122,9 +122,9 @@ comments: true
     1. 어드민이 설정한 상품, 시간, 시작 가 확인
     2. 입찰이 끝나면 낙찰자에게 구매 권한 부여
   - 세일
-    1. 어드민이 상품등록 시 할인율을 설정 후 등
+    1. 어드민이 상품 등록 시 할인율을 1% 이상 설정 후 등록
 
-- 개발 언어 : Java 11, HTML, JavaScript, JSP
+- 개발 언어 : Java 11, HTML, JavaScript, JSP, JQuery
 
 - 개발 환경 : Spring, Apache Tomcat 9.0
 
@@ -178,6 +178,7 @@ comments: true
   - 자유&질문 게시판 이용
     - 등록, 수정, 삭제 가능(수정과 삭제는 작성한 본인만 가능)
     - 댓글 작성, 수정, 삭제(수정과 삭제는 작성한 본인만 가능)
+    - 게시물 검색 가능(제목, 내용, 작성자)
   - 공지사항 이용
     - 등록, 수정, 삭제는 어드민만 가능
   - Q&A 이용
@@ -198,7 +199,7 @@ comments: true
     - 자신이 구매한 주문 번호, 주문 날짜, 상태 목록 출력
     - 주문 번호 클릭 시 구매한 해당 주문 번호의 상품과 가격 등의 상세 내역을 확인
   - 내가 쓴 글
-    - 자유 게시판에 작성한 나의 글 확인 및 수정, 삭제 가능
+    - 자유&질문 게시판에 작성한 나의 글 확인 및 수정, 삭제 가능
     - 내가 단 댓글 확인 및 수정, 삭제 가능
   - 보유 쿠폰
     - 수령한 쿠폰의 리스트를 확인
@@ -491,6 +492,16 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 |      댓글 수정      |    게시판 상세 페이지     | POST /reply/modify |        Int num<br />String content<br />String writer        |          -           |
 |      댓글 삭제      |    게시판 상세 페이지     | GET /reply/delete  |                           Int num                            |          -           |
 
+#### 어드민 관련 API
+
+| Description | Return Page | url  | Request | Response |
+| :---------: | :---------: | :--: | :-----: | :------: |
+|             |             |      |         |          |
+|             |             |      |         |          |
+|             |             |      |         |          |
+|             |             |      |         |          |
+
+
 
 ### 6. 화면 설계서
 
@@ -616,9 +627,9 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </details>
 
 
-자유&질문 게시판은 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고, 본인이 작성한 게시글, 댓글만 수정 및 삭제를 할 수 있다.
+자유&질문 게시판은 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고, 본인이 작성한 게시글, 댓글만 수정 및 삭제를 할 수 있고, 제목과 내용, 작성자  등으로 게시물을 검색 가능하다.
 
-QnA 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제는 어드민만 가능 하다.
+공지사항 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제는 어드민만 가능 하다.
 
 #### 나의 작성 글<br>
 
@@ -642,7 +653,7 @@ Junit 을 통한 Test 과정은 아래와 같이 하나의 메소드를 추가 �
 
 ![_config.yml]({{ site.baseurl }}/img/SpringDB/test.png)
 
-[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>[8 - 장바구니(담기, 리스트) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mycart/)<br>[9 - 쿠폰(발급, 나의 쿠폰) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-coupon/)<br>[10 - 상품 결제 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-purchased/)<br>[11 - 나의 결제내역(주문취소) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mypurchased/)<br>[12 - 게시판 페이지 등록&리스트 기능 추가](https://greenteapie.github.io/DBSpringVer-add-enrollboard/)<br>[13 - 게시판 페이지 조회&수정&삭제 기능 추가](https://greenteapie.github.io/DBSpringVer-add-modifyboard/)<br>[14 - 게시판 댓글(등록, 수정, 삭제) 기능 추가](https://greenteapie.github.io/DBSpringVer-add-reply/)<br>[15 - 나의 작성 글 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myboard/)<br>
+[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 암호화(인코딩)기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>[8 - 장바구니(담기, 리스트) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mycart/)<br>[9 - 쿠폰(발급, 나의 쿠폰) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-coupon/)<br                                                                                                                                                                                                                                    [10 - 상품 결제 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-purchased/)<br>[11 - 나의 결제내역(주문취소) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mypurchased/)<br>[12 - 게시판 등록 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-enrollboard/)<br>[13 - 게시판 리스트(페이징) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-boardlist/)<br>[14 - 게시판 검색 기능 추가](https://greenteapie.github.io/DBSpringVer-add-boardsearch/)<br>[15 - 게시판 페이지 조회&수정&삭제 기능 추가](https://greenteapie.github.io/DBSpringVer-add-modifyboard/)<br>[16 - 게시판 댓글(등록, 수정, 삭제) 기능 추가](https://greenteapie.github.io/DBSpringVer-add-reply/)<br>[17 - 나의 작성 글 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myboard/)<br>
 
 ### 8. 완료한 개선 사항과 느낀 점 
 
