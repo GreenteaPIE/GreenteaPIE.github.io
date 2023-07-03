@@ -213,7 +213,7 @@ public class Criteria {
 	
 ```
 
-<if> 태그를 통해 keyword데이터가 넘어올 시엔 실행이 되는 where 조건문을 작성한다.
+`<if>` 태그를 통해 keyword데이터가 넘어올 시엔 실행이 되는 where 조건문을 작성한다.
 
 #### list.jsp 에 수정
 
