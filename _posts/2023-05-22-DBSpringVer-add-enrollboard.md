@@ -8,6 +8,7 @@ feature: /img/SpringDB/logo.png
 comments: true
 
 
+
 ---
 
 
@@ -81,6 +82,14 @@ public interface BoardMapper {
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.db.mapper.BoardMapper">
 
+        <!-- 게시판 등록 -->
+	<insert id="enroll">
+		insert into free_board(num, title, content, userid,
+		category) values (free_seq.nextval,
+		#{title},#{content},#{userid},#{category})
+
+	</insert>
+    
 </mapper>
 
 ```
@@ -94,16 +103,6 @@ namespace 속성 값이 중요한 이유는 MyBatis가 Mapper 인터페이스와
 Mapper 인터페이스에서 선언한 enroll 메서드 호출될 시에 실행될 SQL문을 아래와 같이 작성한다. <insert> 태그에 id 속성 값을 메서드 이름과 동일하게 작성한다.
 
 값이 들어가야 할 구문에는 Mapper 인터페이스에서 선언한 enroll() 메서드의 파라미터 BoardVO 클래스의 멤버 변수명을 #{}을 붙여 작성한다.
-
-```XML
-    <!-- 게시판 등록 -->
-	<insert id="enroll">
-		insert into free_board(num, title, content, userid,
-		category) values (free_seq.nextval,
-		#{title},#{content},#{userid},#{category})
-
-	</insert>
-```
 
 #### BoardService.java 추가
 
