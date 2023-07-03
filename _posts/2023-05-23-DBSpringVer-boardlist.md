@@ -177,7 +177,7 @@ SELECT 결과 하나의 행에 대한 정보만 얻을 경우에는 BoardVO 클�
 
 ![_config.yml]({{ site.baseurl }}/img/SpringDB/boardlist.png)
 
-### 페이징 기능
+### 2. 페이징 기능
 
 페이징 기법은 수많은 자료 데이터(행, 레코드)를 일정 크기로 나누어, 나누어진 하나하나의 집단에 페이지 번호를 부여하는 방식이다. 
 
