@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 12 - DB Spring 게시판 등록과 리스트
+title: 12 - DB Spring 게시판 등록
 date: 2023-05-22
 excerpt: "팀 프로젝트 DB Spring Version"
 tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript, Spring, FrameWork]
