@@ -425,7 +425,9 @@ function boardCheck(){
 		log.info("BoardVO : " + board);
 
 		bservice.enroll(board);
-        
+
+        rttr.addFlashAttribute("result", "enroll success");
+
         return "redirect:/board/list";
 	}
 ```
