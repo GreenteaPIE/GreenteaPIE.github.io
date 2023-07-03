@@ -31,7 +31,7 @@ SELECT 결과 하나의 행에 대한 정보만 얻을 경우에는 BoardVO 클�
 #### BoardMapper.xml 에 추가
 
 ```xml
-	<!-- 게시판 조회 -->
+	<!-- 게시판 목록 -->
 	<select id="getList" resultType="com.db.model.BoardVO">
 		SELECT * FROM free_board
 	</select>
