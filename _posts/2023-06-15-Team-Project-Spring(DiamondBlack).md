@@ -648,31 +648,16 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <details>
 <summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
-    <h3>
-회원 관리
-    </h3>
-<iframe width="560" height="315" src="//www.youtube.com/embed/-kaAgJiXiaY" frameborder="0"> </iframe><br>
-관리자는 회원의 정보를 수정 및 삭제 동작을 실행 할 수 있다.<br>
-    <h3>
-브랜드 관리
-    </h3> 
-    <iframe width="560" height="315" src="//www.youtube.com/embed/iRe5N6e0-iE" frameborder="0"> </iframe><br>
-브랜드를 추가/삭제를 할 수 있고 추가한 브랜드를 삭제 시 해당 브랜드의 상품 정보또한 같이 삭제된다.<br>
-    <h3>
-상품 관리        
-    </h3>
-    <iframe width="560" height="315" src="//www.youtube.com/embed/c3Dn0kGsDZY" frameborder="0"> </iframe><br>
-상품 추가/삭제를 할 수 있고 할인율을 1%이상으로 설정 시 SALE 항목으로 들어간다.<br>
-        <h3>
-매출/주문 관리        
-    </h3>
-    <iframe width="560" height="315" src="//www.youtube.com/embed/IVmFyfdtFoo" frameborder="0"> </iframe><br>
-회원이 취소요청한 주문을 처리할 수 있고, 구매요청 주문을 확인->배송->완료 처리 할 수 있다. 완료 처리된 주문은 해당 사용자에게 구매한 금액의 일부분이 포인트로 지급된다.<br>
-    <h3>
-옥션(경매) 관리        
-    </h3>
-    <iframe width="560" height="315" src="//www.youtube.com/embed/7ZTdFIejO3w" frameborder="0"> </iframe><br>
-옥션(경매)를 등록하여 시작 할 수 있고 설정한 시간이 도달하면 옥션(경매)가 만료된다. 낙찰자는 상품을 1회 구매할 수 있다.<br>
+<h3>회원 관리</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/-kaAgJiXiaY" frameborder="0"> </iframe><br>관리자는 회원의 정보를 수정 및 삭제 동작을 실행 할 수 있다.<br>
+<h3>브랜드 관리</h3> 
+<iframe width="560" height="315" src="//www.youtube.com/embed/iRe5N6e0-iE" frameborder="0"> </iframe><br>브랜드를 추가/삭제를 할 수 있고 추가한 브랜드를 삭제 시 해당 브랜드의 상품 정보또한 같이 삭제된다.<br>
+<h3>상품 관리</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/c3Dn0kGsDZY" frameborder="0"> </iframe><br>상품 추가/삭제를 할 수 있고 할인율을 1%이상으로 설정 시 SALE 항목으로 들어간다.<br>
+<h3>매출/주문 관리</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/IVmFyfdtFoo" frameborder="0"> </iframe><br>회원이 취소요청한 주문을 처리할 수 있고, 구매요청 주문을 확인->배송->완료 처리 할 수 있다. 완료 처리된 주문은 해당 사용자에게 구매한 금액의 일부분이 포인트로 지급된다.<br>
+<h3>옥션(경매) 관리</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/7ZTdFIejO3w" frameborder="0"> </iframe><br>옥션(경매)를 등록하여 시작 할 수 있고 설정한 시간이 도달하면 옥션(경매)가 만료된다. 낙찰자는 상품을 1회 구매할 수 있다.<br>
 </div>
 </details>
 
