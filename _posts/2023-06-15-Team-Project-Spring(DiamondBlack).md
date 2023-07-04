@@ -619,21 +619,6 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 게시판 이용<br>
 
-<details>
-<summary class="summary-text">>접기/펼치기<</summary>
-<div markdown="1">
-<h3>게시판 등록</h3>
-<iframe width="560" height="315" src="//www.youtube.com/embed/7uV3IuUpsYI" frameborder="0"> </iframe><br>자유/질문 게시판은 모든 유저가 열람 가능 하지만 게시판 등록은 회원가입한 유저만 이용 할 수 있고, 게시글이 10개가 넘어가면 다음 페이지로 이동된다. 공지사항 게시판의 등록과 수정, 삭제는 어드민에게만 권한이 있다.<br>
-<h3>게시판 수정/삭제</h3> 
-<iframe width="560" height="315" src="//www.youtube.com/embed/GQn5aW6B7tc" frameborder="0"> </iframe><br>본인이 작성한 게시글만 수정 및 삭제가 가능하다. 어드민은 모든 수정, 삭제 권한이 있어 모니터링하며 관리가 가능하다.<br>
-<h3>게시판 검색</h3>
-<iframe width="560" height="315" src="//www.youtube.com/embed/HaBYEj4gytE" frameborder="0"> </iframe><br>제목과 작성자, 내용등으로 게시판을 검색 할 수 있다.<br>
-<h3>댓글 등록/수정/삭제</h3>
-<iframe width="560" height="315" src="//www.youtube.com/embed/OuPH-l6NVy8" frameborder="0"> </iframe><br>본인이 작성한 댓글만 수정, 삭제가 가능하다. 로그인을 하지 않았을 때는 댓글작성이 불가능 하다.<br>
-<h3>나의 작성 글</h3>
-<iframe width="560" height="315" src="//www.youtube.com/embed/nmREYGqOFPQ" frameborder="0"> </iframe><br>내가 작성한 글을 확인 할 수 있다.<br>
-</div>
-</details>
 
 
 자유&질문 게시판은 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고, 본인이 작성한 게시글, 댓글만 수정 및 삭제를 할 수 있고, 제목과 내용, 작성자  등으로 게시물을 검색 가능하다.
