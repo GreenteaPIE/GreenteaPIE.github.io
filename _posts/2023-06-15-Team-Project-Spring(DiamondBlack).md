@@ -645,7 +645,33 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 어드민<br>
 
-회원 관리, 게시판 관리, 상품 관리, 및 옥션(경매) 상품을 등록 할 수 있다.
+<details>
+<summary class="summary-text">>접기/펼치기<</summary>
+<div markdown="1">
+    <h3>
+회원 관리
+    </h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe><br>
+관리자는 회원의 정보를 수정 및 삭제 동작을 실행 할 수 있다.<br>
+    <h3>
+브랜드 관리
+    </h3> 
+    <iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe><br>
+브랜드를 추가/삭제를 할 수 있고 추가한 브랜드를 삭제 시 해당 브랜드의 상품 정보또한 같이 삭제된다.<br>
+    <h3>
+상품 관리        
+    </h3>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe><br>
+상품 추가/삭제를 할 수 있고 할인율을 1이상으로 설정 시 SALE 항목으로 들어간다.<br>
+        <h3>
+옥션(경매) 관리        
+    </h3>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe><br>
+옥션(경매)를 등록하여 시작 할 수 있고 설정한 시간이 도달하면 옥션(경매)가 만료된다. 낙찰자는 상품을 1회 구매할 수 있다.<br>
+</div>
+</details>
+
+게시판 같은 경우는 직접 모니터링 하며 수정/삭제를 할 수 있게 만들었기 때문에 게시판 관리창을 추가하지 않았다.
 
 ### 7. 개발 내용
 
