@@ -622,7 +622,16 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <details>
 <summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
-<iframe width="560" height="315" src="//www.youtube.com/embed/-xVuB8a_zQ8" frameborder="0"> </iframe>
+<h3>게시판 등록</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/7uV3IuUpsYI" frameborder="0"> </iframe><br>자유/질문 게시판은 모든 유저가 열람 가능 하지만 게시판 등록은 회원가입한 유저만 이용 할 수 있고, 게시글이 10개가 넘어가면 다음 페이지로 이동된다. 공지사항 게시판의 등록과 수정, 삭제는 어드민에게만 권한이 있다.<br>
+<h3>게시판 수정/삭제</h3> 
+<iframe width="560" height="315" src="//www.youtube.com/embed/GQn5aW6B7tc" frameborder="0"> </iframe><br>본인이 작성한 게시글만 수정 및 삭제가 가능하다. 어드민은 모든 수정, 삭제 권한이 있어 모니터링하며 관리가 가능하다.<br>
+<h3>게시판 검색</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/HaBYEj4gytE" frameborder="0"> </iframe><br>제목과 작성자, 내용등으로 게시판을 검색 할 수 있다.<br>
+<h3>댓글 등록/수정/삭제</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/OuPH-l6NVy8" frameborder="0"> </iframe><br>본인이 작성한 댓글만 수정, 삭제가 가능하다. 로그인을 하지 않았을 때는 댓글작성이 불가능 하다.<br>
+<h3>나의 작성 글</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/nmREYGqOFPQ" frameborder="0"> </iframe><br>내가 작성한 글을 확인 할 수 있다.<br>
 </div>
 </details>
 
@@ -630,37 +639,6 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 자유&질문 게시판은 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고, 본인이 작성한 게시글, 댓글만 수정 및 삭제를 할 수 있고, 제목과 내용, 작성자  등으로 게시물을 검색 가능하다.
 
 공지사항 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제는 어드민만 가능 하다.
-
-#### 나의 작성 글<br>
-
-<details>
-<summary class="summary-text">>접기/펼치기<</summary>
-<div markdown="1">
-<iframe width="560" height="315" src="//www.youtube.com/embed/nmREYGqOFPQ" frameborder="0"> </iframe>
-</div>
-</details>
-
-
-내가 작성한 글의 목록을 볼 수 있다.
-
-#### 어드민<br>
-
-<details>
-<summary class="summary-text">>접기/펼치기<</summary>
-<div markdown="1">
-<h3>회원 관리</h3>
-<iframe width="560" height="315" src="//www.youtube.com/embed/-kaAgJiXiaY" frameborder="0"> </iframe><br>관리자는 회원의 정보를 수정 및 삭제 동작을 실행 할 수 있다.<br>
-<h3>브랜드 관리</h3> 
-<iframe width="560" height="315" src="//www.youtube.com/embed/iRe5N6e0-iE" frameborder="0"> </iframe><br>브랜드를 추가/삭제를 할 수 있고 추가한 브랜드를 삭제 시 해당 브랜드의 상품 정보또한 같이 삭제된다.<br>
-<h3>상품 관리</h3>
-<iframe width="560" height="315" src="//www.youtube.com/embed/c3Dn0kGsDZY" frameborder="0"> </iframe><br>상품 추가/삭제를 할 수 있고 할인율을 1%이상으로 설정 시 SALE 항목으로 들어간다.<br>
-<h3>매출/주문 관리</h3>
-<iframe width="560" height="315" src="//www.youtube.com/embed/IVmFyfdtFoo" frameborder="0"> </iframe><br>회원이 취소요청한 주문을 처리할 수 있고, 구매요청 주문을 확인->배송->완료 처리 할 수 있다. 완료 처리된 주문은 해당 사용자에게 구매한 금액의 일부분이 포인트로 지급된다.<br>
-<h3>옥션(경매) 관리</h3>
-<iframe width="560" height="315" src="//www.youtube.com/embed/7ZTdFIejO3w" frameborder="0"> </iframe><br>옥션(경매)를 등록하여 시작 할 수 있고 설정한 시간이 도달하면 옥션(경매)가 만료된다. 낙찰자는 상품을 1회 구매할 수 있다.<br>
-</div>
-</details>
-
 게시판 같은 경우는 직접 모니터링 하며 수정/삭제를 할 수 있게 만들었기 때문에 게시판 관리창을 추가하지 않았다.
 
 ### 7. 개발 내용
