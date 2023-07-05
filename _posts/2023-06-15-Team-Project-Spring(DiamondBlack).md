@@ -7,6 +7,7 @@ tags: [project, java, jsp, Oracle, css, HTML, BootStrap, API, JQuery, JavaScript
 feature: /img/SpringDB/logo.png
 project: true
 comments: true
+
 ---
 
 > **사용한 플랫폼 : Spring, Oracle**
@@ -24,9 +25,10 @@ comments: true
     + [6.  화면 설계서](#6-화면-설계서)
     + [7. 개발 내용](#7-개발-내용)
     + [8. 완료한 개선 사항 / 개선 사항과 느낀 점](#8-완료한-개선-사항--개선-사항과-느낀-점)
-  * [이전 DB 프로젝트 보기 / 프로젝트 주소](#이전-프로젝트-보러가기--프로젝트-주소)
+  * [이전 DB 프로젝트 보기 / 프로젝트 주소](#이전-db-프로젝트-보기--프로젝트-주소)
 </div>
 </details>
+
 
 # **시작하며**
 
@@ -117,7 +119,7 @@ comments: true
     2. 입찰이 끝나면 낙찰자에게 구매 권한 부여
   - 세일
     1. 어드민이 상품 등록 시 할인율을 1% 이상 설정 후 등록
-  
+
 - 개발 언어 : Java 11, HTML, JavaScript, JSP, JQuery
 
 - 개발 환경 : Spring, Apache Tomcat 9.0
@@ -209,7 +211,7 @@ comments: true
   - 회원 관리
     1. 회원 정보 수정
        - 가입 일자, 비밀번호를 제외한 모든 정보 수정 가능
-  
+
     2. 회원 삭제
   - 게시판 관리
     1. 자유&질문&공지 게시판 관리
@@ -454,6 +456,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 | 주문 내역 상세  |    주문 상세 페이지    | GET /user/myPurchasedDetail |                       Int ordernumber                        | order[]<br />product[] |
 |    주문 취소    |      비동기 작동       |   GET /user/withdrawOrder   |                       Int ordernumber                        |           -            |
 |  나의 작성 글   |  나의 작성 글 페이지   |     GET /user/myWriting     |                        String userid                         |        board[]         |
+
 #### 상품 관련 API
 
 |      Description       |       Return Page       |              url               |                           Request                            |                           Response                           |
@@ -544,15 +547,18 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
     로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니, 쿠폰수령등의 기능들을 이용할 수 없다.
 </div>
 </details>
+
 로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니, 쿠폰수령등의 기능들을 이용할 수 없다.
 
 #### 회원 가입 <br>
+
 <details>
 <summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/v-okLiZIZWw" frameborder="0"> </iframe>
 </div>
 </details>
+
 회원 가입은 유효성 검사를 거쳐 진행된다.
 
 회원 가입시 입력한 패스워드는 아래처럼 암호화 되어 저장된다.
@@ -560,6 +566,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 ![_config.yml]({{ site.baseurl }}/img/DiamondBlack/sha256.png)
 
 #### 로그인 & 로그아웃<br>
+
 <details>
 <summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
@@ -567,13 +574,16 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
+
 #### 내 정보 수정 & 탈퇴<br>
+
 <details>
 <summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/pD0cKIQ_gNk" frameborder="0"> </iframe>
 </div>
 </details>
+
  PW을 한번 더 확인하여 수정 페이지로 넘어가고 회원가입과 같은 유효성 검사를 진행하여 정보 수정을 완료한다.
 
 내 정보 수정 페이지 에서 confirm을 이용해 탈퇴 진행 여부를 한번 더 확인 후 탈퇴를 한다.
@@ -586,6 +596,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/AxOU4ZN1FGg" frameborder="0"> </iframe>
 </div>
 </details>
+
 메인 페이지의 브랜드 로고를 클릭하면 해당 브랜드의 모든 상품을 불러오고, 카테고리의 각 브랜드 별 Top, Bottom, Boutique를 클릭하면 카테고리에 맞는 상품 리스트를 불러온다. 
 
 상품 검색 창에 검색한 단어를 포함한 상품을 출력하며, 검색한 단어를 포함한 상품이 존재하지 않을 시 검색 결과 없음 페이지를 보여준다.
@@ -599,6 +610,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
+
 상품 디테일 페이지에서 상품을 장바구니에 담으면 Ajax를 이용해 비동기로 장바구니를 추가하는 메서드를 실행한다. 
 
 추가 되어있는 장바구니 수만큼 오른쪽 상단 뱃지에 숫자로 표기 되고 클릭하면 유저의 장바구니 리스트를 불러온다.
@@ -611,6 +623,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/5qZ8n1p8x6A" frameborder="0"> </iframe>
 </div>
 </details>
+
 #### 상품 결제<br>
 
 <details>
@@ -619,6 +632,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/tbXL0L7wo-A" frameborder="0"> </iframe>
 </div>
 </details>
+
 
 옥션(경매)에 낙찰되면 낙찰자는 구매버튼을 이용하여 상품을 구매 할 수 있고, 상품 페이지에서 장바구니에 담은 상품을 일괄적으로 구매할 수 있다.
 
@@ -633,6 +647,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <iframe width="560" height="315" src="//www.youtube.com/embed/BtGtNDj5HqM" frameborder="0"> </iframe>
 </div>
 </details>
+
 
 주문 번호를 클릭하면 상세 주문 내역을 볼 수 있고, 주문 취소 요청을 통해 어드민이 요청을 확인하고 취소 처리를 할 수 있다.
 
@@ -654,6 +669,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
+
 #### 어드민<br>
 
 <details>
@@ -672,6 +688,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
+
 게시판 같은 경우는 직접 모니터링 하며 수정/삭제를 할 수 있게 만들었기 때문에 게시판 관리창을 추가하지 않았다.
 
 ### 7. 개발 내용
@@ -687,33 +704,33 @@ Junit 을 통한 Test 과정은 아래와 같이 하나의 메소드를 추가 �
 1. 완료 개선 사항
 
    - 로그인 부분
-      1. 이메일 인증 기능 구현
+     1. 이메일 인증 기능 구현
    - 유저
-      1. 장바구니에 담은 상품 수를 장바구니 뱃지에 표현
-      2. 결제 시 결제한 금액에 따른 포인트 지급 및 포인트에 따른 회원 등급 조정
-      3. 회원 등급에 따른 상품 할인 쿠폰 지급
-      4. 장바구니 담은 상품 삭제 & 수량 조정
+     1. 장바구니에 담은 상품 수를 장바구니 뱃지에 표현
+     2. 결제 시 결제한 금액에 따른 포인트 지급 및 포인트에 따른 회원 등급 조정
+     3. 회원 등급에 따른 상품 할인 쿠폰 지급
+     4. 장바구니 담은 상품 삭제 & 수량 조정
    - 어드민
-      1. 주문(확인, 배송, 취소) 처리 구현
-      1. 회원 검색 기능 추가 & 리스트 페이징 구현
-      1. 상품 검색 추가 & 리스트 페이징 구현
+     1. 주문(확인, 배송, 취소) 처리 구현
+     1. 회원 검색 기능 추가 & 리스트 페이징 구현
+     1. 상품 검색 추가 & 리스트 페이징 구현
    - 상품
-      1. 브랜드 추가 시 헤더와 메인 페이지에 추가된 브랜드 출력
-      2. 주문지 변경 추가
-      3. 할인 쿠폰 & 쿠폰 적용 구현
-      4. 결제 취소 구현
-      5. 옥션의 낙찰자가 상품 구매 후 해당 상품의 구매하기 버튼을 사라지게 구현
-      6. 상품 디테일 페이지 ui/ux 디테일 추가
+     1. 브랜드 추가 시 헤더와 메인 페이지에 추가된 브랜드 출력
+     2. 주문지 변경 추가
+     3. 할인 쿠폰 & 쿠폰 적용 구현
+     4. 결제 취소 구현
+     5. 옥션의 낙찰자가 상품 구매 후 해당 상품의 구매하기 버튼을 사라지게 구현
+     6. 상품 디테일 페이지 ui/ux 디테일 추가
    - 게시판
-      1. 게시판의 API를 이용한 댓글이 아닌 웹페이지 자체의 댓글 기능 구현
-      2. 게시판 검색 기능 추가
-      3. 사진 멀티업로드 기능 추가
-      4. 위지윅 ck 에디터로 게시판 글 편집기 기능 추가
+     1. 게시판의 API를 이용한 댓글이 아닌 웹페이지 자체의 댓글 기능 구현
+     2. 게시판 검색 기능 추가
+     3. 사진 멀티업로드 기능 추가
+     4. 위지윅 ck 에디터로 게시판 글 편집기 기능 추가
    - 웹 디자인
-      1. 로고 변경
-      2. 마우스 커서 디자인 적용
+     1. 로고 변경
+     2. 마우스 커서 디자인 적용
    - 리펙터링
-      1. 불필요한 코드들을 삭제하고, 중복되는 코드들을 간추림
+     1. 불필요한 코드들을 삭제하고, 중복되는 코드들을 간추림
 
 2. 개선 사항
 
@@ -739,7 +756,7 @@ Junit 을 통한 Test 과정은 아래와 같이 하나의 메소드를 추가 �
 
    또 git brench 로 협업하는 방법도 알아보고 각 brench를 만들어 프로젝트를 commit하고 master branch로 push 해봤는데 익숙하지 않아서 그런지 변경점이 꼬여 정상적으로  push가 되지않는 현상이 일어났다.. 뭐든 처음은 어려운법 그래서 그냥 source tree로 master branch에 바로 commit/push 해서 업로드 했다. 첫 시도는 실패였지만 다음 시도는 성공하고 말 것이다..!
 
-## [이전 프로젝트 보러가기](https://greenteapie.github.io/Team-Project-mvc2-pattern(DiamondBlack)/) / [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
+## [이전 DB 프로젝트 보기](https://greenteapie.github.io/Team-Project-mvc2-pattern(DiamondBlack)/) / [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
 
 <style>
  @keyframes blink {
@@ -760,6 +777,7 @@ th {
   font-size: 17px;
 }
 td {
-  font-size: 13px;
+  font-size: 12px;
 }
 </style>
+
