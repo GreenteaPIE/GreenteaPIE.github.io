@@ -688,8 +688,20 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 </div>
 </details>
 
-
 게시판 같은 경우는 직접 모니터링 하며 수정/삭제를 할 수 있게 만들었기 때문에 게시판 관리창을 추가하지 않았다.
+
+#### QnA & Contact
+
+<details>
+<summary class="summary-text">>접기/펼치기<</summary>
+<div markdown="1">
+<iframe width="560" height="315" src="//www.youtube.com/embed/xGwGu3yXESs" frameborder="0"> </iframe>
+</div>
+</details>
+
+QnA 페이지는 아코디언 패턴을 이용해 자주 묻는 질문 글을 입력 했다.
+
+Contact 페이지는 카카오의 지도 API 를 사용하여 상세한 회사 위치를 볼 수 있다.
 
 ### 7. 개발 내용
 
