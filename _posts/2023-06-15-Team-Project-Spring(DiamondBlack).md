@@ -89,7 +89,7 @@ comments: true
     2. 게시판 관리(자유, 질문, 공지사항 게시판)
        - 게시글 등록, 수정, 삭제
     3. 상품 관리
-       - 상품 등록, 삭제
+       - 상품 등록, 수정, 삭제
     4. 브랜드 관리
        - 브랜드 추가, 삭제
     5. 옥션
@@ -172,7 +172,7 @@ comments: true
     - 위의 이용 약관과 결제 방식을 선택 후 구매 버튼을 눌렀다면, 결제API 모듈 실행
     - 구매 완료 시 주문 정보 확인 가능
   - 옥션 상품 입찰, 구매
-    - 낙찰된 최종 입찰자만 구매 가능
+    - 최종 낙찰된 입찰자만 1회 구매 가능
   - 세일 상품 구매
     - 어드민이 등록한 상품 할인율 만큼 할인된 가격으로 구매 가능
   - 자유&질문 게시판 이용
@@ -210,6 +210,8 @@ comments: true
        - 브랜드 추가 시 categories 와 main page에 해당 브랜드 자동 추가
     2. 상품 관리
        - 브랜드, 상품 카테고리, 상품 이름, 사이즈, 가격, 성별, 이미지,<br>상품 설명, 재고량, 할인율 등을 설정하여 추가, 수정, 삭제 가능
+       - 필수값을 입력하지 않으면 경고 메시지 출력
+       - 상품 검색이 가능
   - 회원 관리
     1. 회원 정보 수정
        - 가입 일자, 비밀번호를 제외한 모든 정보 수정 가능
@@ -222,10 +224,13 @@ comments: true
   - 옥션
     1. 옥션 상품 등록
        - 등록할 상품을 선택 후 시작가, 제한시간 설정
+       - 기간이 만료 된 후엔 입찰 불가능
   - 세일
     1. 어드민이 상품 할인률을 설정하여 등록하면  Sale페이지에 할인율이 적용된 가격으로 노출
-  - 매출 관리
+  - 매출/주문 관리
     1. 판매한 총 매출 가격과 구매자, 주문 번호 출력
+    1. 각 단계 별로 주문 요청을 확인->배송요청 처리 가능
+    1. 취소 요청 주문을 확인하여 주문 취소 가능
 - 상품
   - 브랜드 로고 클릭 시 해당 브랜드의 모든 상품 리스트 출력
   - 카테고리 클릭 시 해당 브랜드의 카테고리가 설정된 상품 리스트 출력
@@ -458,22 +463,24 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 상품 관련 API
 
-|      Description       |      Return Page       |              url              |                           Request                            |                           Response                           |
-| :--------------------: | :--------------------: | :---------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-|     브랜드 리스트      |      메인 페이지       |             GET /             |                              -                               |                           brand[]                            |
-|   브랜드 상품 리스트   |   상품 리스트 페이지   | GET /product/brandProductList |                         String bname                         |                          product[]                           |
-| 카테고리별 상품 리스트 |   상품 리스트 페이지   |  GET /product/categoriesList  |                  String bname<br />Int kind                  | String pname<br />Int price<br />Int discountrate<br />String imgurl<br />Int num |
-|       상품 검색        |   상품 리스트 페이지   |  GET /product/searchProduct   |                         String pname                         | String pname<br />Int price<br />Int discountrate<br />String imgurl<br />Int num |
-|    세일 상품 리스트    |      상품 리스트       |     GET /product/saleList     |                              -                               | String pname<br />Int price<br />Int discountrate<br />String imgurl<br />Int num |
-|     상품 상세보기      |   상품 디테일 페이지   |  GET /product/productDetail   |                  Int num<br />String pname                   |                          product[]                           |
-|     장바구니 추가      |   상품 디테일 페이지   |     POST /product/addCart     | String userid<br />Int num<br />String psize<br />Int quantity<br />Int price |                              -                               |
-|     나의 장바구니      | 장바구니 리스트 페이지 |      GET /product/myCart      |                        String userid                         |                            cart[]                            |
-|     장바구니 뱃지      |      비동기 작동       |  GET /product/countCartAjax   |                        String userid                         |                        count int num                         |
-|   장바구니 수량 감소   |      비동기 작동       |  POST /product/quantityMinus  |                         Int cartnum                          |                              -                               |
-|   장바구니 수량 증가   |      비동기 작동       |  POST /product/quantityPlus   |                         Int cartnum                          |                              -                               |
-|   장바구니 상품 삭제   |      비동기 작동       |   POST /product/deleteCart    |                         Int cartnum                          |                              -                               |
-|     상품 주문 결제     |    체크아웃 페이지     |     GET /product/checkOut     |                        String userid                         |             product[]<br />cart[]<br />coupon[]              |
-|       결제 완료        |    주문 완료 페이지    |    POST /product/purchased    | Integer cnum<br />Int cartnum<br />String userid<br />Int totalprice<br />String email<br />String phone<br />String address1<br />String address2<br />String address3<br />Cart[] |                    order[]<br />product[]                    |
+|      Description       |       Return Page       |              url               |                           Request                            |                           Response                           |
+| :--------------------: | :---------------------: | :----------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|     브랜드 리스트      |       메인 페이지       |             GET /              |                              -                               |                           brand[]                            |
+|   브랜드 상품 리스트   |   상품 리스트 페이지    | GET /product/brandProductList  |                         String bname                         |                          product[]                           |
+| 카테고리별 상품 리스트 |   상품 리스트 페이지    |  GET /product/categoriesList   |                  String bname<br />Int kind                  | String pname<br />Int price<br />Int discountrate<br />String imgurl<br />Int num |
+|       상품 검색        |   상품 리스트 페이지    |   GET /product/searchProduct   |                         String pname                         | String pname<br />Int price<br />Int discountrate<br />String imgurl<br />Int num |
+|    세일 상품 리스트    |       상품 리스트       |     GET /product/saleList      |                              -                               | String pname<br />Int price<br />Int discountrate<br />String imgurl<br />Int num |
+|     상품 상세보기      |   상품 디테일 페이지    |   GET /product/productDetail   |                  Int num<br />String pname                   |                          product[]                           |
+|     장바구니 추가      |   상품 디테일 페이지    |     POST /product/addCart      | String userid<br />Int num<br />String psize<br />Int quantity<br />Int price |                              -                               |
+|     나의 장바구니      | 장바구니 리스트 페이지  |      GET /product/myCart       |                        String userid                         |                            cart[]                            |
+|     장바구니 뱃지      |       비동기 작동       |   GET /product/countCartAjax   |                        String userid                         |                        count int num                         |
+|   장바구니 수량 감소   |       비동기 작동       |  POST /product/quantityMinus   |                         Int cartnum                          |                              -                               |
+|   장바구니 수량 증가   |       비동기 작동       |   POST /product/quantityPlus   |                         Int cartnum                          |                              -                               |
+|   장바구니 상품 삭제   |       비동기 작동       |    POST /product/deleteCart    |                         Int cartnum                          |                              -                               |
+|     상품 주문 결제     |     체크아웃 페이지     |     GET /product/checkOut      |                        String userid                         |             product[]<br />cart[]<br />coupon[]              |
+|       결제 완료        |    주문 완료 페이지     |    POST /product/purchased     | Integer cnum<br />Int cartnum<br />String userid<br />Int totalprice<br />String email<br />String phone<br />String address1<br />String address2<br />String address3<br />Cart[] |                    order[]<br />product[]                    |
+|     옥션 체크아웃      | 체크아웃 페이지로 이동  |  GET /product/auctionCheckOut  |                          Int aunum                           |                          auction[]                           |
+|       옥션 결제        | 결제 완료 페이지로 이동 | POST /product/auctionPurchased | String userid<br />Int totalprice<br />Int aunum<br />Int endprice<br />String email<br />String phone<br />String address1<br />String address2<br />String address3<br />Cart[] |                              -                               |
 
 #### 게시판 관련 API
 
@@ -494,14 +501,44 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 #### 어드민 관련 API
 
-| Description | Return Page | url  | Request | Response |
-| :---------: | :---------: | :--: | :-----: | :------: |
-|             |             |      |         |          |
-|             |             |      |         |          |
-|             |             |      |         |          |
-|             |             |      |         |          |
-
-
+|       Description       |           Return Page            |                   url                   |                           Request                            |    Response     |
+| :---------------------: | :------------------------------: | :-------------------------------------: | :----------------------------------------------------------: | :-------------: |
+|    회원 관리 페이지     |     회원 관리 페이지로 이동      |      GET /admin/userMangementPage       |                              -                               |     users[]     |
+|  회원 정보 수정 페이지  |     회원 수정 페이지로 이동      |      GET /admin/userManagementEdit      |                        String userid                         |     user[]      |
+|     회원 정보 수정      |         회원 관리 페이지         |     POST /admin/userEditComplete.do     | String userid<br />String name<br />String email<br />String address1<br />String address2<br />String address3<br />String phone<br />Int gender<br />Int point<br />Int grade |        -        |
+|     회원 정보 삭제      |         회원 관리 페이지         |          GET /admin/userDelete          |                        String userid                         |        -        |
+| 브랜드/상품 관리 페이지 |  브랜드/상품 관리 페이지로 이동  |    GET /admin/productManagemnetPage     |                              -                               |        -        |
+|   브랜드 관리 페이지    |    브랜드 관리 페이지로 이동     |        GET /admin/adminBrandList        |                              -                               |     brand[]     |
+|   브랜드 등록 페이지    |    브랜드 등록 페이지로 이동     |     GET /admin/adminbrandWriteForm      |                              -                               |        -        |
+|       브랜드 등록       |        브랜드 관리 페이지        |        POST /admin/brandWrite.do        |               String bname<br />String imgurl                |        -        |
+|   브랜드 삭제 페이지    |    브랜드 삭제 페이지로 이동     |       GET /admin/adminBrandDelete       |                              -                               |     brand[]     |
+|       브랜드 삭제       |        브랜드 관리 페이지        |       POST /admin/deleteBrand.do        |                         String bname                         |        -        |
+|    상품 관리 페이지     |     상품 관리 페이지로 이동      |       GET /admin/adminProductList       |                              -                               |   products[]    |
+|    상품 등록 페이지     |     상품 등록 페이지로 이동      |    GET /admin/adminProductWriteForm     |                              -                               |        -        |
+|        상품 등록        |         상품 관리 페이지         |    POST /admin/adminProductWriteForm    | Int num<br />Int pgender<br />String bname<br />String pname<br />Int kind<br />String imgurl<br />String psize<br />Int price<br />Int discountrate<br />Int balance<br />String explain |        -        |
+|    상품 이미지 등록     |          이미지 업로드           |      POST /admin/uploadAjaxAction       |                        String imgurl                         |        -        |
+|       브랜드 선택       |         상품 등록 페이지         |           GET /admin/brandPop           |                              -                               |  String bname   |
+|        상품 정보        |     상품 정보 페이지로 이동      |      GET /admin/adminProductDetail      |                           Int num                            |    product[]    |
+|  상품 이미지 불러오기   |         상품 정보 페이지         |           GET /admin/display            |                           Int num                            | String fileName |
+|  상품 정보 수정 페이지  |     상품 수정 페이지로 이동      |      GET /admin/adminProductModify      |                           Int num                            |    product[]    |
+|     상품 정보 수정      |         상품 수정 페이지         |     POST /admin/adminProductModify      | Int pgender<br />String bname<br />String pname<br />Int kind<br />String imgurl<br />String psize<br />Int price<br />Int discountrate<br />Int balance<br />String explain |        -        |
+|        상품 삭제        |         상품 관리 페이지         |     POST /admin/adminProductDelete      |                           Int num                            |        -        |
+|     매출/주문 관리      |   매출/주문 관리 페이지로 이동   |    GET /admin/sales_OrderManagement     |                          Int result                          |     order[]     |
+|     취소 주문 확인      |   취소 요청 주문 페이지로 이동   |      GET /admin/withDrawOrderCheck      |                       Int ordernumber                        |     order[]     |
+|     취소 요청 처리      |           비동기 작동            |        POST /admin/withdrawOrder        |                       Int ordernumber                        |        -        |
+|     신규 주문 확인      |   신규 주문 확인 페이지로 이동   |         GET /admin/orderProcess         |                       Int ordernumber                        |     order[]     |
+|     신규 주문 처리      |           비동기 작동            |         POST /admin/checkOrder          |                       Int ordernumber                        |        -        |
+|     배송 요청 확인      |   배송 요청 확인 페이지로 이동   |       GET /admin/shipmentProcess        |                       Int ordernumber                        |     order[]     |
+|     배송 요청 처리      |           비동기 작동            |        POST /admin/shopmentOrder        |                       Int ordernumber                        |        -        |
+|        옥션 등록        |   브랜드 리스트 페이지로 이동    |    GET /admin/adminAuctionBrandList     |                              -                               |     brand[]     |
+|        옥션 등록        | 브랜드 상품 리스트 페이지로 이동 | GET /admin/adminAuctionBrandProductList |                         String bname                         |    product[]    |
+|        옥션 등록        |    상품 디테일 페이지로 이동     |  GET /admin/auctionBrandProductDetail   |                         String pname                         |    product[]    |
+|        옥션 등록        |           메인 페이지            |        POST /admin/addAuction.do        | String userid<br />String bname<br />String pname<br />Int price<br />Int startprice<br />Date endtime<br />Int onoff<br />String psize<br />String imgurl<br />Int num |        -        |
+|   옥션 리스트 페이지    |    옥션 리스트 페이지로 이동     |        GET /product/auctionView         |                              -                               |    auction[]    |
+|    옥션 상세 페이지     |     옥션 상세 페이지로 이동      |       GET /product/auctionDetail        |                  Int num<br />String pname                   |    auction[]    |
+|        옥션 입찰        |         옥션 상세 페이지         |      POST /product/dealAuction.do       |          Int price<br />Int num<br />String userid           |        -        |
+|        옥션 만료        |         옥션 상세 페이지         |     POST /product/expireAuction.do      |                           Int num                            |        -        |
+|       옥션 입찰가       |           비동기 작동            |         POST /product/getPrice          |                           Int num                            |        -        |
 
 ### 6. 화면 설계서
 
@@ -511,6 +548,7 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 <summary class="summary-text">>접기/펼치기<</summary>
 <div markdown="1">
 <iframe width="560" height="315" src="//www.youtube.com/embed/h38ZMZWg_ew" frameborder="0"> </iframe>
+    로그인을 하지 않았을 경우엔 게시판 등록, 상품 구매, 장바구니, 쿠폰수령등의 기능들을 이용할 수 없다.
 </div>
 </details>
 
@@ -617,13 +655,44 @@ ORDERS TABLE 과 ORDER_DETAIL TABLE 을 JOIN 하여 두 TABLE을 엮어 원하�
 
 주문 번호를 클릭하면 상세 주문 내역을 볼 수 있고, 주문 취소 요청을 통해 어드민이 요청을 확인하고 취소 처리를 할 수 있다.
 
-#### 게시판 이용<br>
+#### 게시판<br>
+
+<details>
+<summary class="summary-text">>접기/펼치기<</summary>
+<div markdown="1">
+<h3>게시판 등록</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/7uV3IuUpsYI" frameborder="0"> </iframe><br>자유/질문 게시판은 모든 유저가 열람 가능 하지만 게시판 등록은 회원가입한 유저만 이용 할 수 있고, 게시글이 10개가 넘어가면 다음 페이지로 이동된다. 공지사항 게시판의 등록과 수정, 삭제는 어드민에게만 권한이 있다.<br>
+<h3>게시판 수정/삭제</h3> 
+<iframe width="560" height="315" src="//www.youtube.com/embed/GQn5aW6B7tc" frameborder="0"> </iframe><br>본인이 작성한 게시글만 수정 및 삭제가 가능하다. 어드민은 모든 수정, 삭제 권한이 있어 모니터링하며 관리가 가능하다.<br>
+<h3>게시판 검색</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/HaBYEj4gytE" frameborder="0"> </iframe><br>제목과 작성자, 내용 등 으로 게시판을 검색 할 수 있다.<br>
+<h3>댓글 등록/수정/삭제</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/OuPH-l6NVy8" frameborder="0"> </iframe><br>본인이 작성한 댓글만 수정, 삭제가 가능하다. 로그인을 하지 않았을 때는 댓글작성이 불가능 하다.<br>
+<h3>나의 작성 글</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/nmREYGqOFPQ" frameborder="0"> </iframe><br>내가 작성한 글을 확인 할 수 있다.<br>
+</div>
+</details>
 
 
+#### 어드민<br>
 
-자유&질문 게시판은 모든유저가 열람 가능하지만 등록은 회원가입한 유저만 이용 할 수 있고, 본인이 작성한 게시글, 댓글만 수정 및 삭제를 할 수 있고, 제목과 내용, 작성자  등으로 게시물을 검색 가능하다.
+<details>
+<summary class="summary-text">>접기/펼치기<</summary>
+<div markdown="1">
+<h3>회원 관리</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/-kaAgJiXiaY" frameborder="0"> </iframe><br>관리자는 회원의 정보를 수정 및 삭제 동작을 실행 할 수 있다.<br>
+<h3>브랜드 관리</h3> 
+<iframe width="560" height="315" src="//www.youtube.com/embed/iRe5N6e0-iE" frameborder="0"> </iframe><br>브랜드를 추가/삭제를 할 수 있고 추가한 브랜드를 삭제 시 해당 브랜드의 상품 정보또한 같이 삭제된다.<br>
+<h3>상품 관리</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/c3Dn0kGsDZY" frameborder="0"> </iframe><br>상품 추가/삭제를 할 수 있고 할인율을 1%이상으로 설정 시 SALE 항목으로 들어간다.<br>
+<h3>매출/주문 관리</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/IVmFyfdtFoo" frameborder="0"> </iframe><br>회원이 취소요청한 주문을 처리할 수 있고, 구매요청 주문을 확인->배송->완료 처리 할 수 있다. 완료 처리된 주문은 해당 사용자에게 구매한 금액의 일부분이 포인트로 지급된다.<br>
+<h3>옥션(경매) 관리</h3>
+<iframe width="560" height="315" src="//www.youtube.com/embed/7ZTdFIejO3w" frameborder="0"> </iframe><br>옥션(경매)를 등록하여 시작 할 수 있고 설정한 시간이 도달하면 옥션(경매)가 만료된다. 낙찰자는 상품을 1회 구매할 수 있다.<br>
+</div>
+</details>
 
-공지사항 게시판은 모든 유저가 열람 가능하지만 등록, 수정, 삭제는 어드민만 가능 하다.
+
 게시판 같은 경우는 직접 모니터링 하며 수정/삭제를 할 수 있게 만들었기 때문에 게시판 관리창을 추가하지 않았다.
 
 ### 7. 개발 내용
@@ -632,44 +701,60 @@ Junit 을 통한 Test 과정은 아래와 같이 하나의 메소드를 추가 �
 
 ![_config.yml]({{ site.baseurl }}/img/SpringDB/test.png)
 
-[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 암호화(인코딩)기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>[8 - 장바구니(담기, 리스트) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mycart/)<br>[9 - 쿠폰(발급, 나의 쿠폰) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-coupon/)<br>[10 - 상품 결제 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-purchased/)<br>[11 - 나의 결제내역(주문취소) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mypurchased/)<br>[12 - 게시판 등록 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-enrollboard/)<br>[13 - 게시판 리스트(페이징) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-boardlist/)<br>[14 - 게시판 검색 기능 추가](https://greenteapie.github.io/DBSpringVer-add-boardsearch/)<br>[15 - 게시판 페이지 조회&수정&삭제 기능 추가](https://greenteapie.github.io/DBSpringVer-add-modifyboard/)<br>[16 - 게시판 댓글(등록, 수정, 삭제) 기능 추가](https://greenteapie.github.io/DBSpringVer-add-reply/)<br>[17 - 나의 작성 글 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myboard/)<br>
+[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 암호화(인코딩)기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>[8 - 장바구니(담기, 리스트) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mycart/)<br>[9 - 쿠폰(발급, 나의 쿠폰) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-coupon/)<br>[10 - 상품 결제 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-purchased/)<br>[11 - 나의 결제내역(주문취소) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mypurchased/)<br>[12 - 게시판 등록 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-enrollboard/)<br>[13 - 게시판 리스트(페이징) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-boardlist/)<br>[14 - 게시판 검색 기능 추가](https://greenteapie.github.io/DBSpringVer-add-boardsearch/)<br>[15 - 게시판 페이지 조회&수정&삭제 기능 추가](https://greenteapie.github.io/DBSpringVer-add-modifyboard/)<br>[16 - 게시판 댓글(등록, 수정, 삭제) 기능 추가](https://greenteapie.github.io/DBSpringVer-add-reply/)<br>[17 - 나의 작성 글 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myboard/)<br>[18 - ](https://greenteapie.github.io/DBSpringVer-add-/)<br>[19 - ](https://greenteapie.github.io/DBSpringVer-add-/)<br>
 
-### 8. 완료한 개선 사항과 느낀 점 
+### 8. 완료한 개선 사항&개선 사항 과 느낀 점 
 
 1. 완료 개선 사항
 
-   1. 로그인 부분
-      1. 이메일 인증 기능 구현
-   2. 유저
-      1. 장바구니에 담은 상품 수를 장바구니 뱃지에 표현
-      2. 결제 시 결제한 금액에 따른 포인트 지급 및 포인트에 따른 회원 등급 조정
-      3. 회원 등급에 따른 상품 할인 쿠폰 지급
-      4. 장바구니 담은 상품 삭제 & 수량 조정
-   3. 어드민
-      1. 주문 처리 구현
-      1. 회원 검색 기능 추가 & 리스트 페이징 구현
-      1. 상품 검색 추가 & 리스트 페이징 구현
-   4. 상품
-      1. 브랜드 추가 시 헤더와 메인 페이지에 추가된 브랜드 출력
-      2. 주문지 변경 추가
-      3. 할인 쿠폰 & 쿠폰 적용 구현
-      4. 결제 취소 구현
-      5. 옥션의 낙찰자가 상품 구매 후 해당 상품의 구매하기 버튼을 사라지게 구현
-      6. 상품 디테일 페이지 ui/ux 디테일 추가
-   5. 게시판
-      1. 게시판의 API를 이용한 댓글이 아닌 웹페이지 자체의 댓글 기능 구현
-      2. 게시판 검색 기능 추가
-      3. 사진 멀티업로드 기능 추가
-      4. 위지윅 ck 에디터로 게시판 글 편집기 기능 추가
-   6. 웹 디자인
-      1. 로고 변경
-      2. 마우스 커서 디자인 적용
-   7. 리펙터링
-      1. 불필요한 코드들을 삭제하고, 중복되는 코드들을 간추림
+   - 로그인 부분
+     1. 이메일 인증 기능 구현
+   - 유저
+     1. 장바구니에 담은 상품 수를 장바구니 뱃지에 표현
+     2. 결제 시 결제한 금액에 따른 포인트 지급 및 포인트에 따른 회원 등급 조정
+     3. 회원 등급에 따른 상품 할인 쿠폰 지급
+     4. 장바구니 담은 상품 삭제 & 수량 조정
+   - 어드민
+     1. 주문(확인, 배송, 취소) 처리 구현
+     1. 회원 검색 기능 추가 & 리스트 페이징 구현
+     1. 상품 검색 추가 & 리스트 페이징 구현
+   - 상품
+     1. 브랜드 추가 시 헤더와 메인 페이지에 추가된 브랜드 출력
+     2. 주문지 변경 추가
+     3. 할인 쿠폰 & 쿠폰 적용 구현
+     4. 결제 취소 구현
+     5. 옥션의 낙찰자가 상품 구매 후 해당 상품의 구매하기 버튼을 사라지게 구현
+     6. 상품 디테일 페이지 ui/ux 디테일 추가
+   - 게시판
+     1. 게시판의 API를 이용한 댓글이 아닌 웹페이지 자체의 댓글 기능 구현
+     2. 게시판 검색 기능 추가
+     3. 사진 멀티업로드 기능 추가
+     4. 위지윅 ck 에디터로 게시판 글 편집기 기능 추가
+   - 웹 디자인
+     1. 로고 변경
+     2. 마우스 커서 디자인 적용
+   - 리펙터링
+     1. 불필요한 코드들을 삭제하고, 중복되는 코드들을 간추림
 
-2. 느낀 점
+2. 개선 사항
+
+   - 로그인 관련
+     1. 구글, 카카오 API 를 이용한 회원가입
+     2. 인터셉터를 사용하여 자격이 없는 사용자가 접근할 수 없게 보안
+     3. 매크로 회원가입을 막는 CAPTCHA 기능
+   - 상품 관련
+     1. 최종 구매 혹은 주문 시에 상품 재고량 변동
+     2. 상품 필터 재정렬
+
+   - 게시판 관련
+     1. 좋아요 기능
+     2. 신고 기능
+
+3. 느낀 점
 
    서칭을 통해서 호스팅 하는 방법도 알아보고 git brench 로 협업하는 방법도 알아봤는데 어렵구나..
+
+[이전 프로젝트 보러가기](https://greenteapie.github.io/Team-Project-mvc2-pattern(DiamondBlack)/)
 
 ## [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
 
@@ -694,7 +779,5 @@ th {
 td {
   font-size: 13px;
 }
-
-
-​    
 </style>
+
