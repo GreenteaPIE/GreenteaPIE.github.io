@@ -27,12 +27,10 @@ comments: true
     + [5. API 설계](#5-api-설계)
     + [6.  화면 설계서](#6-화면-설계서)
     + [7. 개발 내용](#7-개발-내용)
-    + [8. 개선 사항과 느낀 점](#8-개선-사항과-느낀-점)
+    + [8. 완료한 개선 사항 / 개선 사항과 느낀 점](#8-완료한-개선-상황-/-개선-사항과-느낀-점)
   * [프로젝트 주소](#프로젝트-주소)
 </div>
 </details>
-
-
 
 # **시작하며**
 
@@ -47,7 +45,7 @@ comments: true
 5. API 설계
 6. 화면 설계서
 7. 개발 내용
-8. 개선 사항 과 느낀 점
+8. 완료한 개선 사항 / 개선 사항과 느낀 점
 
 ### 1. 프로젝트 진행 순서
 
@@ -701,9 +699,9 @@ Junit 을 통한 Test 과정은 아래와 같이 하나의 메소드를 추가 �
 
 ![_config.yml]({{ site.baseurl }}/img/SpringDB/test.png)
 
-[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 암호화(인코딩)기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>[8 - 장바구니(담기, 리스트) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mycart/)<br>[9 - 쿠폰(발급, 나의 쿠폰) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-coupon/)<br>[10 - 상품 결제 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-purchased/)<br>[11 - 나의 결제내역(주문취소) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mypurchased/)<br>[12 - 게시판 등록 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-enrollboard/)<br>[13 - 게시판 리스트(페이징) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-boardlist/)<br>[14 - 게시판 검색 기능 추가](https://greenteapie.github.io/DBSpringVer-add-boardsearch/)<br>[15 - 게시판 페이지 조회&수정&삭제 기능 추가](https://greenteapie.github.io/DBSpringVer-add-modifyboard/)<br>[16 - 게시판 댓글(등록, 수정, 삭제) 기능 추가](https://greenteapie.github.io/DBSpringVer-add-reply/)<br>[17 - 나의 작성 글 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myboard/)<br>[18 - ](https://greenteapie.github.io/DBSpringVer-add-/)<br>[19 - ](https://greenteapie.github.io/DBSpringVer-add-/)<br>
+[1 - Spring 초기 설정](https://greenteapie.github.io/DBSpringVer-first-setting/)<br>[2 - Main 페이지 추가](https://greenteapie.github.io/DBSpringVer-main-page/)<br>[3 - 회원가입 페이지 & 암호화(인코딩)기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-join/)<br>[4 - 로그인(로그아웃) 페이지 & 기능 추가 ](https://greenteapie.github.io/DBSpringVer-add-login/)<br>[5 - 내 정보 수정(탈퇴) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myinfo/)<br>[6 - 상품 리스트(카테고리, 검색, 세일) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productlist/)<br>[7 - 상품 디테일 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-productdetail/)<br>[8 - 장바구니(담기, 리스트) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mycart/)<br>[9 - 쿠폰(발급, 나의 쿠폰) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-coupon/)<br>[10 - 상품 결제 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-purchased/)<br>[11 - 나의 결제내역(주문취소) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-mypurchased/)<br>[12 - 게시판 등록 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-enrollboard/)<br>[13 - 게시판 리스트(페이징) 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-boardlist/)<br>[14 - 게시판 검색 기능 추가](https://greenteapie.github.io/DBSpringVer-add-boardsearch/)<br>[15 - 게시판 페이지 조회&수정&삭제 기능 추가](https://greenteapie.github.io/DBSpringVer-add-modifyboard/)<br>[16 - 게시판 댓글(등록, 수정, 삭제) 기능 추가](https://greenteapie.github.io/DBSpringVer-add-reply/)<br>[17 - 나의 작성 글 페이지 & 기능 추가](https://greenteapie.github.io/DBSpringVer-add-myboard/)<br>[18 - 어드민 회원 관리 기능 추가](https://greenteapie.github.io/DBSpringVer-add-admincustomer/)<br>[19 - 어드민 브랜드 관리 기능 추가](https://greenteapie.github.io/DBSpringVer-add-adminbrand/)<br>[20 - 어드민 상품 관리 기능 추가](https://greenteapie.github.io/DBSpringVer-add-adminproduct/)<br>[21 - 어드민 매출/주문 관리 기능 추가](https://greenteapie.github.io/DBSpringVer-add-adminorders/)<br>[22 - 어드민 옥션(경매) 관리 기능 추가](https://greenteapie.github.io/DBSpringVer-add-adminauction/)<br>[23 - QnA 페이지와 Contact 페이지 추가](https://greenteapie.github.io/DBSpringVer-add-subpage/)<br>
 
-### 8. 완료한 개선 사항&개선 사항 과 느낀 점 
+### 8. 완료한 개선 사항 / 개선 사항과 느낀 점
 
 1. 완료 개선 사항
 
