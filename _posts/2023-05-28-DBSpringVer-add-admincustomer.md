@@ -8,6 +8,7 @@ feature: /img/SpringDB/logo.png
 comments: true
 
 
+
 ---
 
 
@@ -250,6 +251,50 @@ table.table {
 </body>
 <jsp:include page="../footer.jsp"></jsp:include>
 </html>
+
+```
+
+#### AdminController.java 추가
+
+```java
+package com.db.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.db.mapper.PageMakerDTO;
+import com.db.model.Criteria;
+import com.db.service.AdminService;
+
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
+
+	@Autowired
+	AdminService adminService;
+	
+	// 회원관리
+	// 회원관리 페이지
+	@GetMapping("userManagementPage")
+	public void userManagementpageGET(Model model, Criteria cri, @RequestParam(required = false) String category)
+			throws Exception {
+		System.out.println("userManagementPage 접속");
+
+		cri.setCategory(category); // category 값을 저장합니다.
+
+		model.addAttribute("list", adminService.getUserListPaging(cri));
+
+		int total = adminService.getUserTotal(cri);
+
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+
+		model.addAttribute("pageMaker", pageMake);
+	}
+}
 
 ```
 
@@ -665,6 +710,18 @@ table.table {
 
 ![_config.yml]({{ site.baseurl }}/img/SpringDB/customermodify.png)
 
+#### AdminController.java 에 추가
+
+```java
+	// 회원정보 수정
+	@GetMapping("userManagementEdit")
+	public void userManagementEditGET(String userid, Model model) throws Exception {
+		System.out.println("userManagementEdit 접속");
+		UserVO user = adminService.getUser(userid);
+		model.addAttribute("shopUser", user);
+	}
+```
+
 #### AdminMapper.java 에 추가
 
 ```java
@@ -720,6 +777,25 @@ window.close();
 </html>
 ```
 
+#### AdminController.java 에 추가
+
+```java
+    @Autowired
+	UserService userService;
+
+    // 회원 수정 완료
+	@PostMapping("userEditComplete.do")
+	@ResponseBody
+	public String userEditCompletePOST(UserVO vo) throws Exception {
+		System.out.println("userEditComplete.do 접속");
+		System.out.println("uservo: " + vo);
+		adminService.adminUserUpdate(vo);
+		System.out.println("userupdate: " + userService.userUpdate(vo));
+		String response = "success";
+		return response;
+	}
+```
+
 #### 5. 회원 삭제 기능
 
 #### AdminMapper.java 에 추가
@@ -751,5 +827,19 @@ window.close();
 		mapper.deleteUser(userid);
 	}
 ```
+
+#### AdminController.java 에 추가
+
+```java
+	// 회원 삭제
+	@GetMapping("userDelete")
+	public String userDeleteGET(String shopUserid) throws Exception {
+		System.out.println("userDelete 접속");
+		adminService.deleteUser(shopUserid);
+		return "redirect:/admin/userManagementPage";
+	}
+```
+
+
 
 ## [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer)
