@@ -2,7 +2,7 @@
 layout: post
 title: JAVA 용어 정리 - 1
 date: 2023-07-14
-excerpt: "자바 용어 정리"
+excerpt: "자바 용어 정리 - 라이브러리와 프레임워크"
 tags: [java, study]
 comments: true
 
