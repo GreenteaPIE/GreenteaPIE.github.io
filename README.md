@@ -14,6 +14,7 @@
 - <a href="https://greenteapie.github.io/Studying-java-2/">오류와 예외</a>
 - <a href="https://greenteapie.github.io/Studying-java-3/">전자정부 프레임워크</a>
 - <a href="https://greenteapie.github.io/Studying-java-4/">EL문과 JSTL문</a>
+- <a href="https://greenteapie.github.io/Studying-java-5/">Scanner와 BufferedReader</a>
 
 # Studying SQL
 - <a href="https://greenteapie.github.io/Studying-SQL-1/">UNION 과 UNION ALL의 차이, MINUS, 계층형 조회, 서브쿼리</a>
