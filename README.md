@@ -16,6 +16,7 @@
 - <a href="https://greenteapie.github.io/Studying-java-4/">EL문과 JSTL문</a>
 - <a href="https://greenteapie.github.io/Studying-java-5/">Scanner와 BufferedReader</a>
 - <a href="https://greenteapie.github.io/Studying-java-6/">Servlet</a>
+- <a href="https://greenteapie.github.io/Studying-java-7/">API 정의와 종류</a>
 
 # Studying SQL
 - <a href="https://greenteapie.github.io/Studying-SQL-1/">UNION 과 UNION ALL의 차이, MINUS, 계층형 조회, 서브쿼리</a>
