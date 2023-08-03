@@ -2,7 +2,7 @@
 layout: post
 title: JAVA 용어 정리 - 7
 date: 2023-08-02
-excerpt: "자바 용어 정리 - API의 정의와 종류, 장단"
+excerpt: "자바 용어 정리 - API의 정의와 종류, 장 단점"
 tags: [java, study]
 comments: true
 
