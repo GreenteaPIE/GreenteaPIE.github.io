@@ -19,6 +19,7 @@
 - <a href="https://greenteapie.github.io/Studying-java-7/">API 정의와 종류</a>
 - <a href="https://greenteapie.github.io/Studying-java-8/">HTTP와 HTTPS의 개념과 차이점</a>
 - <a href="https://greenteapie.github.io/Studying-java-9/">다형성, 오버로딩(Overloading)과 오버라이딩(Overriding)</a>
+- <a href="https://greenteapie.github.io/Studying-java-10/">JPA와 MyBatis</a>
 
 # Studying SQL
 - <a href="https://greenteapie.github.io/Studying-SQL-1/">UNION 과 UNION ALL의 차이, MINUS, 계층형 조회, 서브쿼리</a>

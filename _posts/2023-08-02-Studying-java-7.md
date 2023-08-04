@@ -44,9 +44,9 @@ Public API는 말 그대로 public, 즉 개방형 API로, 모두에게 공개된
 ###### 오픈 API 사이트 예)
 
 - 구글 :[ https://cloud.google.com/apis?hl=ko](https://cloud.google.com/apis?hl=ko)
-- 공공데이터포털- https://www.data.go.kr/
-- 문화데이터 광장 – https://www.culture.go.kr/data/main/main.do
-- 카카오 :[ ](https://developers.kakao.com/)https://developers.kakao.com/tool
+- 공공데이터포털 :[https://www.data.go.kr/](https://www.data.go.kr/)
+- 문화데이터 광장 :[https://www.culture.go.kr/data/main/main.do](https://www.culture.go.kr/data/main/main.do)
+- 카카오 :[https://developers.kakao.com/](https://developers.kakao.com/)
 
 ##### Parter API
 
