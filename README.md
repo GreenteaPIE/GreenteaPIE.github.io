@@ -23,6 +23,7 @@
 
 # Studying SQL
 - <a href="https://greenteapie.github.io/Studying-SQL-1/">UNION 과 UNION ALL의 차이, MINUS, 계층형 조회, 서브쿼리</a>
+- <a href="https://greenteapie.github.io/Studying-SQL-2/">JOIN문과 종류</a>
 
 # Conding Test
 - <a href="https://greenteapie.github.io/BeakJoon0703/">백준 브론즈5-1000번</a>
