@@ -24,6 +24,7 @@
 - <a href="https://greenteapie.github.io/Studying-java-12/">클래스, 객체, 인스턴스</a>
 - <a href="https://greenteapie.github.io/Studying-java-13/">접근 제한자 public, protected, default, private</a>
 - <a href="https://greenteapie.github.io/Studying-java-14/">static, final, static final</a>
+- <a href="https://greenteapie.github.io/Studying-java-15/">JVM이란? 개념 및 구조</a>
 
 # Studying SQL
 - <a href="https://greenteapie.github.io/Studying-SQL-1/">UNION 과 UNION ALL의 차이, MINUS, 계층형 조회, 서브쿼리</a>
