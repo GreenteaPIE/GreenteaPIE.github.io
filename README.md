@@ -27,6 +27,7 @@
 - <a href="https://greenteapie.github.io/Studying-java-15/">JVM이란? 개념 및 구조</a>
 - <a href="https://greenteapie.github.io/Studying-java-16/">동기와 비동기</a>
 - <a href="https://greenteapie.github.io/Studying-java-17/">Spring Framework 와 Spring Boot</a>
+- <a href="https://greenteapie.github.io/Studying-java-18/">변수와 메서드, 데이터 타입(기본형, 참조)</a>
 
 # Studying SQL
 - <a href="https://greenteapie.github.io/Studying-SQL-1/">UNION 과 UNION ALL의 차이, MINUS, 계층형 조회, 서브쿼리</a>
