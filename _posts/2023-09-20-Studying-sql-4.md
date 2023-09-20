@@ -2,7 +2,7 @@
 layout: post
 title: SQL 용어 정리 - 4
 date: 2023-09-20
-excerpt: SQL 용어 정리 - 프로시저란"
+excerpt: "SQL 용어 정리 - 프로시저란"
 tags: [SQL, study]
 comments: true
 
