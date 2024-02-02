@@ -40,6 +40,8 @@
 - <a href="https://greenteapie.github.io/BeakJoon0703/">백준 브론즈5-1000번</a>
 - <a href="https://greenteapie.github.io/BaekJoon0704/">백준 브론즈5-1001번, 1008번</a>
 
+# SQLD STUDY
+- <a href="">SQLD STUDY 1일차</a>
 
 # 2024년 목표
 
