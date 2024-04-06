@@ -41,10 +41,10 @@
 - <a href="https://greenteapie.github.io/BaekJoon0704/">백준 브론즈5-1001번, 1008번</a>
 
 # SQLD STUDY
-- <a href="">SQLD STUDY 1일차</a>
+- <a href="https://greenteapie.github.io/SQLD/">SQLD 취득</a>
 
 # 2024년 목표
 
-- SQLD 따기
-- 경력 1년 채우고 정처기 공부
+- SQLD 따기<완료>
+- 정처산기 취득 후 경력 1년 채우고 정처기 따기
     
