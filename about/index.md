@@ -8,4 +8,5 @@ comments: false
     
 
 ## Nube Back-end developer<br>
+(주)브랜드콘텐츠 IT개발팀 2023.08 ~ 2023.12
 email: greenteapie2023@gmail.com<br>
