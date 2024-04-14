@@ -786,7 +786,7 @@ Junit 을 통한 Test 과정은 아래와 같이 하나의 메소드를 추가 �
 
    또 git brench 로 협업하는 방법도 알아보고 각 brench를 만들어 프로젝트를 commit하고 master branch로 push 해봤는데 익숙하지 않아서 그런지 변경점이 꼬여 정상적으로  push가 되지않는 현상이 일어났다.. 뭐든 처음은 어려운법 그래서 그냥 source tree로 master branch에 바로 commit/push 해서 업로드 했다. 첫 시도는 실패였지만 다음 시도는 성공하고 말 것이다..!
 
-## [이전 DB 프로젝트 보기](https://greenteapie.github.io/Team-Project-mvc2-pattern(DiamondBlack)/) / [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer) /  [호스팅 주소](http://dbgreenteapie.shop/)
+## [이전 DB 프로젝트 보기](https://greenteapie.github.io/Team-Project-mvc2-pattern(DiamondBlack)/) / [프로젝트 주소](https://github.com/GreenteaPIE/TeamProjectDBSpringVer) /  [호스팅 주소(서버대여 종료)](http://dbgreenteapie.shop/) 
 
 <style>
  @keyframes blink {
