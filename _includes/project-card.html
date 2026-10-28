@@ -1,0 +1,13 @@
+{%- assign p = include.project -%}
+<article class="card project{% if include.large %} project-large{% endif %}">
+  {%- assign first = p.links[0].url -%}
+  <a class="project-image" href="{% if first contains '://' %}{{ first }}{% else %}{{ first | relative_url }}{% endif %}"><img src="{{ p.image | relative_url }}" alt="{{ p.title }}" loading="lazy"{% if p.fit == 'contain' %} class="contain"{% endif %}></a>
+  <div class="project-body">
+    <div class="project-meta"><span>{{ p.period }}</span><span>{{ p.team }}</span></div>
+    <h3>{{ p.title }}</h3>
+    <p class="muted">{{ p.summary }}</p>
+    {% if p.highlights %}<ul class="highlights">{% for h in p.highlights %}<li>{{ h }}</li>{% endfor %}</ul>{% endif %}
+    <div class="chips">{% for s in p.stack %}<span class="chip">{{ s }}</span>{% endfor %}</div>
+    <div class="links">{% for l in p.links %}<a class="btn{% if forloop.first %} primary{% endif %}" href="{% if l.url contains '://' %}{{ l.url }}{% else %}{{ l.url | relative_url }}{% endif %}">{{ l.label }}</a>{% endfor %}</div>
+  </div>
+</article>

@@ -1,5 +1,57 @@
 ---
-layout: home
+layout: portfolio
 title: Home
-comments: true
 ---
+{%- assign profile = site.data.profile -%}
+<section class="hero">
+  <img src="{{ '/assets/img/pie.png' | relative_url }}" alt="{{ profile.name }}">
+  <div>
+    <span class="role">{{ profile.role }}</span>
+    <h1>안녕하세요, {{ profile.name }}입니다</h1>
+    <p>{{ profile.intro }}</p>
+    <div class="actions">
+      <a class="btn primary" href="{{ '/projects/' | relative_url }}">프로젝트 보기</a>
+      <a class="btn" href="https://github.com/{{ profile.github }}">GitHub</a>
+      <a class="btn" href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>대표 프로젝트</h2>
+  {% for project in site.data.projects %}{% if project.featured %}{% include project-card.html project=project large=true %}{% endif %}{% endfor %}
+</section>
+
+<section>
+  <div class="section-head"><h2>다른 프로젝트</h2><a href="{{ '/projects/' | relative_url }}">전체 보기 →</a></div>
+  <div class="grid">
+    {% for project in site.data.projects %}{% unless project.featured %}{% include project-card.html project=project %}{% endunless %}{% endfor %}
+  </div>
+</section>
+
+<section>
+  <h2>걸어온 길</h2>
+  <ul class="timeline">
+    {% for item in profile.timeline %}
+    <li><span class="period">{{ item.period }}</span><strong>{{ item.title }}</strong><p>{{ item.description }}</p></li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section>
+  <h2>기술</h2>
+  <div class="skills">
+    {% for group in profile.skills %}
+    <div class="card"><h3>{{ group.group }}</h3><div class="chips">{% for s in group.items %}<span class="chip">{{ s }}</span>{% endfor %}</div></div>
+    {% endfor %}
+  </div>
+</section>
+
+<section>
+  <div class="section-head"><h2>최근 글</h2><a href="{{ '/posts/' | relative_url }}">전체 {{ site.posts.size }}편 →</a></div>
+  <ul class="post-list">
+    {% for post in site.posts limit: 5 %}
+    <li><a href="{{ post.url | relative_url }}">{{ post.title }}<span class="excerpt">{{ post.excerpt | strip_html | strip_newlines | truncate: 80 }}</span></a><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time></li>
+    {% endfor %}
+  </ul>
+</section>

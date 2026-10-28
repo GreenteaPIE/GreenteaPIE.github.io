@@ -1,0 +1,50 @@
+---
+---
+{%- assign profile = site.data.profile -%}
+{%- capture page_title -%}{% if page.title and page.title != 'Home' %}{{ page.title }} · {% endif %}{{ profile.name }} — {{ profile.role }}{%- endcapture -%}
+{%- capture page_description -%}{{ page.description | default: profile.intro | strip_newlines | strip }}{%- endcapture -%}
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }}</title>
+  <meta name="description" content="{{ page_description | escape }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ profile.name }}">
+  <meta property="og:title" content="{{ page_title | escape }}">
+  <meta property="og:description" content="{{ page_description | escape }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ page.image | default: '/assets/img/projects/korea-holidays-api.png' | absolute_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2f7d4a">
+  <link rel="icon" type="image/png" href="{{ '/favicon.png' | relative_url }}">
+  <link rel="alternate" type="application/atom+xml" href="{{ '/feed.xml' | relative_url }}" title="{{ profile.name }}">
+  <link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="{{ '/' | relative_url }}"><img src="{{ '/assets/img/pie.png' | relative_url }}" alt="">{{ profile.name }}</a>
+      <nav aria-label="주요 메뉴">
+        <a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} aria-current="page"{% endif %}>Projects</a>
+        <a href="{{ '/posts/' | relative_url }}"{% if page.url == '/posts/' %} aria-current="page"{% endif %}>Posts</a>
+        <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    {{ content }}
+  </main>
+  <footer class="container footer">
+    <span>© {{ site.time | date: '%Y' }} {{ profile.name }}</span>
+    <span class="footer-links">
+      <a href="mailto:{{ profile.email }}">Email</a>
+      <a href="https://github.com/{{ profile.github }}">GitHub</a>
+      {% if profile.youtube %}<a href="https://www.youtube.com/channel/{{ profile.youtube }}">YouTube</a>{% endif %}
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </span>
+  </footer>
+</body>
+</html>

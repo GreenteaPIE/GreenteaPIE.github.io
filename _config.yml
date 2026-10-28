@@ -1,13 +1,13 @@
 # Site
 title:              GreenteaPIE
-bio:                "GreenteaPIE's Development Story."
-description:        "GreenteaPIE's Development Story."
+bio:                "백엔드 개발자 GreenteaPIE 의 포트폴리오와 개발 기록"
+description:        "백엔드 개발자 GreenteaPIE 의 포트폴리오와 개발 기록 — Korea Holidays API, Spring 프로젝트, Java·SQL 공부"
 reading_time:       true
 words_per_minute:   200
 logo:               'assets/img/pie.png'
 background:         'assets/img/black.jpg'
 tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
-locale:             en_US
+locale:             ko_KR
 url:                https://GreenteaPIE.github.io
 
 # Jekyll
@@ -62,8 +62,8 @@ youtube-channel:   UCh_WgALJkSa-LnrcZP7RcGw
 #xmpp:              username@server.com
 #hackernews:        username
 
-# Gems
-gems:
+# Plugins
+plugins:
   - jekyll-mentions
   - jekyll-feed
   - jekyll-sitemap

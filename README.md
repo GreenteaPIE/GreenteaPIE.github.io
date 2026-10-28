@@ -5,6 +5,7 @@
 
 # Project
 
+- <a href="https://korea-holidays-api.greenteapie2023.workers.dev">Korea Holidays API(대한민국 공휴일·영업일 Open API)</a> · <a href="https://github.com/GreenteaPIE/korea-holidays-api">GitHub</a>
 - <a href="https://greenteapie.github.io/Project-Find-my-dog/">Find My Dog(반려견 커뮤니티)</a>
 - <a href="https://greenteapie.github.io/Team-Project-Spring(DiamondBlack)/">쇼핑몰 DiamondBlack Spring MVC버전</a>
 - <a href="https://greenteapie.github.io/Team-Project-mvc2-pattern(DiamondBlack)/">쇼핑몰 DiamondBlack MVC2 패턴</a>
@@ -43,6 +44,12 @@
 
 # SQLD STUDY
 - <a href="https://greenteapie.github.io/SQLD/">SQLD 취득</a>
+
+# 사이트 구조
+
+- 첫 화면·프로젝트·About·글 목록: `_layouts/portfolio.html`, `assets/css/portfolio.css`
+- 소개 문구·경력·기술: `_data/profile.yml` / 프로젝트 카드: `_data/projects.yml` — 내용은 이 두 파일만 고치면 된다
+- 개별 글(`_posts`)은 기존 테마(`_layouts/post.html`) 그대로
 
 # 2024년 목표
 
