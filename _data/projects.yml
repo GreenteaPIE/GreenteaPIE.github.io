@@ -13,6 +13,7 @@
     - 같은 데이터로 npm·PyPI 패키지와 MCP 서버(AI 비서 연결)까지 제공, 테스트 140여 개
   links:
     - { label: 서비스, url: "https://korea-holidays-api.greenteapie2023.workers.dev" }
+    - { label: 개발기, url: "/Korea-Holidays-API/" }
     - { label: GitHub, url: "https://github.com/GreenteaPIE/korea-holidays-api" }
     - { label: npm, url: "https://www.npmjs.com/package/korea-holidays" }
 
