@@ -17,6 +17,23 @@
     - { label: GitHub, url: "https://github.com/GreenteaPIE/korea-holidays-api" }
     - { label: npm, url: "https://www.npmjs.com/package/korea-holidays" }
 
+- id: korea-payroll-api
+  title: Korea Payroll API
+  summary: 연봉 실수령액·4대보험·근로소득 간이세액·최저임금·퇴직금 계산 Open API
+  period: 2026.10 ~ 운영 중
+  team: 개인
+  featured: true
+  image: /assets/img/projects/korea-payroll-api.png
+  stack: [TypeScript, Hono, Cloudflare Workers, Playwright, GitHub Actions]
+  highlights:
+    - 법제처 소득세법 시행령 별표2 PDF 에서 간이세액표 646개 구간을 그대로 추출해 데이터로 사용
+    - 4대보험은 정부 모의계산 결과 96건과 10원 단위까지 같게 맞추고, 기간별 요율·상하한 고시를 출처와 함께 관리
+    - 실수령액 계산기 페이지, OpenAPI 문서, npm 라이브러리, 테스트 150여 개
+  links:
+    - { label: 서비스, url: "https://korea-payroll-api.greenteapie2023.workers.dev" }
+    - { label: 개발기, url: "/Korea-Payroll-API/" }
+    - { label: GitHub, url: "https://github.com/GreenteaPIE/korea-payroll-api" }
+
 - id: find-my-dog
   title: Find My Dog
   summary: 잃어버린 반려견을 지역 커뮤니티에서 함께 찾는 서비스
