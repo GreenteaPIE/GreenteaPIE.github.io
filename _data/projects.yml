@@ -33,6 +33,7 @@
     - { label: 서비스, url: "https://korea-payroll-api.greenteapie2023.workers.dev" }
     - { label: 개발기, url: "/Korea-Payroll-API/" }
     - { label: GitHub, url: "https://github.com/GreenteaPIE/korea-payroll-api" }
+    - { label: npm, url: "https://www.npmjs.com/package/korea-payroll" }
 
 - id: find-my-dog
   title: Find My Dog

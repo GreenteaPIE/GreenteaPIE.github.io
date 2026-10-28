@@ -10,7 +10,8 @@ comments: true
 
 > **서비스** : <https://korea-payroll-api.greenteapie2023.workers.dev><br>
 > **API 문서** : <https://korea-payroll-api.greenteapie2023.workers.dev/docs><br>
-> **GitHub** : <https://github.com/GreenteaPIE/korea-payroll-api>
+> **GitHub** : <https://github.com/GreenteaPIE/korea-payroll-api><br>
+> **npm** : <https://www.npmjs.com/package/korea-payroll>
 
 # 시작하며
 
@@ -124,6 +125,14 @@ the provided value is not of type 'function or ExportedHandler'.
 
 ```bash
 curl "https://korea-payroll-api.greenteapie2023.workers.dev/v1/net-pay?annual=40000000&nonTaxable=200000"
+```
+
+같은 계산은 npm 라이브러리로도 쓸 수 있다. GitHub Actions 에서 provenance(빌드 출처 증명)를 붙여 배포했다.
+
+```ts
+// npm install korea-payroll
+import { netPay } from 'korea-payroll'
+netPay({ annualSalary: 40_000_000, nonTaxable: 200_000, month: '2026-10' }).netPay // 2935813
 ```
 
 API 키 없이 무료로 쓸 수 있다. 계산이 다르게 나오는 경우를 찾으면 [GitHub 이슈](https://github.com/GreenteaPIE/korea-payroll-api/issues)로 알려 주시면 고치겠습니다.
