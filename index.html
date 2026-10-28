@@ -31,11 +31,7 @@ title: Home
 
 <section>
   <h2>걸어온 길</h2>
-  <ul class="timeline">
-    {% for item in profile.timeline %}
-    <li><span class="period">{{ item.period }}</span><strong>{{ item.title }}</strong><p>{{ item.description }}</p></li>
-    {% endfor %}
-  </ul>
+  {% include timeline.html %}
 </section>
 
 <section>

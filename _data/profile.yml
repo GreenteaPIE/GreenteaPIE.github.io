@@ -2,9 +2,9 @@
 name: GreenteaPIE
 role: 백엔드 개발자
 intro: >-
-  웹 개발 교육에서 Java·Spring 으로 시작해 공공기관 행정 시스템을 유지보수했고,
-  지금은 대한민국 공휴일 Open API 를 직접 만들어 운영하고 있습니다.
-  정확한 데이터를 오래 믿고 쓸 수 있는 서비스를 만드는 데 관심이 많습니다.
+  웹 개발 교육에서 Java·Spring 으로 시작해 공공기관 행정 시스템 유지보수를 거쳐,
+  지금은 KD운송그룹 전산개발팀에서 ERP 와 그룹웨어 같은 사내 시스템을 만들고 있습니다.
+  개인적으로는 대한민국 공휴일 Open API 를 만들어 운영하며, 정확한 데이터를 오래 믿고 쓸 수 있는 서비스를 만드는 데 관심이 많습니다.
 email: greenteapie2023@gmail.com
 github: GreenteaPIE
 youtube: UCh_WgALJkSa-LnrcZP7RcGw
@@ -12,6 +12,8 @@ youtube: UCh_WgALJkSa-LnrcZP7RcGw
 skills:
   - group: Backend
     items: [Java, Spring, Spring Boot, JPA, MyBatis, JSP·Servlet, JUnit]
+  - group: ERP·사내 시스템
+    items: [Nexacro, MiPlatform, ERP, 그룹웨어]
   - group: Database
     items: [Oracle, MySQL, H2, 다중 조인·통계 쿼리]
   - group: Web·Cloud
@@ -20,12 +22,23 @@ skills:
     items: [Git, GitHub Actions, IntelliJ, Eclipse, Python]
 
 timeline:
+  - period: 2024.09 ~ 현재
+    title: KD운송그룹 전산개발팀 (재직 중)
+    current: true
+    description: 그룹 사내 업무 시스템 개발
+    details:
+      - Nexacro 로 차량 정비·부품 판매 등을 관리하는 ERP 개발
+      - 그룹 자체 ERP 를 MiPlatform 에서 Nexacro 로 옮기며 고도화 (진행 중)
+      - 그룹웨어 개발
+      - 외부 Open API 원격 지원 프로그램을 사내 자체 프로그램으로 개발
+      - 음주측정 시스템 구축
+      - 숙박·식사 예약 등록·조회 시스템 구축
   - period: 2026.10 ~
     title: Korea Holidays API 개발·운영
     description: 대한민국 공휴일·영업일 Open API, npm·PyPI 패키지, MCP 서버. 공공데이터와 매주 자동 대조
   - period: 2024.04 ~
     title: Find My Dog 개인 프로젝트
-    description: Spring Boot·JPA 반려견 찾기 커뮤니티, 카카오·네이버·구글 소셜 로그인
+    description: 실종·발견 제보 커뮤니티. 2026.10 실서비스 수준으로 개편 (목격 제보, 비슷한 제보 추천, 인쇄용 전단지, 신고·관리)
   - period: 2024.04
     title: SQLD 취득
     description: 실무에서 수백 개 테이블을 조인하며 쌓은 경험을 정리

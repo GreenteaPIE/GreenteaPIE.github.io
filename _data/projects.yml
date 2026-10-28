@@ -22,11 +22,11 @@
   summary: 잃어버린 반려견을 지역 커뮤니티에서 함께 찾는 서비스
   period: 2024.04 ~
   team: 개인
-  image: /assets/img/rucy.jpg
-  stack: [Spring Boot, JPA, Spring Security, OAuth2, Kakao Map API, H2]
+  image: /assets/img/findmydog/home.jpg
+  stack: [Spring Boot, JPA, Spring Security, OAuth2, Kakao Map API, PostgreSQL, Docker]
   highlights:
-    - 카카오·네이버·구글 소셜 로그인, 탈퇴 시 작성 글 정리
-    - 게시판 CRUD, 카카오맵으로 실종 위치 표시, 여러 장 이미지 업로드
+    - 실종·발견 제보, 목격 제보, 5km 안 비슷한 제보 추천, QR 넣은 인쇄용 전단지
+    - 작성자 확인·CSRF·업로드 파일 보호, 신고 자동 숨김과 관리자 화면, 테스트 36개
   links:
     - { label: 개발기, url: "/Project-Find-my-dog/" }
     - { label: GitHub, url: "https://github.com/GreenteaPIE/findmydog" }

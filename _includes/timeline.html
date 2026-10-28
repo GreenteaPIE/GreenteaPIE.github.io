@@ -1,0 +1,10 @@
+{%- comment -%} 걸어온 길. details 가 있으면 한 일을 목록으로 보여 준다 {%- endcomment -%}
+<ul class="timeline">
+  {% for item in site.data.profile.timeline %}
+  <li{% if item.current %} class="current"{% endif %}>
+    <span class="period">{{ item.period }}</span><strong>{{ item.title }}</strong>
+    {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+    {% if item.details %}<ul class="timeline-details">{% for d in item.details %}<li>{{ d }}</li>{% endfor %}</ul>{% endif %}
+  </li>
+  {% endfor %}
+</ul>

@@ -1,57 +1,41 @@
 ---
-layout: compress
+layout: base
 ---
-<!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
-<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
-<head>
-    {% include head.html %}
-    <style>
-    .post-title.feature {
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  height: 450px; /* 크기 조절 */
-}
-    </style>
-</head>
-<body>
-    {% include nav.html %}
-    <!-- Header -->
-    <header class="header" role="banner">
-        <div class="wrapper animated fadeIn">
-            <div class="content">
-                <div class="post-title {% if page.feature %} feature {% endif %}">
-                    <h1>{{ page.title }}</h1>
-                    <h4>{{ page.date | date_to_string }}</h4>
-                    {% if site.reading_time %}
-                    <p class="reading-time">
-                      <i class="fa fa-clock-o"></i>
-                      {% include read-time.html %}
-                    </p><!-- /.entry-reading-time -->
-                    {% endif %}
-                    {% if page.project %}
-                    <a class="btn zoombtn" href="{{site.url}}/projects/">
-                    {% else %}
-                    <a class="btn zoombtn" href="{{site.url}}/posts/">
-                    {% endif %}
-                        <i class="fa fa-chevron-left"></i>
-                    </a>
-                </div>
-                {{ content }}
-                <div class="entry-meta">
-                {% include meta.html %}
-                </div>
-            </div>
-        </div>
-        {% if page.comments and site.disqus_shortname %}<section id="disqus_thread" class="animated fadeInUp"></section><!-- /#disqus_thread -->{% endif %}
-    </header>
-    {% include scripts.html %}
-    {% if site.mathjax == true %}
-    <!-- MathJax -->
-    <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+{%- comment -%} 글 화면. 프로젝트 개발기(project: true)는 Projects 로, 나머지는 Posts 로 돌아간다 {%- endcomment -%}
+{%- assign chars = content | strip_html | strip_newlines | size -%}
+{%- assign minutes = chars | divided_by: 500 | plus: 1 -%}
+<article class="article">
+  <a class="back-link" href="{% if page.project %}{{ '/projects/' | relative_url }}{% else %}{{ '/posts/' | relative_url }}{% endif %}">
+    {% if page.project %}프로젝트 목록{% else %}글 목록{% endif %}</a>
+  <header class="article-head">
+    <h1>{{ page.title }}</h1>
+    <p class="article-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y년 %-m월 %-d일' }}</time>
+      <span>읽는 데 {{ minutes }}분</span>
+      {% if page.modified %}<span>{{ page.modified | date: '%Y년 %-m월 %-d일' }} 수정</span>{% endif %}
+    </p>
+    {% if page.tags.size > 0 %}
+    <p class="chips">{% for tag in page.tags %}<a class="chip" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>{% endfor %}</p>
     {% endif %}
-</body>
-</html>
+  </header>
+  {% if page.feature %}
+  <figure class="article-feature"><img src="{{ page.feature | relative_url }}" alt=""></figure>
+  {% endif %}
+  <div class="prose post-body">
+    {{ content }}
+  </div>
+
+  {% if page.previous or page.next %}
+  <nav class="post-nav" aria-label="다른 글">
+    {% if page.previous %}<a class="card" href="{{ page.previous.url | relative_url }}"><span class="muted">이전 글</span>{{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
+    {% if page.next %}<a class="card next" href="{{ page.next.url | relative_url }}"><span class="muted">다음 글</span>{{ page.next.title }}</a>{% endif %}
+  </nav>
+  {% endif %}
+
+  {% if page.comments and site.disqus_shortname %}
+  <section class="comments" aria-label="댓글">
+    <div id="disqus_thread"></div>
+    {% include disqus_comments.html %}
+  </section>
+  {% endif %}
+</article>
